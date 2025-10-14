@@ -217,12 +217,12 @@ export class LPORPDFGenerator {
     // Main title with gray background - more precise positioning
     const titleText =
       "LOUISIANA UNIFORM ABUSE PREVENTION ORDER";
-    const titleWidth =
-      this.boldFont.widthOfTextAtSize(
-        titleText,
-        FONT_SIZES.HEADER_TITLE,
-      );
-    const titleX = (PAGE_WIDTH - titleWidth) / 2;
+    // const titleWidth =
+    //   this.boldFont.widthOfTextAtSize(
+    //     titleText,
+    //     FONT_SIZES.HEADER_TITLE,
+    //   );
+    // const titleX = (PAGE_WIDTH - titleWidth) / 2;
 
     // Gray background with refined styling
     this.page.drawRectangle({

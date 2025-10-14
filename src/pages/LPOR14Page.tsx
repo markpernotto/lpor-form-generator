@@ -1,9 +1,29 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { LPORForm } from "../forms/lpor14/LPORForm";
 import { LPORPDFGenerator } from "../forms/lpor14/pdfGenerator";
 import type { LPORFormSchema } from "../forms/lpor14/formSchema";
+import { useTranslation } from "../i18n";
+import { LanguageSelector } from "../components/LanguageSelector";
 
 export const LPOR14Page: React.FC = () => {
+  const { lang } = useParams<{ lang: string }>();
+  console.log("Current lang:", lang);
+  const { changeLanguage } = useTranslation();
+
+  // Update language when URL parameter changes
+  useEffect(() => {
+    if (
+      lang &&
+      (lang === "en" || lang === "es")
+    ) {
+      changeLanguage(lang);
+    } else {
+      // Default to English for unsupported languages
+      changeLanguage("en");
+    }
+  }, [lang]); // Only depend on lang, not changeLanguage
+
   const handleFormSubmit = async (
     data: LPORFormSchema,
   ) => {
@@ -46,7 +66,10 @@ export const LPOR14Page: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <LPORForm onSubmit={handleFormSubmit} />
+      <div className="container mx-auto px-4 py-6">
+        <LanguageSelector />
+        <LPORForm onSubmit={handleFormSubmit} />
+      </div>
     </div>
   );
 };

@@ -1,0 +1,28 @@
+{
+  "form": {
+    "title": "Orden de Prevención de Abuso Uniforme de Louisiana",
+    "subtitle": "Orden para Modificar o Disolver una Orden de Prevención de Abuso Uniforme de Louisiana Anterior"
+  },
+  "court": {
+    "sectionTitle": "Información del Tribunal",
+    "courtName": {
+      "label": "Nombre del Tribunal y Parroquia/Ciudad *",
+      "placeholder": "Ingrese el nombre del tribunal y parroquia/ciudad"
+    },
+    "docketNumber": {
+      "label": "Número de Expediente *",
+      "placeholder": "Ingrese el número de expediente"
+    },
+    "division": {
+      "label": "División *",
+      "placeholder": "Ingrese la división"
+    },
+    "filedDate": {
+      "label": "Fecha de Presentación *"
+    },
+    "clerk": {
+      "label": "Secretario *",
+      "placeholder": "Ingrese el nombre del secretario"
+    }
+  }
+}

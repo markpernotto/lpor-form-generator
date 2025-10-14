@@ -5,6 +5,7 @@ import {
   lporFormSchema,
   type LPORFormSchema,
 } from "./formSchema";
+import { useTranslation } from "../../i18n";
 
 interface LPORFormProps {
   onSubmit: (data: LPORFormSchema) => void;
@@ -13,6 +14,7 @@ interface LPORFormProps {
 export const LPORForm: React.FC<
   LPORFormProps
 > = ({ onSubmit }) => {
+  const { t } = useTranslation();
   const {
     register,
     handleSubmit,
@@ -115,11 +117,10 @@ export const LPORForm: React.FC<
     <div className="max-w-4xl mx-auto p-6 bg-white">
       <div className="mb-8">
         <h1 className="text-2xl font-bold text-center mb-2">
-          Louisiana Uniform Abuse Prevention Order
+          {t("form.title")}
         </h1>
         <h2 className="text-lg text-center mb-4">
-          Order to Modify or Dissolve a Prior
-          Louisiana Uniform Abuse Prevention Order
+          {t("form.subtitle")}
         </h2>
         <p className="text-sm text-center text-gray-600">
           LPOR 14 - v.8 | Pursuant to La. R.S.
@@ -135,17 +136,19 @@ export const LPORForm: React.FC<
         {/* Header Section */}
         <section className="border border-gray-300 p-4 rounded">
           <h3 className="text-lg font-semibold mb-4">
-            Court Information
+            {t("court.sectionTitle")}
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
               <label className="block text-sm font-medium mb-1">
-                Court Name and Parish/City *
+                {t("court.courtName.label")}
               </label>
               <input
                 {...register("courtName")}
                 className="w-full p-2 border border-gray-300 rounded"
-                placeholder="Enter court name and parish/city"
+                placeholder={t(
+                  "court.courtName.placeholder",
+                )}
               />
               {errors.courtName && (
                 <p className="text-red-500 text-sm mt-1">
@@ -156,12 +159,14 @@ export const LPORForm: React.FC<
 
             <div>
               <label className="block text-sm font-medium mb-1">
-                Docket Number *
+                {t("court.docketNumber.label")}
               </label>
               <input
                 {...register("docketNumber")}
                 className="w-full p-2 border border-gray-300 rounded"
-                placeholder="Enter docket number"
+                placeholder={t(
+                  "court.docketNumber.placeholder",
+                )}
               />
               {errors.docketNumber && (
                 <p className="text-red-500 text-sm mt-1">
@@ -172,12 +177,14 @@ export const LPORForm: React.FC<
 
             <div>
               <label className="block text-sm font-medium mb-1">
-                Division *
+                {t("court.division.label")}
               </label>
               <input
                 {...register("division")}
                 className="w-full p-2 border border-gray-300 rounded"
-                placeholder="Enter division"
+                placeholder={t(
+                  "court.division.placeholder",
+                )}
               />
               {errors.division && (
                 <p className="text-red-500 text-sm mt-1">
@@ -190,7 +197,7 @@ export const LPORForm: React.FC<
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
             <div>
               <label className="block text-sm font-medium mb-1">
-                Filed Date *
+                {t("court.filedDate.label")}
               </label>
               <input
                 {...register("filedDate")}
@@ -206,12 +213,14 @@ export const LPORForm: React.FC<
 
             <div>
               <label className="block text-sm font-medium mb-1">
-                Clerk *
+                {t("court.clerk.label")}
               </label>
               <input
                 {...register("clerk")}
                 className="w-full p-2 border border-gray-300 rounded"
-                placeholder="Enter clerk name"
+                placeholder={t(
+                  "court.clerk.placeholder",
+                )}
               />
               {errors.clerk && (
                 <p className="text-red-500 text-sm mt-1">

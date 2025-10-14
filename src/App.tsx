@@ -11,17 +11,30 @@ function App() {
   return (
     <Router>
       <Routes>
+        {/* Root redirect to English */}
         <Route
           path="/"
           element={
-            <Navigate to="/lpor14" replace />
+            <Navigate to="/en/lpor14" replace />
           }
         />
+
+        {/* Legacy route redirect to English */}
         <Route
           path="/lpor14"
+          element={
+            <Navigate to="/en/lpor14" replace />
+          }
+        />
+
+        {/* Language-aware routes */}
+        <Route
+          path="/:lang/lpor14"
           element={<LPOR14Page />}
         />
-        {/* Add more routes here for other forms */}
+
+        {/* Add more language-aware routes here for other forms */}
+        {/* Example: <Route path="/:lang/other-form" element={<OtherFormPage />} /> */}
       </Routes>
     </Router>
   );

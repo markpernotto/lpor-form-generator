@@ -1,0 +1,28 @@
+{
+  "form": {
+    "title": "Louisiana Uniform Abuse Prevention Order",
+    "subtitle": "Order to Modify or Dissolve a Prior Louisiana Uniform Abuse Prevention Order"
+  },
+  "court": {
+    "sectionTitle": "Court Information",
+    "courtName": {
+      "label": "Court Name and Parish/City *",
+      "placeholder": "Enter court name and parish/city"
+    },
+    "docketNumber": {
+      "label": "Docket Number *",
+      "placeholder": "Enter docket number"
+    },
+    "division": {
+      "label": "Division *",
+      "placeholder": "Enter division"
+    },
+    "filedDate": {
+      "label": "Filed Date *"
+    },
+    "clerk": {
+      "label": "Clerk *",
+      "placeholder": "Enter clerk name"
+    }
+  }
+}
