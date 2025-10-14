@@ -3,6 +3,10 @@
     "title": "Louisiana Uniform Abuse Prevention Order",
     "subtitle": "Order to Modify or Dissolve a Prior Louisiana Uniform Abuse Prevention Order"
   },
+  "lporfForm": {
+    "title": "Motion for Contempt of Court and Order to Show Cause",
+    "subtitle": "LPOR-F - Violation of Protection Order"
+  },
   "court": {
     "sectionTitle": "Court Information",
     "courtName": {
@@ -24,5 +28,144 @@
       "label": "Clerk *",
       "placeholder": "Enter clerk name"
     }
+  },
+  "petitioner": {
+    "sectionTitle": "Petitioner Information",
+    "firstName": {
+      "label": "First Name",
+      "placeholder": "Enter first name"
+    },
+    "maidenMiddleName": {
+      "label": "Maiden/Middle Name",
+      "placeholder": "Enter maiden or middle name"
+    },
+    "lastName": {
+      "label": "Last Name",
+      "placeholder": "Enter last name"
+    },
+    "dateOfBirth": {
+      "label": "Date of Birth"
+    },
+    "sex": {
+      "label": "Sex",
+      "options": {
+        "female": "Female",
+        "male": "Male"
+      }
+    },
+    "race": {
+      "label": "Race",
+      "placeholder": "Enter race"
+    }
+  },
+  "defendant": {
+    "sectionTitle": "Defendant Information",
+    "fullName": {
+      "label": "Full Name",
+      "placeholder": "Enter defendant's full name"
+    },
+    "alias": {
+      "label": "Alias/Also Known As",
+      "placeholder": "Enter any known aliases"
+    },
+    "dateOfBirth": {
+      "label": "Date of Birth"
+    },
+    "sex": {
+      "label": "Sex",
+      "options": {
+        "female": "Female",
+        "male": "Male"
+      }
+    },
+    "race": {
+      "label": "Race",
+      "placeholder": "Enter race"
+    }
+  },
+  "protectionOrder": {
+    "sectionTitle": "Original Protection Order Details",
+    "originalOrderDate": {
+      "label": "Date of Original Order"
+    },
+    "originalOrderType": {
+      "label": "Type of Original Order",
+      "options": {
+        "tro": "Temporary Restraining Order (TRO)",
+        "preliminary": "Preliminary Injunction",
+        "permanent": "Permanent Injunction"
+      }
+    },
+    "expirationDate": {
+      "label": "Expiration Date (if applicable)"
+    }
+  },
+  "violations": {
+    "sectionTitle": "Violation Details",
+    "incidentDate": {
+      "label": "Date of Incident"
+    },
+    "incidentTime": {
+      "label": "Time of Incident"
+    },
+    "incidentLocation": {
+      "label": "Location of Incident",
+      "placeholder": "Enter the location where the violation occurred"
+    },
+    "violationType": {
+      "label": "Type of Violation (select all that apply)",
+      "options": {
+        "contact": "Prohibited Contact",
+        "stalking": "Stalking",
+        "harassment": "Harassment",
+        "threats": "Threats",
+        "propertyDamage": "Property Damage",
+        "other": "Other"
+      }
+    },
+    "violationDescription": {
+      "label": "Description of Violation",
+      "placeholder": "Provide a detailed description of how the protection order was violated"
+    },
+    "policeNotified": {
+      "label": "Were the police notified of this violation?"
+    }
+  },
+  "requestedRelief": {
+    "sectionTitle": "Requested Relief",
+    "immediateArrest": {
+      "label": "Immediate arrest of defendant"
+    },
+    "contemptProceedings": {
+      "label": "Contempt of court proceedings"
+    },
+    "orderExtension": {
+      "label": "Extension of protection order"
+    }
+  },
+  "emergencyRequest": {
+    "sectionTitle": "Emergency Request",
+    "isEmergency": {
+      "label": "Is this an emergency request requiring immediate attention?"
+    },
+    "emergencyReason": {
+      "label": "Reason for Emergency",
+      "placeholder": "Explain why this requires immediate attention"
+    }
+  },
+  "signatures": {
+    "dateOfFiling": {
+      "label": "Date of Filing"
+    },
+    "attorneyName": {
+      "label": "Attorney Name (if represented)",
+      "placeholder": "Enter attorney name"
+    }
+  },
+  "common": {
+    "yes": "Yes",
+    "no": "No",
+    "submit": "Submit Form",
+    "populateTestData": "Populate Test Data"
   }
 }

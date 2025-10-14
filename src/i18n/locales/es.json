@@ -3,6 +3,10 @@
     "title": "Orden de Prevención de Abuso Uniforme de Louisiana",
     "subtitle": "Orden para Modificar o Disolver una Orden de Prevención de Abuso Uniforme de Louisiana Anterior"
   },
+  "lporfForm": {
+    "title": "Moción por Desacato al Tribunal y Orden de Comparecer",
+    "subtitle": "LPOR-F - Violación de Orden de Protección"
+  },
   "court": {
     "sectionTitle": "Información del Tribunal",
     "courtName": {
@@ -24,5 +28,144 @@
       "label": "Secretario *",
       "placeholder": "Ingrese el nombre del secretario"
     }
+  },
+  "petitioner": {
+    "sectionTitle": "Información del Solicitante",
+    "firstName": {
+      "label": "Nombre",
+      "placeholder": "Ingrese el nombre"
+    },
+    "maidenMiddleName": {
+      "label": "Apellido de Soltera/Segundo Nombre",
+      "placeholder": "Ingrese apellido de soltera o segundo nombre"
+    },
+    "lastName": {
+      "label": "Apellido",
+      "placeholder": "Ingrese el apellido"
+    },
+    "dateOfBirth": {
+      "label": "Fecha de Nacimiento"
+    },
+    "sex": {
+      "label": "Sexo",
+      "options": {
+        "female": "Femenino",
+        "male": "Masculino"
+      }
+    },
+    "race": {
+      "label": "Raza",
+      "placeholder": "Ingrese la raza"
+    }
+  },
+  "defendant": {
+    "sectionTitle": "Información del Demandado",
+    "fullName": {
+      "label": "Nombre Completo",
+      "placeholder": "Ingrese el nombre completo del demandado"
+    },
+    "alias": {
+      "label": "Alias/También Conocido Como",
+      "placeholder": "Ingrese cualquier alias conocido"
+    },
+    "dateOfBirth": {
+      "label": "Fecha de Nacimiento"
+    },
+    "sex": {
+      "label": "Sexo",
+      "options": {
+        "female": "Femenino",
+        "male": "Masculino"
+      }
+    },
+    "race": {
+      "label": "Raza",
+      "placeholder": "Ingrese la raza"
+    }
+  },
+  "protectionOrder": {
+    "sectionTitle": "Detalles de la Orden de Protección Original",
+    "originalOrderDate": {
+      "label": "Fecha de la Orden Original"
+    },
+    "originalOrderType": {
+      "label": "Tipo de Orden Original",
+      "options": {
+        "tro": "Orden de Restricción Temporal (TRO)",
+        "preliminary": "Medida Cautelar Preliminar",
+        "permanent": "Medida Cautelar Permanente"
+      }
+    },
+    "expirationDate": {
+      "label": "Fecha de Vencimiento (si aplica)"
+    }
+  },
+  "violations": {
+    "sectionTitle": "Detalles de la Violación",
+    "incidentDate": {
+      "label": "Fecha del Incidente"
+    },
+    "incidentTime": {
+      "label": "Hora del Incidente"
+    },
+    "incidentLocation": {
+      "label": "Lugar del Incidente",
+      "placeholder": "Ingrese el lugar donde ocurrió la violación"
+    },
+    "violationType": {
+      "label": "Tipo de Violación (seleccione todas las que apliquen)",
+      "options": {
+        "contact": "Contacto Prohibido",
+        "stalking": "Acoso",
+        "harassment": "Hostigamiento",
+        "threats": "Amenazas",
+        "propertyDamage": "Daño a la Propiedad",
+        "other": "Otro"
+      }
+    },
+    "violationDescription": {
+      "label": "Descripción de la Violación",
+      "placeholder": "Proporcione una descripción detallada de cómo se violó la orden de protección"
+    },
+    "policeNotified": {
+      "label": "¿Se notificó a la policía de esta violación?"
+    }
+  },
+  "requestedRelief": {
+    "sectionTitle": "Reparación Solicitada",
+    "immediateArrest": {
+      "label": "Arresto inmediato del demandado"
+    },
+    "contemptProceedings": {
+      "label": "Procedimientos por desacato al tribunal"
+    },
+    "orderExtension": {
+      "label": "Extensión de la orden de protección"
+    }
+  },
+  "emergencyRequest": {
+    "sectionTitle": "Solicitud de Emergencia",
+    "isEmergency": {
+      "label": "¿Es esta una solicitud de emergencia que requiere atención inmediata?"
+    },
+    "emergencyReason": {
+      "label": "Razón de la Emergencia",
+      "placeholder": "Explique por qué esto requiere atención inmediata"
+    }
+  },
+  "signatures": {
+    "dateOfFiling": {
+      "label": "Fecha de Presentación"
+    },
+    "attorneyName": {
+      "label": "Nombre del Abogado (si está representado)",
+      "placeholder": "Ingrese el nombre del abogado"
+    }
+  },
+  "common": {
+    "yes": "Sí",
+    "no": "No",
+    "submit": "Enviar Formulario",
+    "populateTestData": "Llenar con Datos de Prueba"
   }
 }
