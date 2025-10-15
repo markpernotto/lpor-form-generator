@@ -1,10 +1,10 @@
 export interface LPORFFormData {
-  // Header Section
-  courtName: string;
-  docketNumber: string;
-  division: string;
-  filedDate: string;
-  clerk: string;
+  // Court Information
+  courtName?: string;
+  docketNumber?: string;
+  division?: string;
+  filedDate?: string;
+  clerk?: string;
 
   // Petitioner Information
   petitioner: {

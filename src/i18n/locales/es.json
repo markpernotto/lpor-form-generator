@@ -166,27 +166,21 @@
     "yes": "Sí",
     "no": "No",
     "submit": "Enviar Formulario",
-    "populateTestData": "Llenar con Datos de Prueba"
-  },
-  "success": {
-    "title": "¡Formulario enviado exitosamente!",
-    "description": "Su PDF LPOR ha sido generado y descargado exitosamente.",
-    "nextSteps": {
-      "title": "Próximos pasos:",
-      "steps": [
-        "Revise el documento PDF descargado para verificar la exactitud",
-        "Imprima el formulario si es necesario",
-        "Presente el formulario completado al tribunal correspondiente",
-        "Guarde una copia para sus registros"
-      ]
-    },
-    "important": {
-      "title": "Importante:",
-      "note": "Este formulario debe ser presentado al tribunal correspondiente para que sea legalmente válido. Consulte con un abogado si tiene preguntas sobre el proceso de presentación."
-    },
-    "buttons": {
-      "fillAnother": "Llenar otro formulario",
-      "close": "Cerrar"
+    "populateTestData": "Llenar con Datos de Prueba",
+    "success": {
+      "title": "¡Formulario enviado exitosamente!",
+      "description": "Su formulario {{formType}} ha sido generado y descargado a su dispositivo.",
+      "nextSteps": {
+        "title": "Próximos pasos:",
+        "step1": "Revise el PDF descargado para verificar la exactitud",
+        "step2": "Imprima y firme el documento donde se requiera",
+        "step3": "Presente el formulario al tribunal correspondiente",
+        "step4": "Guarde una copia para sus registros"
+      },
+      "important": "Importante:",
+      "importantNote": "Este formulario debe ser presentado al tribunal para que sea legalmente efectivo. Consulte con un asesor legal si tiene preguntas sobre el proceso de presentación.",
+      "newForm": "Crear Nuevo Formulario",
+      "print": "Imprimir Formulario"
     }
   }
 }

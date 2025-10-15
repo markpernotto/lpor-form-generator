@@ -3,7 +3,22 @@
     "no": "Non",
     "populateTestData": "Remplir les données de test",
     "submit": "Soumettre le formulaire",
-    "yes": "Oui"
+    "yes": "Oui",
+    "success": {
+      "title": "Formulaire soumis avec succès !",
+      "description": "Votre formulaire {{formType}} a été généré et téléchargé sur votre appareil.",
+      "nextSteps": {
+        "title": "Prochaines étapes :",
+        "step1": "Examinez le PDF téléchargé pour vérifier l'exactitude",
+        "step2": "Imprimez et signez le document aux endroits requis",
+        "step3": "Déposez le formulaire auprès du tribunal approprié",
+        "step4": "Conservez une copie pour vos dossiers"
+      },
+      "important": "Important :",
+      "importantNote": "Ce formulaire doit être déposé auprès du tribunal pour être légalement effectif. Consultez un conseiller juridique si vous avez des questions sur le processus de dépôt.",
+      "newForm": "Créer un nouveau formulaire",
+      "print": "Imprimer le formulaire"
+    }
   },
   "court": {
     "clerk": {
@@ -166,27 +181,6 @@
         "stalking": "Harcèlement criminel",
         "threats": "Menaces"
       }
-    }
-  },
-  "success": {
-    "title": "Formulaire soumis avec succès !",
-    "description": "Votre PDF LPOR a été généré et téléchargé avec succès.",
-    "nextSteps": {
-      "title": "Prochaines étapes :",
-      "steps": [
-        "Examinez le document PDF téléchargé pour vérifier l'exactitude",
-        "Imprimez le formulaire si nécessaire",
-        "Soumettez le formulaire rempli au tribunal approprié",
-        "Conservez une copie pour vos dossiers"
-      ]
-    },
-    "important": {
-      "title": "Important :",
-      "note": "Ce formulaire doit être déposé auprès du tribunal approprié pour être légalement valide. Consultez un avocat si vous avez des questions sur le processus de dépôt."
-    },
-    "buttons": {
-      "fillAnother": "Remplir un autre formulaire",
-      "close": "Fermer"
     }
   }
 }

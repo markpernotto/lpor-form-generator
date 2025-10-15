@@ -412,13 +412,6 @@ export const getDefaultLPORFFormData =
 // Test data population
 export const getTestLPORFFormData =
   (): LPORFFormData => ({
-    courtName:
-      "Superior Court of Los Angeles County",
-    docketNumber: "23STRO12345",
-    division: "Department 1",
-    filedDate: "2024-01-15",
-    clerk: "J. Smith",
-
     petitioner: {
       firstName: "Jane",
       maidenMiddleName: "Marie",
