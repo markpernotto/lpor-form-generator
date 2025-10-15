@@ -13,6 +13,7 @@ import { AccessibleDateInput } from "../../components/AccessibleDateInput";
 import { AccessibleTextarea } from "../../components/AccessibleTextarea";
 import { AccessibleCheckbox } from "../../components/AccessibleCheckbox";
 import { AccessibleRadioGroup } from "../../components/AccessibleRadioGroup";
+import { SuccessModal } from "../../components/SuccessModal";
 
 interface LPORFFormProps {
   onSubmit?: (data: LPORFFormData) => void;
@@ -33,6 +34,10 @@ export const LPORFForm: React.FC<
     confirmationChecked,
     setConfirmationChecked,
   ] = useState(false);
+
+  // State for success modal
+  const [showSuccessModal, setShowSuccessModal] =
+    useState(false);
 
   // Update form data when initialData changes (court information only)
   useEffect(() => {
@@ -146,7 +151,22 @@ export const LPORFForm: React.FC<
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Call the original onSubmit handler (for PDF generation)
     onSubmit?.(formData);
+
+    // Show success modal
+    setShowSuccessModal(true);
+  };
+
+  const handleSuccessModalClose = () => {
+    setShowSuccessModal(false);
+
+    // Reset form to default state
+    setFormData(getDefaultLPORFFormData());
+
+    // Reset confirmation checkbox
+    setConfirmationChecked(false);
   };
 
   return (
@@ -787,6 +807,13 @@ export const LPORFForm: React.FC<
           </button>
         </div>
       </form>
+
+      {/* Success Modal */}
+      <SuccessModal
+        isOpen={showSuccessModal}
+        onClose={handleSuccessModalClose}
+        formType="LPOR-F"
+      />
     </div>
   );
 };

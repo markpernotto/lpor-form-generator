@@ -15,14 +15,16 @@ export const LPOR14Page: React.FC = () => {
   useEffect(() => {
     if (
       lang &&
-      (lang === "en" || lang === "es")
+      (lang === "en" ||
+        lang === "es" ||
+        lang === "fr")
     ) {
       changeLanguage(lang);
     } else {
       // Default to English for unsupported languages
       changeLanguage("en");
     }
-  }, [lang]); // Only depend on lang, not changeLanguage
+  }, [lang, changeLanguage]); // Include changeLanguage in dependencies
 
   const handleFormSubmit = async (
     data: LPORFormSchema,

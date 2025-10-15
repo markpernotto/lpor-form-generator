@@ -2,10 +2,12 @@ import React from "react";
 import {
   useNavigate,
   useParams,
+  useLocation,
 } from "react-router-dom";
 
 export const LanguageSelector: React.FC = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { lang } = useParams<{ lang: string }>();
 
   const currentLanguage = lang || "en";
@@ -13,8 +15,25 @@ export const LanguageSelector: React.FC = () => {
   const handleLanguageChange = (
     newLang: string,
   ) => {
-    // Navigate to the same route but with different language
-    navigate(`/${newLang}/lpor14`);
+    // Get the current pathname and replace the language part
+    const pathParts =
+      location.pathname.split("/");
+
+    // If the path starts with a language code, replace it
+    if (
+      pathParts[1] &&
+      (pathParts[1] === "en" ||
+        pathParts[1] === "es" ||
+        pathParts[1] === "fr")
+    ) {
+      pathParts[1] = newLang;
+    } else {
+      // If no language in path, add it
+      pathParts.splice(1, 0, newLang);
+    }
+
+    const newPath = pathParts.join("/");
+    navigate(newPath);
   };
 
   return (
@@ -32,6 +51,7 @@ export const LanguageSelector: React.FC = () => {
       >
         <option value="en">English</option>
         <option value="es">Español</option>
+        <option value="fr">Français</option>
       </select>
     </div>
   );

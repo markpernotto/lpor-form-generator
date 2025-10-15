@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
@@ -6,6 +6,7 @@ import {
   type LPORFormSchema,
 } from "./formSchema";
 import { useTranslation } from "../../i18n";
+import { SuccessModal } from "../../components/SuccessModal";
 
 interface LPORFormProps {
   onSubmit: (data: LPORFormSchema) => void;
@@ -15,6 +16,9 @@ export const LPORForm: React.FC<
   LPORFormProps
 > = ({ onSubmit }) => {
   const { t } = useTranslation();
+  const [showSuccessModal, setShowSuccessModal] =
+    useState(false);
+
   const {
     register,
     handleSubmit,
@@ -51,6 +55,18 @@ export const LPORForm: React.FC<
     "petitioner.protectedPersonType",
   );
   // Removed unused watch variables for commented-out sections
+
+  const handleFormSubmit = (
+    data: LPORFormSchema,
+  ) => {
+    onSubmit(data);
+    setShowSuccessModal(true);
+  };
+
+  const handleCloseSuccessModal = () => {
+    setShowSuccessModal(false);
+    reset();
+  };
 
   const loadTestData = () => {
     // Pre-fill form with test data for quick testing
@@ -130,7 +146,7 @@ export const LPORForm: React.FC<
       </div>
 
       <form
-        onSubmit={handleSubmit(onSubmit)}
+        onSubmit={handleSubmit(handleFormSubmit)}
         className="space-y-8"
       >
         {/* Header Section */}
@@ -1297,6 +1313,12 @@ export const LPORForm: React.FC<
           </button>
         </div>
       </form>
+
+      <SuccessModal
+        isOpen={showSuccessModal}
+        onClose={handleCloseSuccessModal}
+        formType="LPOR-14"
+      />
     </div>
   );
 };

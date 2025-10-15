@@ -166,6 +166,21 @@
     "yes": "Yes",
     "no": "No",
     "submit": "Submit Form",
-    "populateTestData": "Populate Test Data"
+    "populateTestData": "Populate Test Data",
+    "success": {
+      "title": "Form Submitted Successfully!",
+      "description": "Your {{formType}} form has been generated and downloaded to your device.",
+      "nextSteps": {
+        "title": "Next Steps:",
+        "step1": "Review the downloaded PDF for accuracy",
+        "step2": "Print and sign the document where required",
+        "step3": "File the form with the appropriate court",
+        "step4": "Keep a copy for your records"
+      },
+      "important": "Important:",
+      "importantNote": "This form must be filed with the court to be legally effective. Consult with legal counsel if you have questions about the filing process.",
+      "newForm": "Create New Form",
+      "print": "Print Form"
+    }
   }
 }

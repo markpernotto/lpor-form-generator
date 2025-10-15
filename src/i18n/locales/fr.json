@@ -1,0 +1,192 @@
+{
+  "common": {
+    "no": "Non",
+    "populateTestData": "Remplir les données de test",
+    "submit": "Soumettre le formulaire",
+    "yes": "Oui"
+  },
+  "court": {
+    "clerk": {
+      "label": "Clerc*",
+      "placeholder": "Entrez le nom du greffier"
+    },
+    "courtName": {
+      "label": "Nom du tribunal et paroisse/ville *",
+      "placeholder": "Entrez le nom du tribunal et la paroisse/ville"
+    },
+    "division": {
+      "label": "Division*",
+      "placeholder": "Entrez dans la division"
+    },
+    "docketNumber": {
+      "label": "Numéro de dossier *",
+      "placeholder": "Entrez le numéro de dossier"
+    },
+    "filedDate": {
+      "label": "Date de dépôt *"
+    },
+    "sectionTitle": "Renseignements judiciaires"
+  },
+  "defendant": {
+    "alias": {
+      "label": "Alias/Aussi connu sous le nom de",
+      "placeholder": "Entrez des alias connus"
+    },
+    "dateOfBirth": {
+      "label": "Date de naissance"
+    },
+    "fullName": {
+      "label": "Nom complet",
+      "placeholder": "Entrez le nom complet du défendeur"
+    },
+    "race": {
+      "label": "Course",
+      "placeholder": "Entrer dans la course"
+    },
+    "sectionTitle": "Renseignements sur le défendeur",
+    "sex": {
+      "label": "Sexe",
+      "options": {
+        "female": "Femelle",
+        "male": "Mâle"
+      }
+    }
+  },
+  "emergencyRequest": {
+    "emergencyReason": {
+      "label": "Raison de l’urgence",
+      "placeholder": "Expliquez pourquoi cela nécessite une attention immédiate"
+    },
+    "isEmergency": {
+      "label": "S’agit-il d’une demande d’urgence nécessitant une attention immédiate ?"
+    },
+    "sectionTitle": "Demande d’urgence"
+  },
+  "form": {
+    "subtitle": "Ordonnance de modification ou de dissolution d’une ordonnance uniforme de prévention des abus antérieure de la Louisiane",
+    "title": "Ordonnance de prévention de la maltraitance en uniforme de la Louisiane"
+  },
+  "lporfForm": {
+    "subtitle": "RAPA-F - Violation d’une ordonnance de protection",
+    "title": "Requête pour outrage au tribunal et ordonnance de justification"
+  },
+  "petitioner": {
+    "dateOfBirth": {
+      "label": "Date de naissance"
+    },
+    "firstName": {
+      "label": "Prénom",
+      "placeholder": "Entrez le prénom"
+    },
+    "lastName": {
+      "label": "Nom",
+      "placeholder": "Entrez le nom de famille"
+    },
+    "maidenMiddleName": {
+      "label": "Jeune fille/Deuxième prénom",
+      "placeholder": "Entrez le nom de jeune fille ou le deuxième prénom"
+    },
+    "race": {
+      "label": "Course",
+      "placeholder": "Entrer dans la course"
+    },
+    "sectionTitle": "Renseignements sur le pétitionnaire",
+    "sex": {
+      "label": "Sexe",
+      "options": {
+        "female": "Femelle",
+        "male": "Mâle"
+      }
+    }
+  },
+  "protectionOrder": {
+    "expirationDate": {
+      "label": "Date d’expiration (le cas échéant)"
+    },
+    "originalOrderDate": {
+      "label": "Date de l’ordonnance initiale"
+    },
+    "originalOrderType": {
+      "label": "Type de commande originale",
+      "options": {
+        "permanent": "Injonction permanente",
+        "preliminary": "Injonction préliminaire",
+        "tro": "Ordonnance d’interdiction temporaire (TRO)"
+      }
+    },
+    "sectionTitle": "Détails de l’ordonnance de protection originale"
+  },
+  "requestedRelief": {
+    "contemptProceedings": {
+      "label": "Procédure d’outrage au tribunal"
+    },
+    "immediateArrest": {
+      "label": "Arrestation immédiate du défendeur"
+    },
+    "orderExtension": {
+      "label": "Prolongation de l’ordonnance de protection"
+    },
+    "sectionTitle": "Dispense demandée"
+  },
+  "signatures": {
+    "attorneyName": {
+      "label": "Nom de l’avocat (s’il est représenté)",
+      "placeholder": "Entrez le nom de l’avocat"
+    },
+    "dateOfFiling": {
+      "label": "Date de dépôt"
+    }
+  },
+  "violations": {
+    "incidentDate": {
+      "label": "Date de l’incident"
+    },
+    "incidentLocation": {
+      "label": "Lieu de l’incident",
+      "placeholder": "Entrez l’endroit où l’infraction a été commise."
+    },
+    "incidentTime": {
+      "label": "Heure de l’incident"
+    },
+    "policeNotified": {
+      "label": "La police a-t-elle été informée de cette infraction ?"
+    },
+    "sectionTitle": "Détails de l’infraction",
+    "violationDescription": {
+      "label": "Description de l’infraction",
+      "placeholder": "Fournir une description détaillée de la façon dont l’ordonnance de protection a été violée"
+    },
+    "violationType": {
+      "label": "Type d'infraction (sélectionnez toutes les réponses qui s'appliquent)",
+      "options": {
+        "contact": "Contact interdit",
+        "harassment": "Harcèlement",
+        "other": "Autre",
+        "propertyDamage": "Dommages matériels",
+        "stalking": "Harcèlement criminel",
+        "threats": "Menaces"
+      }
+    }
+  },
+  "success": {
+    "title": "Formulaire soumis avec succès !",
+    "description": "Votre PDF LPOR a été généré et téléchargé avec succès.",
+    "nextSteps": {
+      "title": "Prochaines étapes :",
+      "steps": [
+        "Examinez le document PDF téléchargé pour vérifier l'exactitude",
+        "Imprimez le formulaire si nécessaire",
+        "Soumettez le formulaire rempli au tribunal approprié",
+        "Conservez une copie pour vos dossiers"
+      ]
+    },
+    "important": {
+      "title": "Important :",
+      "note": "Ce formulaire doit être déposé auprès du tribunal approprié pour être légalement valide. Consultez un avocat si vous avez des questions sur le processus de dépôt."
+    },
+    "buttons": {
+      "fillAnother": "Remplir un autre formulaire",
+      "close": "Fermer"
+    }
+  }
+}
