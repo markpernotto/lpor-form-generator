@@ -1,23 +1,64 @@
-import React, { useState } from "react";
+import React, {
+  useState,
+  useEffect,
+} from "react";
 import type { LPORFFormData } from "./formTypes";
 import {
   getDefaultLPORFFormData,
   getTestLPORFFormData,
 } from "./formSchema";
 import { useTranslation } from "../../i18n/hooks/useTranslation";
+import { AccessibleTextInput } from "../../components/AccessibleTextInput";
+import { AccessibleDateInput } from "../../components/AccessibleDateInput";
+import { AccessibleTextarea } from "../../components/AccessibleTextarea";
+import { AccessibleCheckbox } from "../../components/AccessibleCheckbox";
+import { AccessibleRadioGroup } from "../../components/AccessibleRadioGroup";
 
 interface LPORFFormProps {
   onSubmit?: (data: LPORFFormData) => void;
+  initialData?: Partial<LPORFFormData>;
 }
 
 export const LPORFForm: React.FC<
   LPORFFormProps
-> = ({ onSubmit }) => {
+> = ({ onSubmit, initialData }) => {
   const { t } = useTranslation();
   const [formData, setFormData] =
     useState<LPORFFormData>(
       getDefaultLPORFFormData(),
     );
+
+  // State for form confirmation
+  const [
+    confirmationChecked,
+    setConfirmationChecked,
+  ] = useState(false);
+
+  // Update form data when initialData changes (court information only)
+  useEffect(() => {
+    if (initialData) {
+      setFormData((prev) => ({
+        ...prev,
+        // Only merge court information fields
+        ...(initialData.courtName !==
+          undefined && {
+          courtName: initialData.courtName,
+        }),
+        ...(initialData.docketNumber !==
+          undefined && {
+          docketNumber: initialData.docketNumber,
+        }),
+        ...(initialData.division !==
+          undefined && {
+          division: initialData.division,
+        }),
+        ...(initialData.filedDate !==
+          undefined && {
+          filedDate: initialData.filedDate,
+        }),
+      }));
+    }
+  }, [initialData]);
 
   const handleInputChange = (
     field: string,
@@ -87,7 +128,20 @@ export const LPORFForm: React.FC<
   };
 
   const populateTestData = () => {
-    setFormData(getTestLPORFFormData());
+    const testData = getTestLPORFFormData();
+    setFormData((prev) => ({
+      ...testData,
+      // Preserve court information from query parameters
+      courtName:
+        prev.courtName || testData.courtName,
+      docketNumber:
+        prev.docketNumber ||
+        testData.docketNumber,
+      division:
+        prev.division || testData.division,
+      filedDate:
+        prev.filedDate || testData.filedDate,
+    }));
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -120,93 +174,9 @@ export const LPORFForm: React.FC<
         onSubmit={handleSubmit}
         className="space-y-8"
       >
-        {/* Court Information Section */}
-        <section className="border border-gray-200 rounded-lg p-6">
-          <h2 className="text-xl font-semibold text-gray-900 mb-4">
-            {t("court.sectionTitle")}
-          </h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                {t("court.courtName.label")} *
-              </label>
-              <input
-                type="text"
-                value={formData.courtName}
-                onChange={(e) =>
-                  handleInputChange(
-                    "courtName",
-                    e.target.value,
-                  )
-                }
-                className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                placeholder={t(
-                  "court.courtName.placeholder",
-                )}
-                required
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                {t("court.docketNumber.label")}
-              </label>
-              <input
-                type="text"
-                value={formData.docketNumber}
-                onChange={(e) =>
-                  handleInputChange(
-                    "docketNumber",
-                    e.target.value,
-                  )
-                }
-                className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                placeholder={t(
-                  "court.docketNumber.placeholder",
-                )}
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                {t("court.division.label")}
-              </label>
-              <input
-                type="text"
-                value={formData.division}
-                onChange={(e) =>
-                  handleInputChange(
-                    "division",
-                    e.target.value,
-                  )
-                }
-                className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                placeholder={t(
-                  "court.division.placeholder",
-                )}
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                {t("court.filedDate.label")} *
-              </label>
-              <input
-                type="date"
-                value={formData.filedDate}
-                onChange={(e) =>
-                  handleInputChange(
-                    "filedDate",
-                    e.target.value,
-                  )
-                }
-                className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                required
-              />
-            </div>
-          </div>
-        </section>
+        {/* Court Information Section - Hidden from UI but data preserved for PDF */}
+        {/* Court information is pre-populated from query parameters and passed to PDF generator */}
+        {/* Users do not edit these fields directly - they are handled behind the scenes */}
 
         {/* Petitioner Information Section */}
         <section className="border border-gray-200 rounded-lg p-6">
@@ -215,75 +185,66 @@ export const LPORFForm: React.FC<
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                {t("petitioner.firstName.label")}{" "}
-                *
-              </label>
-              <input
-                type="text"
-                value={
-                  formData.petitioner.firstName
-                }
-                onChange={(e) =>
-                  handleInputChange(
-                    "petitioner.firstName",
-                    e.target.value,
-                  )
-                }
-                className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                placeholder={t(
-                  "petitioner.firstName.placeholder",
-                )}
-                required
-              />
-            </div>
+            <AccessibleTextInput
+              id="petitioner-firstName"
+              label={`${t(
+                "petitioner.firstName.label",
+              )} *`}
+              value={
+                formData.petitioner.firstName
+              }
+              onChange={(value) =>
+                handleInputChange(
+                  "petitioner.firstName",
+                  value,
+                )
+              }
+              placeholder={t(
+                "petitioner.firstName.placeholder",
+              )}
+              required
+              enableVoiceInput={true}
+              autoComplete="given-name"
+            />
 
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                {t("petitioner.lastName.label")} *
-              </label>
-              <input
-                type="text"
-                value={
-                  formData.petitioner.lastName
-                }
-                onChange={(e) =>
-                  handleInputChange(
-                    "petitioner.lastName",
-                    e.target.value,
-                  )
-                }
-                className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                placeholder={t(
-                  "petitioner.lastName.placeholder",
-                )}
-                required
-              />
-            </div>
+            <AccessibleTextInput
+              id="petitioner-lastName"
+              label={`${t(
+                "petitioner.lastName.label",
+              )} *`}
+              value={formData.petitioner.lastName}
+              onChange={(value) =>
+                handleInputChange(
+                  "petitioner.lastName",
+                  value,
+                )
+              }
+              placeholder={t(
+                "petitioner.lastName.placeholder",
+              )}
+              required
+              enableVoiceInput={true}
+              autoComplete="family-name"
+            />
 
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                {t(
-                  "petitioner.dateOfBirth.label",
-                )}{" "}
-                *
-              </label>
-              <input
-                type="date"
-                value={
-                  formData.petitioner.dateOfBirth
-                }
-                onChange={(e) =>
-                  handleInputChange(
-                    "petitioner.dateOfBirth",
-                    e.target.value,
-                  )
-                }
-                className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                required
-              />
-            </div>
+            <AccessibleDateInput
+              id="petitioner-dateOfBirth"
+              label={`${t(
+                "petitioner.dateOfBirth.label",
+              )} *`}
+              value={
+                formData.petitioner.dateOfBirth
+              }
+              onChange={(value) =>
+                handleInputChange(
+                  "petitioner.dateOfBirth",
+                  value,
+                )
+              }
+              type="date"
+              required
+              helpText="Enter your date of birth"
+            />
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -322,49 +283,45 @@ export const LPORFForm: React.FC<
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                {t("defendant.fullName.label")} *
-              </label>
-              <input
-                type="text"
-                value={
-                  formData.defendant.fullName
-                }
-                onChange={(e) =>
-                  handleInputChange(
-                    "defendant.fullName",
-                    e.target.value,
-                  )
-                }
-                className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                placeholder={t(
-                  "defendant.fullName.placeholder",
-                )}
-                required
-              />
-            </div>
+            <AccessibleTextInput
+              id="defendant-fullName"
+              label={`${t(
+                "defendant.fullName.label",
+              )} *`}
+              value={formData.defendant.fullName}
+              onChange={(value) =>
+                handleInputChange(
+                  "defendant.fullName",
+                  value,
+                )
+              }
+              placeholder={t(
+                "defendant.fullName.placeholder",
+              )}
+              required
+              enableVoiceInput={true}
+              autoComplete="name"
+              helpText="Enter the full legal name of the defendant"
+            />
 
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                {t("defendant.dateOfBirth.label")}{" "}
-                *
-              </label>
-              <input
-                type="date"
-                value={
-                  formData.defendant.dateOfBirth
-                }
-                onChange={(e) =>
-                  handleInputChange(
-                    "defendant.dateOfBirth",
-                    e.target.value,
-                  )
-                }
-                className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                required
-              />
-            </div>
+            <AccessibleDateInput
+              id="defendant-dateOfBirth"
+              label={`${t(
+                "defendant.dateOfBirth.label",
+              )} *`}
+              value={
+                formData.defendant.dateOfBirth
+              }
+              onChange={(value) =>
+                handleInputChange(
+                  "defendant.dateOfBirth",
+                  value,
+                )
+              }
+              type="date"
+              required
+              helpText="Enter the defendant's date of birth"
+            />
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -536,27 +493,24 @@ export const LPORFForm: React.FC<
               />
             </div>
 
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                {t(
-                  "violations.incidentTime.label",
-                )}
-              </label>
-              <input
-                type="time"
-                value={
-                  formData.violations
-                    .incidentTime || ""
-                }
-                onChange={(e) =>
-                  handleInputChange(
-                    "violations.incidentTime",
-                    e.target.value,
-                  )
-                }
-                className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-              />
-            </div>
+            <AccessibleDateInput
+              id="violations-incidentTime"
+              label={t(
+                "violations.incidentTime.label",
+              )}
+              value={
+                formData.violations
+                  .incidentTime || ""
+              }
+              onChange={(value) =>
+                handleInputChange(
+                  "violations.incidentTime",
+                  value,
+                )
+              }
+              type="time"
+              helpText="Enter the approximate time of the incident"
+            />
           </div>
 
           <div className="mb-4">
@@ -663,78 +617,65 @@ export const LPORFForm: React.FC<
           </div>
 
           <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              {t(
+            <AccessibleTextarea
+              id="violations-violationDescription"
+              label={`${t(
                 "violations.violationDescription.label",
-              )}{" "}
-              *
-            </label>
-            <textarea
+              )} *`}
               value={
                 formData.violations
                   .violationDescription
               }
-              onChange={(e) =>
+              onChange={(value) =>
                 handleInputChange(
                   "violations.violationDescription",
-                  e.target.value,
+                  value,
                 )
               }
-              className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               placeholder={t(
                 "violations.violationDescription.placeholder",
               )}
               rows={4}
               required
+              enableVoiceInput={true}
+              helpText="Describe the violation in detail"
             />
           </div>
 
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              {t(
-                "violations.policeNotified.label",
-              )}{" "}
-              *
-            </label>
-            <div className="space-y-2">
-              <label className="flex items-center">
-                <input
-                  type="radio"
-                  name="policeNotified"
-                  checked={
-                    formData.violations
-                      .policeNotified === true
-                  }
-                  onChange={() =>
-                    handleInputChange(
-                      "violations.policeNotified",
-                      true,
-                    )
-                  }
-                  className="mr-2"
-                />
-                {t("common.yes")}
-              </label>
-              <label className="flex items-center">
-                <input
-                  type="radio"
-                  name="policeNotified"
-                  checked={
-                    formData.violations
-                      .policeNotified === false
-                  }
-                  onChange={() =>
-                    handleInputChange(
-                      "violations.policeNotified",
-                      false,
-                    )
-                  }
-                  className="mr-2"
-                />
-                {t("common.no")}
-              </label>
-            </div>
-          </div>
+          <AccessibleRadioGroup
+            name="policeNotified"
+            label={`${t(
+              "violations.policeNotified.label",
+            )} *`}
+            value={
+              formData.violations.policeNotified
+                ? "true"
+                : "false"
+            }
+            onChange={(value) =>
+              handleInputChange(
+                "violations.policeNotified",
+                value === "true",
+              )
+            }
+            options={[
+              {
+                value: "true",
+                label: t("common.yes"),
+                helpText:
+                  "Check if police were notified of this incident",
+              },
+              {
+                value: "false",
+                label: t("common.no"),
+                helpText:
+                  "Check if police were NOT notified",
+              },
+            ]}
+            required
+            helpText="Were police notified about this violation?"
+            layout="vertical"
+          />
         </section>
 
         {/* Emergency Request Section */}
@@ -819,11 +760,28 @@ export const LPORFForm: React.FC<
           )}
         </section>
 
+        {/* Confirmation Section */}
+        <section className="border border-gray-200 rounded-lg p-6">
+          <AccessibleCheckbox
+            id="form-confirmation"
+            label="I confirm that all information provided is accurate and complete"
+            checked={confirmationChecked}
+            onChange={setConfirmationChecked}
+            required
+            helpText="Please review all information before submitting. This confirmation is required to proceed."
+          />
+        </section>
+
         {/* Submit Button */}
         <div className="flex justify-end">
           <button
             type="submit"
-            className="px-6 py-3 bg-blue-600 text-white font-medium rounded hover:bg-blue-700 transition-colors"
+            disabled={!confirmationChecked}
+            className={`px-6 py-3 font-medium rounded transition-colors ${
+              confirmationChecked
+                ? "bg-blue-600 text-white hover:bg-blue-700"
+                : "bg-gray-300 text-gray-500 cursor-not-allowed"
+            }`}
           >
             {t("common.submit")}
           </button>

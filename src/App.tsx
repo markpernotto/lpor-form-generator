@@ -16,7 +16,7 @@ function App() {
         <Route
           path="/"
           element={
-            <Navigate to="/en/lpor14" replace />
+            <Navigate to="/en/lpor_f" replace />
           }
         />
 

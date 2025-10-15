@@ -1,28 +1,28 @@
 import type { LPORFFormData } from "./formTypes";
 
 export const lporfFormSchema = {
-  // Header fields
+  // Header fields - Court Information (can be pre-populated via query params)
   courtName: {
     type: "text" as const,
-    required: true,
+    required: false, // Can be left blank or pre-populated
     label: "court.courtName.label",
     placeholder: "court.courtName.placeholder",
   },
   docketNumber: {
     type: "text" as const,
-    required: false,
+    required: false, // Can be left blank or pre-populated
     label: "court.docketNumber.label",
     placeholder: "court.docketNumber.placeholder",
   },
   division: {
     type: "text" as const,
-    required: false,
+    required: false, // Can be left blank or pre-populated
     label: "court.division.label",
     placeholder: "court.division.placeholder",
   },
   filedDate: {
     type: "date" as const,
-    required: true,
+    required: false, // Can be left blank or pre-populated
     label: "court.filedDate.label",
   },
   clerk: {

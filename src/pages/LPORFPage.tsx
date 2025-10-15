@@ -5,10 +5,16 @@ import { LanguageSelector } from "../components/LanguageSelector";
 import { downloadLPORFPDF } from "../forms/lpor_f/pdfGenerator";
 import type { LPORFFormData } from "../forms/lpor_f/formTypes";
 import { useTranslation } from "../i18n/hooks/useTranslation";
+import { createInitialLPORFData } from "../utils/initialFormData";
 
 export const LPORFPage: React.FC = () => {
   const { lang } = useParams<{ lang: string }>();
   const { changeLanguage } = useTranslation();
+
+  // Extract query parameters to pre-populate form
+  const initialFormData = React.useMemo(() => {
+    return createInitialLPORFData();
+  }, []); // Only run once on mount
 
   // Update language when URL parameter changes
   React.useEffect(() => {
@@ -21,7 +27,7 @@ export const LPORFPage: React.FC = () => {
       // Default to English for unsupported languages
       changeLanguage("en");
     }
-  }, [lang]); // Only depend on lang, not changeLanguage
+  }, [lang]); // Remove changeLanguage from dependencies
 
   const handleFormSubmit = (
     data: LPORFFormData,
@@ -53,7 +59,10 @@ export const LPORFPage: React.FC = () => {
 
       {/* Main Content */}
       <div className="py-8">
-        <LPORFForm onSubmit={handleFormSubmit} />
+        <LPORFForm
+          onSubmit={handleFormSubmit}
+          initialData={initialFormData}
+        />
       </div>
     </div>
   );
