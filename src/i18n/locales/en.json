@@ -4,8 +4,91 @@
     "subtitle": "Order to Modify or Dissolve a Prior Louisiana Uniform Abuse Prevention Order"
   },
   "lporfForm": {
-    "title": "Motion for Contempt of Court and Order to Show Cause",
-    "subtitle": "LPOR-F - Violation of Protection Order"
+    "title": "Confidential Address Form",
+    "subtitle": "LPOR-F - To be used when petitioner does not want defendant to learn address"
+  },
+  "lporf": {
+    "petitioner": {
+      "stateOfResidence": {
+        "label": "State of Residence",
+        "placeholder": "Select state of residence"
+      }
+    },
+    "filingPurpose": {
+      "sectionTitle": "Filing Purpose (Paragraph 1)",
+      "description": "Petitioner files this petition on behalf of:",
+      "forPetitioner": {
+        "label": "Petitioner"
+      },
+      "forMinorChildren": {
+        "label": "Minor child(ren)"
+      },
+      "forAllegedIncompetent": {
+        "label": "Alleged incompetent"
+      }
+    },
+    "addresses": {
+      "sectionTitle": "Address Information (Paragraph 2)",
+      "sameAddressForAll": {
+        "label": "All parties live at the same address"
+      },
+      "minorChildrenAddress": {
+        "sectionTitle": "Minor Children/Alleged Incompetent Address",
+        "street": {
+          "label": "Street Address",
+          "placeholder": "Enter street address"
+        },
+        "aptNumber": {
+          "label": "Apt. No.",
+          "placeholder": "Enter apartment number"
+        },
+        "city": {
+          "label": "City",
+          "placeholder": "Enter city"
+        },
+        "state": {
+          "label": "State"
+        },
+        "zipCode": {
+          "label": "Zip Code",
+          "placeholder": "Enter zip code"
+        }
+      }
+    },
+    "minorChildren": {
+      "sectionTitle": "Minor Children Information",
+      "description": "Add details for each minor child (Name, Date of Birth, Relationship to Petitioner):",
+      "addButton": "Add Minor Child",
+      "emptyState": "No minor children added yet",
+      "name": {
+        "label": "Name",
+        "placeholder": "Enter child's full name"
+      },
+      "dateOfBirth": {
+        "label": "Date of Birth"
+      },
+      "relationship": {
+        "label": "Relationship to Petitioner",
+        "placeholder": "e.g., Daughter, Son"
+      }
+    },
+    "allegedIncompetent": {
+      "sectionTitle": "Alleged Incompetent Information",
+      "description": "Add details for each alleged incompetent person (Name, Date of Birth, Relationship to Petitioner):",
+      "addButton": "Add Alleged Incompetent",
+      "emptyState": "No alleged incompetent persons added yet",
+      "name": {
+        "label": "Name",
+        "placeholder": "Enter person's full name"
+      },
+      "dateOfBirth": {
+        "label": "Date of Birth"
+      },
+      "relationship": {
+        "label": "Relationship to Petitioner",
+        "placeholder": "e.g., Parent, Sibling"
+      }
+    }
   },
   "court": {
     "sectionTitle": "Court Information",

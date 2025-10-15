@@ -4,8 +4,91 @@
     "subtitle": "Orden para Modificar o Disolver una Orden de Prevención de Abuso Uniforme de Louisiana Anterior"
   },
   "lporfForm": {
-    "title": "Moción por Desacato al Tribunal y Orden de Comparecer",
-    "subtitle": "LPOR-F - Violación de Orden de Protección"
+    "title": "Formulario de Dirección Confidencial",
+    "subtitle": "LPOR-F - Para usar cuando el peticionario no quiere que el demandado conozca la dirección"
+  },
+  "lporf": {
+    "petitioner": {
+      "stateOfResidence": {
+        "label": "Estado de Residencia",
+        "placeholder": "Seleccione el estado de residencia"
+      }
+    },
+    "filingPurpose": {
+      "sectionTitle": "Propósito de la Presentación (Párrafo 1)",
+      "description": "El peticionario presenta esta petición en nombre de:",
+      "forPetitioner": {
+        "label": "Peticionario"
+      },
+      "forMinorChildren": {
+        "label": "Menor(es) de edad"
+      },
+      "forAllegedIncompetent": {
+        "label": "Presunto incapacitado"
+      }
+    },
+    "addresses": {
+      "sectionTitle": "Información de Dirección (Párrafo 2)",
+      "sameAddressForAll": {
+        "label": "Todas las partes viven en la misma dirección"
+      },
+      "minorChildrenAddress": {
+        "sectionTitle": "Dirección de Menores/Presuntos Incapacitados",
+        "street": {
+          "label": "Dirección de la Calle",
+          "placeholder": "Ingrese la dirección de la calle"
+        },
+        "aptNumber": {
+          "label": "Apt. No.",
+          "placeholder": "Ingrese el número de apartamento"
+        },
+        "city": {
+          "label": "Ciudad",
+          "placeholder": "Ingrese la ciudad"
+        },
+        "state": {
+          "label": "Estado"
+        },
+        "zipCode": {
+          "label": "Código Postal",
+          "placeholder": "Ingrese el código postal"
+        }
+      }
+    },
+    "minorChildren": {
+      "sectionTitle": "Información de Menores de Edad",
+      "description": "Agregue detalles para cada menor de edad (Nombre, Fecha de Nacimiento, Relación con el Peticionario):",
+      "addButton": "Agregar Menor de Edad",
+      "emptyState": "No se han agregado menores de edad aún",
+      "name": {
+        "label": "Nombre",
+        "placeholder": "Ingrese el nombre completo del menor"
+      },
+      "dateOfBirth": {
+        "label": "Fecha de Nacimiento"
+      },
+      "relationship": {
+        "label": "Relación con el Peticionario",
+        "placeholder": "ej: Hija, Hijo"
+      }
+    },
+    "allegedIncompetent": {
+      "sectionTitle": "Información de Presuntos Incapacitados",
+      "description": "Agregue detalles para cada persona presuntamente incapacitada (Nombre, Fecha de Nacimiento, Relación con el Peticionario):",
+      "addButton": "Agregar Presunto Incapacitado",
+      "emptyState": "No se han agregado presuntos incapacitados aún",
+      "name": {
+        "label": "Nombre",
+        "placeholder": "Ingrese el nombre completo de la persona"
+      },
+      "dateOfBirth": {
+        "label": "Fecha de Nacimiento"
+      },
+      "relationship": {
+        "label": "Relación con el Peticionario",
+        "placeholder": "ej: Padre, Hermano/a"
+      }
+    }
   },
   "court": {
     "sectionTitle": "Información del Tribunal",

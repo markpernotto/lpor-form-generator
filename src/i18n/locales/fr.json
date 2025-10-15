@@ -82,8 +82,91 @@
     "title": "Ordonnance de prévention de la maltraitance en uniforme de la Louisiane"
   },
   "lporfForm": {
-    "subtitle": "RAPA-F - Violation d’une ordonnance de protection",
-    "title": "Requête pour outrage au tribunal et ordonnance de justification"
+    "subtitle": "RAPA-F - À utiliser lorsque le demandeur ne veut pas que le défendeur connaisse l'adresse",
+    "title": "Formulaire d'adresse confidentielle"
+  },
+  "lporf": {
+    "petitioner": {
+      "stateOfResidence": {
+        "label": "État de résidence",
+        "placeholder": "Sélectionnez l'état de résidence"
+      }
+    },
+    "filingPurpose": {
+      "sectionTitle": "Objet du dépôt (Paragraphe 1)",
+      "description": "Le demandeur dépose cette pétition au nom de:",
+      "forPetitioner": {
+        "label": "Demandeur"
+      },
+      "forMinorChildren": {
+        "label": "Enfant(s) mineur(s)"
+      },
+      "forAllegedIncompetent": {
+        "label": "Personne présumée incapable"
+      }
+    },
+    "addresses": {
+      "sectionTitle": "Informations d'adresse (Paragraphe 2)",
+      "sameAddressForAll": {
+        "label": "Toutes les parties vivent à la même adresse"
+      },
+      "minorChildrenAddress": {
+        "sectionTitle": "Adresse des enfants mineurs/personnes présumées incapables",
+        "street": {
+          "label": "Adresse de la rue",
+          "placeholder": "Entrez l'adresse de la rue"
+        },
+        "aptNumber": {
+          "label": "Apt. No.",
+          "placeholder": "Entrez le numéro d'appartement"
+        },
+        "city": {
+          "label": "Ville",
+          "placeholder": "Entrez la ville"
+        },
+        "state": {
+          "label": "État"
+        },
+        "zipCode": {
+          "label": "Code postal",
+          "placeholder": "Entrez le code postal"
+        }
+      }
+    },
+    "minorChildren": {
+      "sectionTitle": "Informations sur les enfants mineurs",
+      "description": "Ajoutez les détails pour chaque enfant mineur (Nom, Date de naissance, Relation au demandeur):",
+      "addButton": "Ajouter un enfant mineur",
+      "emptyState": "Aucun enfant mineur ajouté encore",
+      "name": {
+        "label": "Nom",
+        "placeholder": "Entrez le nom complet de l'enfant"
+      },
+      "dateOfBirth": {
+        "label": "Date de naissance"
+      },
+      "relationship": {
+        "label": "Relation au demandeur",
+        "placeholder": "ex: Fille, Fils"
+      }
+    },
+    "allegedIncompetent": {
+      "sectionTitle": "Informations sur les personnes présumées incapables",
+      "description": "Ajoutez les détails pour chaque personne présumée incapable (Nom, Date de naissance, Relation au demandeur):",
+      "addButton": "Ajouter une personne présumée incapable",
+      "emptyState": "Aucune personne présumée incapable ajoutée encore",
+      "name": {
+        "label": "Nom",
+        "placeholder": "Entrez le nom complet de la personne"
+      },
+      "dateOfBirth": {
+        "label": "Date de naissance"
+      },
+      "relationship": {
+        "label": "Relation au demandeur",
+        "placeholder": "ex: Parent, Frère/Sœur"
+      }
+    }
   },
   "petitioner": {
     "dateOfBirth": {

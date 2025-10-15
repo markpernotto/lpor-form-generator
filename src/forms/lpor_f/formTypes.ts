@@ -34,6 +34,7 @@ export interface LPORFFormData {
   // Defendant Information
   defendant: {
     fullName: string;
+    guardianFullName?: string;
     alias?: string;
     dateOfBirth: string;
     sex: "F" | "M";
