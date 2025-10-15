@@ -2,7 +2,10 @@ import React, {
   useState,
   useEffect,
 } from "react";
-import type { LPORFFormData } from "./formTypes";
+import type {
+  LPORFFormData,
+  PersonEntry,
+} from "./formTypes";
 import {
   getDefaultLPORFFormData,
   getTestLPORFFormData,
@@ -13,6 +16,7 @@ import { AccessibleDateInput } from "../../components/AccessibleDateInput";
 import { AccessibleTextarea } from "../../components/AccessibleTextarea";
 import { AccessibleCheckbox } from "../../components/AccessibleCheckbox";
 import { AccessibleRadioGroup } from "../../components/AccessibleRadioGroup";
+import { AccessiblePersonList } from "../../components/AccessiblePersonList";
 import { SuccessModal } from "../../components/SuccessModal";
 
 interface LPORFFormProps {
@@ -149,6 +153,17 @@ export const LPORFForm: React.FC<
     }));
   };
 
+  // Helper function for handling person list updates
+  const handlePersonListChange = (
+    field: "minorChildren" | "allegedIncompetent",
+    entries: PersonEntry[],
+  ) => {
+    setFormData((prev) => ({
+      ...prev,
+      [field]: entries,
+    }));
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -198,6 +213,83 @@ export const LPORFForm: React.FC<
             {/* Court Information Section - Hidden from UI but data preserved for PDF */}
             {/* Court information is pre-populated from query parameters and passed to PDF generator */}
             {/* Users do not edit these fields directly - they are handled behind the scenes */}
+
+            {/* Filing Purpose Section - New for LPOR-F Confidential Address Form */}
+            <section className="border border-gray-200 rounded-lg p-6">
+              <h2 className="text-xl font-semibold text-gray-900 mb-4">
+                {t(
+                  "lporf.filingPurpose.sectionTitle",
+                )}
+              </h2>
+              <p className="text-gray-600 mb-4">
+                {t(
+                  "lporf.filingPurpose.description",
+                )}
+              </p>
+
+              <div className="space-y-3">
+                <AccessibleCheckbox
+                  id="filing-purpose-petitioner"
+                  label={t(
+                    "lporf.filingPurpose.forPetitioner.label",
+                  )}
+                  checked={
+                    formData.filingPurpose
+                      .forPetitioner
+                  }
+                  onChange={(checked) =>
+                    setFormData((prev) => ({
+                      ...prev,
+                      filingPurpose: {
+                        ...prev.filingPurpose,
+                        forPetitioner: checked,
+                      },
+                    }))
+                  }
+                />
+
+                <AccessibleCheckbox
+                  id="filing-purpose-minor-children"
+                  label={t(
+                    "lporf.filingPurpose.forMinorChildren.label",
+                  )}
+                  checked={
+                    formData.filingPurpose
+                      .forMinorChildren
+                  }
+                  onChange={(checked) =>
+                    setFormData((prev) => ({
+                      ...prev,
+                      filingPurpose: {
+                        ...prev.filingPurpose,
+                        forMinorChildren: checked,
+                      },
+                    }))
+                  }
+                />
+
+                <AccessibleCheckbox
+                  id="filing-purpose-alleged-incompetent"
+                  label={t(
+                    "lporf.filingPurpose.forAllegedIncompetent.label",
+                  )}
+                  checked={
+                    formData.filingPurpose
+                      .forAllegedIncompetent
+                  }
+                  onChange={(checked) =>
+                    setFormData((prev) => ({
+                      ...prev,
+                      filingPurpose: {
+                        ...prev.filingPurpose,
+                        forAllegedIncompetent:
+                          checked,
+                      },
+                    }))
+                  }
+                />
+              </div>
+            </section>
 
             {/* Petitioner Information Section */}
             <section className="border border-gray-200 rounded-lg p-6">
@@ -299,6 +391,55 @@ export const LPORFForm: React.FC<
                     </option>
                   </select>
                 </div>
+
+                {/* New field for LPOR-F: State of Residence */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    {t(
+                      "lporf.petitioner.stateOfResidence.label",
+                    )}{" "}
+                    *
+                  </label>
+                  <select
+                    value={
+                      formData.petitioner
+                        .stateOfResidence
+                    }
+                    onChange={(e) =>
+                      handleInputChange(
+                        "petitioner.stateOfResidence",
+                        e.target.value,
+                      )
+                    }
+                    className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    required
+                  >
+                    <option value="Louisiana">
+                      Louisiana
+                    </option>
+                    <option value="Alabama">
+                      Alabama
+                    </option>
+                    <option value="Arkansas">
+                      Arkansas
+                    </option>
+                    <option value="Florida">
+                      Florida
+                    </option>
+                    <option value="Georgia">
+                      Georgia
+                    </option>
+                    <option value="Mississippi">
+                      Mississippi
+                    </option>
+                    <option value="Tennessee">
+                      Tennessee
+                    </option>
+                    <option value="Texas">
+                      Texas
+                    </option>
+                  </select>
+                </div>
               </div>
             </section>
 
@@ -381,420 +522,451 @@ export const LPORFForm: React.FC<
               </div>
             </section>
 
-            {/* Protection Order Details Section */}
-            <section className="border border-gray-200 rounded-lg p-6">
-              <h2 className="text-xl font-semibold text-gray-900 mb-4">
-                {t(
-                  "protectionOrder.sectionTitle",
-                )}
-              </h2>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    {t(
-                      "protectionOrder.originalOrderDate.label",
-                    )}{" "}
-                    *
-                  </label>
-                  <input
-                    type="date"
-                    value={
-                      formData
-                        .protectionOrderDetails
-                        .originalOrderDate
-                    }
-                    onChange={(e) =>
-                      handleInputChange(
-                        "protectionOrderDetails.originalOrderDate",
-                        e.target.value,
-                      )
-                    }
-                    className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                    required
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    {t(
-                      "protectionOrder.expirationDate.label",
-                    )}
-                  </label>
-                  <input
-                    type="date"
-                    value={
-                      formData
-                        .protectionOrderDetails
-                        .expirationDate || ""
-                    }
-                    onChange={(e) =>
-                      handleInputChange(
-                        "protectionOrderDetails.expirationDate",
-                        e.target.value,
-                      )
-                    }
-                    className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                  />
-                </div>
-              </div>
-
-              <div className="mt-4">
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+            {/* Minor Children Section - New for LPOR-F */}
+            {formData.filingPurpose
+              .forMinorChildren && (
+              <section className="border border-gray-200 rounded-lg p-6">
+                <h2 className="text-xl font-semibold text-gray-900 mb-4">
                   {t(
-                    "protectionOrder.originalOrderType.label",
-                  )}{" "}
-                  *
-                </label>
-                <div className="space-y-2">
-                  {[
-                    {
-                      value: "tro",
-                      label: t(
-                        "protectionOrder.originalOrderType.options.tro",
-                      ),
-                    },
-                    {
-                      value: "preliminary",
-                      label: t(
-                        "protectionOrder.originalOrderType.options.preliminary",
-                      ),
-                    },
-                    {
-                      value: "permanent",
-                      label: t(
-                        "protectionOrder.originalOrderType.options.permanent",
-                      ),
-                    },
-                  ].map((option) => (
-                    <label
-                      key={option.value}
-                      className="flex items-center"
-                    >
-                      <input
-                        type="checkbox"
-                        checked={formData.protectionOrderDetails.originalOrderType.includes(
-                          option.value as
-                            | "tro"
-                            | "preliminary"
-                            | "permanent",
-                        )}
-                        onChange={(e) =>
-                          handleCheckboxChange(
-                            "protectionOrderDetails.originalOrderType",
-                            option.value,
-                            e.target.checked,
-                          )
-                        }
-                        className="mr-2"
-                      />
-                      {option.label}
-                    </label>
-                  ))}
-                </div>
-              </div>
-            </section>
+                    "lporf.minorChildren.sectionTitle",
+                  )}
+                </h2>
+                <p className="text-gray-600 mb-4">
+                  {t(
+                    "lporf.minorChildren.description",
+                  )}
+                </p>
 
-            {/* Violations Section */}
-            <section className="border border-gray-200 rounded-lg p-6">
-              <h2 className="text-xl font-semibold text-gray-900 mb-4">
-                {t("violations.sectionTitle")}
-              </h2>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    {t(
-                      "violations.incidentDate.label",
-                    )}{" "}
-                    *
-                  </label>
-                  <input
-                    type="date"
-                    value={
-                      formData.violations
-                        .incidentDate
-                    }
-                    onChange={(e) =>
-                      handleInputChange(
-                        "violations.incidentDate",
-                        e.target.value,
-                      )
-                    }
-                    className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                    required
-                  />
-                </div>
-
-                <AccessibleDateInput
-                  id="violations-incidentTime"
+                <AccessiblePersonList
+                  id="minor-children-list"
                   label={t(
-                    "violations.incidentTime.label",
+                    "lporf.minorChildren.listLabel",
                   )}
-                  value={
-                    formData.violations
-                      .incidentTime || ""
-                  }
-                  onChange={(value) =>
-                    handleInputChange(
-                      "violations.incidentTime",
-                      value,
+                  description={t(
+                    "lporf.minorChildren.listDescription",
+                  )}
+                  entries={formData.minorChildren}
+                  onEntriesChange={(entries) =>
+                    handlePersonListChange(
+                      "minorChildren",
+                      entries,
                     )
                   }
-                  type="time"
-                  helpText="Enter the approximate time of the incident"
+                  addButtonText={t(
+                    "lporf.minorChildren.addButtonText",
+                  )}
+                  emptyStateText={t(
+                    "lporf.minorChildren.emptyStateText",
+                  )}
+                  nameLabel={t(
+                    "lporf.minorChildren.nameLabel",
+                  )}
+                  dobLabel={t(
+                    "lporf.minorChildren.dobLabel",
+                  )}
+                  relationshipLabel={t(
+                    "lporf.minorChildren.relationshipLabel",
+                  )}
+                  namePlaceholder={t(
+                    "lporf.minorChildren.namePlaceholder",
+                  )}
+                  relationshipPlaceholder={t(
+                    "lporf.minorChildren.relationshipPlaceholder",
+                  )}
                 />
-              </div>
+              </section>
+            )}
 
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+            {/* Alleged Incompetent Persons Section - New for LPOR-F */}
+            {formData.filingPurpose
+              .forAllegedIncompetent && (
+              <section className="border border-gray-200 rounded-lg p-6">
+                <h2 className="text-xl font-semibold text-gray-900 mb-4">
                   {t(
-                    "violations.incidentLocation.label",
-                  )}{" "}
-                  *
-                </label>
-                <input
-                  type="text"
-                  value={
-                    formData.violations
-                      .incidentLocation
+                    "lporf.allegedIncompetent.sectionTitle",
+                  )}
+                </h2>
+                <p className="text-gray-600 mb-4">
+                  {t(
+                    "lporf.allegedIncompetent.description",
+                  )}
+                </p>
+
+                <AccessiblePersonList
+                  id="alleged-incompetent-list"
+                  label={t(
+                    "lporf.allegedIncompetent.listLabel",
+                  )}
+                  description={t(
+                    "lporf.allegedIncompetent.listDescription",
+                  )}
+                  entries={
+                    formData.allegedIncompetent
                   }
-                  onChange={(e) =>
-                    handleInputChange(
-                      "violations.incidentLocation",
-                      e.target.value,
+                  onEntriesChange={(entries) =>
+                    handlePersonListChange(
+                      "allegedIncompetent",
+                      entries,
                     )
                   }
-                  className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                  placeholder={t(
-                    "violations.incidentLocation.placeholder",
+                  addButtonText={t(
+                    "lporf.allegedIncompetent.addButtonText",
                   )}
-                  required
+                  emptyStateText={t(
+                    "lporf.allegedIncompetent.emptyStateText",
+                  )}
+                  nameLabel={t(
+                    "lporf.allegedIncompetent.nameLabel",
+                  )}
+                  dobLabel={t(
+                    "lporf.allegedIncompetent.dobLabel",
+                  )}
+                  relationshipLabel={t(
+                    "lporf.allegedIncompetent.relationshipLabel",
+                  )}
+                  namePlaceholder={t(
+                    "lporf.allegedIncompetent.namePlaceholder",
+                  )}
+                  relationshipPlaceholder={t(
+                    "lporf.allegedIncompetent.relationshipPlaceholder",
+                  )}
                 />
-              </div>
+              </section>
+            )}
 
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+            {/* Address Configuration Section - New for LPOR-F */}
+            {(formData.filingPurpose
+              .forMinorChildren ||
+              formData.filingPurpose
+                .forAllegedIncompetent) && (
+              <section className="border border-gray-200 rounded-lg p-6">
+                <h2 className="text-xl font-semibold text-gray-900 mb-4">
                   {t(
-                    "violations.violationType.label",
-                  )}{" "}
-                  *
-                </label>
-                <div className="grid grid-cols-2 gap-2">
-                  {[
-                    {
-                      value: "contact",
-                      label: t(
-                        "violations.violationType.options.contact",
-                      ),
-                    },
-                    {
-                      value: "stalking",
-                      label: t(
-                        "violations.violationType.options.stalking",
-                      ),
-                    },
-                    {
-                      value: "harassment",
-                      label: t(
-                        "violations.violationType.options.harassment",
-                      ),
-                    },
-                    {
-                      value: "threats",
-                      label: t(
-                        "violations.violationType.options.threats",
-                      ),
-                    },
-                    {
-                      value: "property_damage",
-                      label: t(
-                        "violations.violationType.options.propertyDamage",
-                      ),
-                    },
-                    {
-                      value: "other",
-                      label: t(
-                        "violations.violationType.options.other",
-                      ),
-                    },
-                  ].map((option) => (
-                    <label
-                      key={option.value}
-                      className="flex items-center"
-                    >
-                      <input
-                        type="checkbox"
-                        checked={formData.violations.violationType.includes(
-                          option.value as
-                            | "contact"
-                            | "stalking"
-                            | "harassment"
-                            | "threats"
-                            | "property_damage"
-                            | "other",
+                    "lporf.addresses.sectionTitle",
+                  )}
+                </h2>
+                <p className="text-gray-600 mb-4">
+                  {t(
+                    "lporf.addresses.description",
+                  )}
+                </p>
+
+                <AccessibleCheckbox
+                  id="same-address-for-all"
+                  label={t(
+                    "lporf.addresses.sameAddressForAll.label",
+                  )}
+                  checked={
+                    formData.sameAddressForAll
+                  }
+                  onChange={(checked) =>
+                    setFormData((prev) => ({
+                      ...prev,
+                      sameAddressForAll: checked,
+                    }))
+                  }
+                />
+
+                {/* Conditional address sections based on same address setting */}
+                {!formData.sameAddressForAll &&
+                  formData.filingPurpose
+                    .forMinorChildren && (
+                    <div className="mt-6">
+                      <h3 className="text-lg font-medium text-gray-900 mb-4">
+                        {t(
+                          "lporf.addresses.minorChildrenAddress.title",
                         )}
-                        onChange={(e) =>
-                          handleCheckboxChange(
-                            "violations.violationType",
-                            option.value,
-                            e.target.checked,
-                          )
-                        }
-                        className="mr-2"
-                      />
-                      {option.label}
-                    </label>
-                  ))}
-                </div>
-              </div>
+                      </h3>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <AccessibleTextInput
+                          id="minor-children-address-street"
+                          label={t(
+                            "lporf.addresses.minorChildrenAddress.street.label",
+                          )}
+                          value={
+                            formData
+                              .minorChildrenAddress
+                              .street
+                          }
+                          onChange={(value) =>
+                            handleInputChange(
+                              "minorChildrenAddress.street",
+                              value,
+                            )
+                          }
+                          placeholder={t(
+                            "lporf.addresses.minorChildrenAddress.street.placeholder",
+                          )}
+                          required
+                        />
 
-              <div className="mb-4">
-                <AccessibleTextarea
-                  id="violations-violationDescription"
-                  label={`${t(
-                    "violations.violationDescription.label",
-                  )} *`}
-                  value={
-                    formData.violations
-                      .violationDescription
-                  }
-                  onChange={(value) =>
-                    handleInputChange(
-                      "violations.violationDescription",
-                      value,
-                    )
-                  }
-                  placeholder={t(
-                    "violations.violationDescription.placeholder",
+                        <AccessibleTextInput
+                          id="minor-children-address-apt"
+                          label={t(
+                            "lporf.addresses.minorChildrenAddress.aptNumber.label",
+                          )}
+                          value={
+                            formData
+                              .minorChildrenAddress
+                              .aptNumber || ""
+                          }
+                          onChange={(value) =>
+                            handleInputChange(
+                              "minorChildrenAddress.aptNumber",
+                              value,
+                            )
+                          }
+                          placeholder={t(
+                            "lporf.addresses.minorChildrenAddress.aptNumber.placeholder",
+                          )}
+                        />
+
+                        <AccessibleTextInput
+                          id="minor-children-address-city"
+                          label={t(
+                            "lporf.addresses.minorChildrenAddress.city.label",
+                          )}
+                          value={
+                            formData
+                              .minorChildrenAddress
+                              .city
+                          }
+                          onChange={(value) =>
+                            handleInputChange(
+                              "minorChildrenAddress.city",
+                              value,
+                            )
+                          }
+                          placeholder={t(
+                            "lporf.addresses.minorChildrenAddress.city.placeholder",
+                          )}
+                          required
+                        />
+
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-1">
+                            {t(
+                              "lporf.addresses.minorChildrenAddress.state.label",
+                            )}{" "}
+                            *
+                          </label>
+                          <select
+                            value={
+                              formData
+                                .minorChildrenAddress
+                                .state
+                            }
+                            onChange={(e) =>
+                              handleInputChange(
+                                "minorChildrenAddress.state",
+                                e.target.value,
+                              )
+                            }
+                            className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                            required
+                          >
+                            <option value="LA">
+                              Louisiana
+                            </option>
+                            <option value="AL">
+                              Alabama
+                            </option>
+                            <option value="AR">
+                              Arkansas
+                            </option>
+                            <option value="FL">
+                              Florida
+                            </option>
+                            <option value="GA">
+                              Georgia
+                            </option>
+                            <option value="MS">
+                              Mississippi
+                            </option>
+                            <option value="TN">
+                              Tennessee
+                            </option>
+                            <option value="TX">
+                              Texas
+                            </option>
+                          </select>
+                        </div>
+
+                        <AccessibleTextInput
+                          id="minor-children-address-zip"
+                          label={t(
+                            "lporf.addresses.minorChildrenAddress.zipCode.label",
+                          )}
+                          value={
+                            formData
+                              .minorChildrenAddress
+                              .zipCode
+                          }
+                          onChange={(value) =>
+                            handleInputChange(
+                              "minorChildrenAddress.zipCode",
+                              value,
+                            )
+                          }
+                          placeholder={t(
+                            "lporf.addresses.minorChildrenAddress.zipCode.placeholder",
+                          )}
+                          required
+                        />
+                      </div>
+                    </div>
                   )}
-                  rows={4}
-                  required
-                  enableVoiceInput={true}
-                  helpText="Describe the violation in detail"
-                />
-              </div>
 
-              <AccessibleRadioGroup
-                name="policeNotified"
-                label={`${t(
-                  "violations.policeNotified.label",
-                )} *`}
-                value={
-                  formData.violations
-                    .policeNotified
-                    ? "true"
-                    : "false"
-                }
-                onChange={(value) =>
-                  handleInputChange(
-                    "violations.policeNotified",
-                    value === "true",
-                  )
-                }
-                options={[
-                  {
-                    value: "true",
-                    label: t("common.yes"),
-                    helpText:
-                      "Check if police were notified of this incident",
-                  },
-                  {
-                    value: "false",
-                    label: t("common.no"),
-                    helpText:
-                      "Check if police were NOT notified",
-                  },
-                ]}
-                required
-                helpText="Were police notified about this violation?"
-                layout="vertical"
-              />
-            </section>
+                {!formData.sameAddressForAll &&
+                  formData.filingPurpose
+                    .forAllegedIncompetent && (
+                    <div className="mt-6">
+                      <h3 className="text-lg font-medium text-gray-900 mb-4">
+                        {t(
+                          "lporf.addresses.allegedIncompetentAddress.title",
+                        )}
+                      </h3>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <AccessibleTextInput
+                          id="alleged-incompetent-address-street"
+                          label={t(
+                            "lporf.addresses.allegedIncompetentAddress.street.label",
+                          )}
+                          value={
+                            formData
+                              .allegedIncompetentAddress
+                              .street
+                          }
+                          onChange={(value) =>
+                            handleInputChange(
+                              "allegedIncompetentAddress.street",
+                              value,
+                            )
+                          }
+                          placeholder={t(
+                            "lporf.addresses.allegedIncompetentAddress.street.placeholder",
+                          )}
+                          required
+                        />
 
-            {/* Emergency Request Section */}
-            <section className="border border-gray-200 rounded-lg p-6">
-              <h2 className="text-xl font-semibold text-gray-900 mb-4">
-                {t(
-                  "emergencyRequest.sectionTitle",
-                )}
-              </h2>
+                        <AccessibleTextInput
+                          id="alleged-incompetent-address-apt"
+                          label={t(
+                            "lporf.addresses.allegedIncompetentAddress.aptNumber.label",
+                          )}
+                          value={
+                            formData
+                              .allegedIncompetentAddress
+                              .aptNumber || ""
+                          }
+                          onChange={(value) =>
+                            handleInputChange(
+                              "allegedIncompetentAddress.aptNumber",
+                              value,
+                            )
+                          }
+                          placeholder={t(
+                            "lporf.addresses.allegedIncompetentAddress.aptNumber.placeholder",
+                          )}
+                        />
 
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  {t(
-                    "emergencyRequest.isEmergency.label",
-                  )}{" "}
-                  *
-                </label>
-                <div className="space-y-2">
-                  <label className="flex items-center">
-                    <input
-                      type="radio"
-                      name="isEmergency"
-                      checked={
-                        formData.emergencyRequest
-                          .isEmergency === true
-                      }
-                      onChange={() =>
-                        handleInputChange(
-                          "emergencyRequest.isEmergency",
-                          true,
-                        )
-                      }
-                      className="mr-2"
-                    />
-                    {t("common.yes")}
-                  </label>
-                  <label className="flex items-center">
-                    <input
-                      type="radio"
-                      name="isEmergency"
-                      checked={
-                        formData.emergencyRequest
-                          .isEmergency === false
-                      }
-                      onChange={() =>
-                        handleInputChange(
-                          "emergencyRequest.isEmergency",
-                          false,
-                        )
-                      }
-                      className="mr-2"
-                    />
-                    {t("common.no")}
-                  </label>
-                </div>
-              </div>
+                        <AccessibleTextInput
+                          id="alleged-incompetent-address-city"
+                          label={t(
+                            "lporf.addresses.allegedIncompetentAddress.city.label",
+                          )}
+                          value={
+                            formData
+                              .allegedIncompetentAddress
+                              .city
+                          }
+                          onChange={(value) =>
+                            handleInputChange(
+                              "allegedIncompetentAddress.city",
+                              value,
+                            )
+                          }
+                          placeholder={t(
+                            "lporf.addresses.allegedIncompetentAddress.city.placeholder",
+                          )}
+                          required
+                        />
 
-              {formData.emergencyRequest
-                .isEmergency && (
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    {t(
-                      "emergencyRequest.emergencyReason.label",
-                    )}
-                  </label>
-                  <textarea
-                    value={
-                      formData.emergencyRequest
-                        .emergencyReason || ""
-                    }
-                    onChange={(e) =>
-                      handleInputChange(
-                        "emergencyRequest.emergencyReason",
-                        e.target.value,
-                      )
-                    }
-                    className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                    placeholder={t(
-                      "emergencyRequest.emergencyReason.placeholder",
-                    )}
-                    rows={3}
-                  />
-                </div>
-              )}
-            </section>
+                        <div>
+                          <label className="block text-sm font-medium text-gray-700 mb-1">
+                            {t(
+                              "lporf.addresses.allegedIncompetentAddress.state.label",
+                            )}{" "}
+                            *
+                          </label>
+                          <select
+                            value={
+                              formData
+                                .allegedIncompetentAddress
+                                .state
+                            }
+                            onChange={(e) =>
+                              handleInputChange(
+                                "allegedIncompetentAddress.state",
+                                e.target.value,
+                              )
+                            }
+                            className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                            required
+                          >
+                            <option value="LA">
+                              Louisiana
+                            </option>
+                            <option value="AL">
+                              Alabama
+                            </option>
+                            <option value="AR">
+                              Arkansas
+                            </option>
+                            <option value="FL">
+                              Florida
+                            </option>
+                            <option value="GA">
+                              Georgia
+                            </option>
+                            <option value="MS">
+                              Mississippi
+                            </option>
+                            <option value="TN">
+                              Tennessee
+                            </option>
+                            <option value="TX">
+                              Texas
+                            </option>
+                          </select>
+                        </div>
+
+                        <AccessibleTextInput
+                          id="alleged-incompetent-address-zip"
+                          label={t(
+                            "lporf.addresses.allegedIncompetentAddress.zipCode.label",
+                          )}
+                          value={
+                            formData
+                              .allegedIncompetentAddress
+                              .zipCode
+                          }
+                          onChange={(value) =>
+                            handleInputChange(
+                              "allegedIncompetentAddress.zipCode",
+                              value,
+                            )
+                          }
+                          placeholder={t(
+                            "lporf.addresses.allegedIncompetentAddress.zipCode.placeholder",
+                          )}
+                          required
+                        />
+                      </div>
+                    </div>
+                  )}
+              </section>
+            )}
 
             {/* Confirmation Section */}
             <section className="border border-gray-200 rounded-lg p-6">

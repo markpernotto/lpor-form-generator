@@ -1,3 +1,11 @@
+// Person entry interface for dynamic lists
+export interface PersonEntry {
+  id: string;
+  name: string;
+  dateOfBirth: string;
+  relationshipToPetitioner: string;
+}
+
 export interface LPORFFormData {
   // Court Information
   courtName?: string;
@@ -6,12 +14,20 @@ export interface LPORFFormData {
   filedDate?: string;
   clerk?: string;
 
+  // Filing Purpose (new for LPOR-F confidential address form)
+  filingPurpose: {
+    forPetitioner: boolean;
+    forMinorChildren: boolean;
+    forAllegedIncompetent: boolean;
+  };
+
   // Petitioner Information
   petitioner: {
     firstName: string;
     maidenMiddleName: string;
     lastName: string;
     dateOfBirth: string;
+    stateOfResidence: string; // New field for LPOR-F
     sex: "F" | "M";
     race: string;
     address: {
@@ -29,6 +45,27 @@ export interface LPORFFormData {
     };
     phoneNumber?: string;
     email?: string;
+  };
+
+  // Dynamic person lists for LPOR-F
+  minorChildren: PersonEntry[];
+  allegedIncompetent: PersonEntry[];
+
+  // Address configuration
+  sameAddressForAll: boolean;
+  minorChildrenAddress: {
+    street: string;
+    aptNumber?: string;
+    city: string;
+    state: string;
+    zipCode: string;
+  };
+  allegedIncompetentAddress: {
+    street: string;
+    aptNumber?: string;
+    city: string;
+    state: string;
+    zipCode: string;
   };
 
   // Defendant Information
@@ -54,96 +91,5 @@ export interface LPORFFormData {
     };
     phoneNumber?: string;
     email?: string;
-  };
-
-  // Protection Order Details
-  protectionOrderDetails: {
-    originalOrderDate: string;
-    originalOrderType: (
-      | "tro"
-      | "preliminary"
-      | "permanent"
-    )[];
-    originalOrderLegalBasis: (
-      | "rs372"
-      | "rs361"
-      | "ccp3601"
-    )[];
-    expirationDate?: string;
-    caseNumber?: string;
-  };
-
-  // Violations Details
-  violations: {
-    incidentDate: string;
-    incidentTime?: string;
-    incidentLocation: string;
-    violationType: (
-      | "contact"
-      | "stalking"
-      | "harassment"
-      | "threats"
-      | "property_damage"
-      | "other"
-    )[];
-    violationDescription: string;
-    witnessName?: string;
-    witnessPhone?: string;
-    evidenceAvailable: boolean;
-    evidenceDescription?: string;
-    policeNotified: boolean;
-    policeReportNumber?: string;
-    policeOfficer?: string;
-    policeDepartment?: string;
-  };
-
-  // Requested Relief
-  requestedRelief: {
-    immediateArrest: boolean;
-    contemptProceedings: boolean;
-    orderExtension: boolean;
-    additionalProtections: boolean;
-    fineImposition: boolean;
-    otherRelief: boolean;
-    otherReliefDescription?: string;
-  };
-
-  // Emergency Request
-  emergencyRequest: {
-    isEmergency: boolean;
-    emergencyReason?: string;
-    immediateDanger: boolean;
-    threatToSafety: boolean;
-  };
-
-  // Signature Section
-  signatures: {
-    dateOfFiling: string;
-    petitionerSignature: boolean; // Will be signed manually
-    attorneyName?: string;
-    attorneyBarNumber?: string;
-    attorneySignature?: boolean; // Will be signed manually
-    notaryAcknowledgment?: boolean;
-  };
-
-  // Service Information
-  serviceInfo: {
-    servedOnDefendant: boolean;
-    serviceDate?: string;
-    serviceMethod?: string;
-    processServerName?: string;
-    processServerLicense?: string;
-  };
-
-  // Administrative (Court Use Only)
-  administrative: {
-    filingFee?: string;
-    feeWaived?: boolean;
-    dateReceived?: string;
-    clerkInitials?: string;
-    judgeAssigned?: string;
-    hearingDate?: string;
-    hearingTime?: string;
-    pnoNumber?: string;
   };
 }

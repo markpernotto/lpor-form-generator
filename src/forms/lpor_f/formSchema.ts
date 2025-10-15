@@ -195,11 +195,19 @@ export const lporfFormSchema = {
 // Default values for new LPOR-F form (using existing formTypes structure)
 export const getDefaultLPORFFormData =
   (): LPORFFormData => ({
+    // Filing Purpose
+    filingPurpose: {
+      forPetitioner: false,
+      forMinorChildren: false,
+      forAllegedIncompetent: false,
+    },
+
     petitioner: {
       firstName: "",
       maidenMiddleName: "",
       lastName: "",
       dateOfBirth: "",
+      stateOfResidence: "Louisiana",
       sex: "F",
       race: "",
       address: {
@@ -217,6 +225,27 @@ export const getDefaultLPORFFormData =
       },
       phoneNumber: "",
       email: "",
+    },
+
+    // Dynamic person lists
+    minorChildren: [],
+    allegedIncompetent: [],
+
+    // Address configuration
+    sameAddressForAll: true,
+    minorChildrenAddress: {
+      street: "",
+      aptNumber: "",
+      city: "",
+      state: "LA",
+      zipCode: "",
+    },
+    allegedIncompetentAddress: {
+      street: "",
+      aptNumber: "",
+      city: "",
+      state: "LA",
+      zipCode: "",
     },
 
     defendant: {
@@ -242,75 +271,6 @@ export const getDefaultLPORFFormData =
       phoneNumber: "",
       email: "",
     },
-
-    protectionOrderDetails: {
-      originalOrderDate: "",
-      originalOrderType: [],
-      originalOrderLegalBasis: [],
-      expirationDate: "",
-      caseNumber: "",
-    },
-
-    violations: {
-      incidentDate: "",
-      incidentTime: "",
-      incidentLocation: "",
-      violationType: [],
-      violationDescription: "",
-      witnessName: "",
-      witnessPhone: "",
-      evidenceAvailable: false,
-      evidenceDescription: "",
-      policeNotified: false,
-      policeReportNumber: "",
-      policeOfficer: "",
-      policeDepartment: "",
-    },
-
-    requestedRelief: {
-      immediateArrest: false,
-      contemptProceedings: false,
-      orderExtension: false,
-      additionalProtections: false,
-      fineImposition: false,
-      otherRelief: false,
-      otherReliefDescription: "",
-    },
-
-    emergencyRequest: {
-      isEmergency: false,
-      emergencyReason: "",
-      immediateDanger: false,
-      threatToSafety: false,
-    },
-
-    signatures: {
-      dateOfFiling: "",
-      petitionerSignature: false,
-      attorneyName: "",
-      attorneyBarNumber: "",
-      attorneySignature: false,
-      notaryAcknowledgment: false,
-    },
-
-    serviceInfo: {
-      servedOnDefendant: false,
-      serviceDate: "",
-      serviceMethod: "",
-      processServerName: "",
-      processServerLicense: "",
-    },
-
-    administrative: {
-      filingFee: "",
-      feeWaived: false,
-      dateReceived: "",
-      clerkInitials: "",
-      judgeAssigned: "",
-      hearingDate: "",
-      hearingTime: "",
-      pnoNumber: "",
-    },
   });
 
 // Test data for LPOR-F form (minimal test data)
@@ -318,11 +278,19 @@ export const getTestLPORFFormData =
   (): LPORFFormData => ({
     ...getDefaultLPORFFormData(),
 
+    // Override filing purpose for test
+    filingPurpose: {
+      forPetitioner: true,
+      forMinorChildren: false,
+      forAllegedIncompetent: false,
+    },
+
     petitioner: {
       firstName: "Sarah",
       maidenMiddleName: "Marie",
       lastName: "Johnson",
       dateOfBirth: "1985-06-15",
+      stateOfResidence: "Louisiana",
       sex: "F",
       race: "Caucasian",
       address: {
