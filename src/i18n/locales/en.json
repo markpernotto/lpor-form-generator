@@ -149,7 +149,8 @@
       "placeholder": "Enter last name"
     },
     "dateOfBirth": {
-      "label": "Date of Birth"
+      "label": "Date of Birth",
+      "helpText": "Enter your date of birth"
     },
     "sex": {
       "label": "Sex",

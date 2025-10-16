@@ -149,7 +149,8 @@
       "placeholder": "Ingrese el apellido"
     },
     "dateOfBirth": {
-      "label": "Fecha de Nacimiento"
+      "label": "Fecha de Nacimiento",
+      "helpText": "Ingrese su fecha de nacimiento"
     },
     "sex": {
       "label": "Sexo",

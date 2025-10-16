@@ -4,6 +4,7 @@ export { AccessibleTextarea } from "./AccessibleTextarea";
 export { AccessibleDateInput } from "./AccessibleDateInput";
 export { AccessibleCheckbox } from "./AccessibleCheckbox";
 export { AccessibleRadioGroup } from "./AccessibleRadioGroup";
+export { AccessibleSelect } from "./AccessibleSelect";
 export { AccessiblePersonList } from "./AccessiblePersonList";
 export { VoiceInput } from "./VoiceInput";
 

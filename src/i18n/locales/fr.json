@@ -192,7 +192,8 @@
   },
   "petitioner": {
     "dateOfBirth": {
-      "label": "Date de naissance"
+      "label": "Date de naissance",
+      "helpText": "Entrez votre date de naissance"
     },
     "firstName": {
       "label": "Prénom",
