@@ -265,7 +265,7 @@ export const LPORFForm: React.FC<
                   id="petitioner-firstName"
                   label={`${t(
                     "petitioner.firstName.label",
-                  )} *`}
+                  )}`}
                   value={
                     formData.petitioner.firstName
                   }
@@ -287,7 +287,7 @@ export const LPORFForm: React.FC<
                   id="petitioner-lastName"
                   label={`${t(
                     "petitioner.lastName.label",
-                  )} *`}
+                  )}`}
                   value={
                     formData.petitioner.lastName
                   }
@@ -309,7 +309,7 @@ export const LPORFForm: React.FC<
                   id="petitioner-dateOfBirth"
                   label={`${t(
                     "petitioner.dateOfBirth.label",
-                  )} *`}
+                  )}`}
                   value={
                     formData.petitioner
                       .dateOfBirth
@@ -324,190 +324,6 @@ export const LPORFForm: React.FC<
                   required
                   helpText="Enter your date of birth"
                 />
-
-                {/* New field for LPOR-F: State of Residence */}
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    {t(
-                      "lporf.petitioner.stateOfResidence.label",
-                    )}{" "}
-                    *
-                  </label>
-                  <select
-                    value={
-                      formData.petitioner
-                        .stateOfResidence
-                    }
-                    onChange={(e) =>
-                      handleInputChange(
-                        "petitioner.stateOfResidence",
-                        e.target.value,
-                      )
-                    }
-                    className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                    required
-                  >
-                    <option value="AL">
-                      Alabama
-                    </option>
-                    <option value="AK">
-                      Alaska
-                    </option>
-                    <option value="AZ">
-                      Arizona
-                    </option>
-                    <option value="AR">
-                      Arkansas
-                    </option>
-                    <option value="CA">
-                      California
-                    </option>
-                    <option value="CO">
-                      Colorado
-                    </option>
-                    <option value="CT">
-                      Connecticut
-                    </option>
-                    <option value="DE">
-                      Delaware
-                    </option>
-                    <option value="DC">
-                      District of Columbia
-                    </option>
-                    <option value="FL">
-                      Florida
-                    </option>
-                    <option value="GA">
-                      Georgia
-                    </option>
-                    <option value="GU">
-                      Guam
-                    </option>
-                    <option value="HI">
-                      Hawaii
-                    </option>
-                    <option value="ID">
-                      Idaho
-                    </option>
-                    <option value="IL">
-                      Illinois
-                    </option>
-                    <option value="IN">
-                      Indiana
-                    </option>
-                    <option value="IA">
-                      Iowa
-                    </option>
-                    <option value="KS">
-                      Kansas
-                    </option>
-                    <option value="KY">
-                      Kentucky
-                    </option>
-                    <option value="LA">
-                      Louisiana
-                    </option>
-                    <option value="ME">
-                      Maine
-                    </option>
-                    <option value="MD">
-                      Maryland
-                    </option>
-                    <option value="MA">
-                      Massachusetts
-                    </option>
-                    <option value="MI">
-                      Michigan
-                    </option>
-                    <option value="MN">
-                      Minnesota
-                    </option>
-                    <option value="MS">
-                      Mississippi
-                    </option>
-                    <option value="MO">
-                      Missouri
-                    </option>
-                    <option value="MT">
-                      Montana
-                    </option>
-                    <option value="NE">
-                      Nebraska
-                    </option>
-                    <option value="NV">
-                      Nevada
-                    </option>
-                    <option value="NH">
-                      New Hampshire
-                    </option>
-                    <option value="NJ">
-                      New Jersey
-                    </option>
-                    <option value="NM">
-                      New Mexico
-                    </option>
-                    <option value="NY">
-                      New York
-                    </option>
-                    <option value="NC">
-                      North Carolina
-                    </option>
-                    <option value="ND">
-                      North Dakota
-                    </option>
-                    <option value="OH">
-                      Ohio
-                    </option>
-                    <option value="OK">
-                      Oklahoma
-                    </option>
-                    <option value="OR">
-                      Oregon
-                    </option>
-                    <option value="PA">
-                      Pennsylvania
-                    </option>
-                    <option value="PR">
-                      Puerto Rico
-                    </option>
-                    <option value="RI">
-                      Rhode Island
-                    </option>
-                    <option value="SC">
-                      South Carolina
-                    </option>
-                    <option value="SD">
-                      South Dakota
-                    </option>
-                    <option value="TN">
-                      Tennessee
-                    </option>
-                    <option value="TX">
-                      Texas
-                    </option>
-                    <option value="UT">
-                      Utah
-                    </option>
-                    <option value="VT">
-                      Vermont
-                    </option>
-                    <option value="VA">
-                      Virginia
-                    </option>
-                    <option value="WA">
-                      Washington
-                    </option>
-                    <option value="WV">
-                      West Virginia
-                    </option>
-                    <option value="WI">
-                      Wisconsin
-                    </option>
-                    <option value="WY">
-                      Wyoming
-                    </option>
-                  </select>
-                </div>
               </div>
 
               {/* Petitioner Address Section */}
@@ -522,7 +338,7 @@ export const LPORFForm: React.FC<
                     id="petitioner-address-street"
                     label={`${t(
                       "petitioner.address.street.label",
-                    )} *`}
+                    )}`}
                     value={
                       formData.petitioner.address
                         .street
@@ -563,7 +379,7 @@ export const LPORFForm: React.FC<
                     id="petitioner-address-city"
                     label={`${t(
                       "petitioner.address.city.label",
-                    )} *`}
+                    )}`}
                     value={
                       formData.petitioner.address
                         .city
@@ -585,7 +401,6 @@ export const LPORFForm: React.FC<
                       {t(
                         "petitioner.address.state.label",
                       )}{" "}
-                      *
                     </label>
                     <select
                       value={
@@ -601,29 +416,164 @@ export const LPORFForm: React.FC<
                       className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                       required
                     >
-                      <option value="LA">
-                        Louisiana
-                      </option>
-                      <option value="AL">
+                      <option value="Alabama">
                         Alabama
                       </option>
-                      <option value="AR">
+                      <option value="Alaska">
+                        Alaska
+                      </option>
+                      <option value="Arizona">
+                        Arizona
+                      </option>
+                      <option value="Arkansas">
                         Arkansas
                       </option>
-                      <option value="FL">
+                      <option value="California">
+                        California
+                      </option>
+                      <option value="Colorado">
+                        Colorado
+                      </option>
+                      <option value="Connecticut">
+                        Connecticut
+                      </option>
+                      <option value="Delaware">
+                        Delaware
+                      </option>
+                      <option value="District of Columbia">
+                        District of Columbia
+                      </option>
+                      <option value="Florida">
                         Florida
                       </option>
-                      <option value="GA">
+                      <option value="Georgia">
                         Georgia
                       </option>
-                      <option value="MS">
+                      <option value="Guam">
+                        Guam
+                      </option>
+                      <option value="Hawaii">
+                        Hawaii
+                      </option>
+                      <option value="Idaho">
+                        Idaho
+                      </option>
+                      <option value="Illinois">
+                        Illinois
+                      </option>
+                      <option value="Indiana">
+                        Indiana
+                      </option>
+                      <option value="Iowa">
+                        Iowa
+                      </option>
+                      <option value="Kansas">
+                        Kansas
+                      </option>
+                      <option value="Kentucky">
+                        Kentucky
+                      </option>
+                      <option value="Louisiana">
+                        Louisiana
+                      </option>
+                      <option value="Maine">
+                        Maine
+                      </option>
+                      <option value="Maryland">
+                        Maryland
+                      </option>
+                      <option value="Massachusetts">
+                        Massachusetts
+                      </option>
+                      <option value="Michigan">
+                        Michigan
+                      </option>
+                      <option value="Minnesota">
+                        Minnesota
+                      </option>
+                      <option value="Mississippi">
                         Mississippi
                       </option>
-                      <option value="TN">
+                      <option value="Missouri">
+                        Missouri
+                      </option>
+                      <option value="Montana">
+                        Montana
+                      </option>
+                      <option value="Nebraska">
+                        Nebraska
+                      </option>
+                      <option value="Nevada">
+                        Nevada
+                      </option>
+                      <option value="New Hampshire">
+                        New Hampshire
+                      </option>
+                      <option value="New Jersey">
+                        New Jersey
+                      </option>
+                      <option value="New Mexico">
+                        New Mexico
+                      </option>
+                      <option value="New York">
+                        New York
+                      </option>
+                      <option value="North Carolina">
+                        North Carolina
+                      </option>
+                      <option value="North Dakota">
+                        North Dakota
+                      </option>
+                      <option value="Ohio">
+                        Ohio
+                      </option>
+                      <option value="Oklahoma">
+                        Oklahoma
+                      </option>
+                      <option value="Oregon">
+                        Oregon
+                      </option>
+                      <option value="Pennsylvania">
+                        Pennsylvania
+                      </option>
+                      <option value="Puerto Rico">
+                        Puerto Rico
+                      </option>
+                      <option value="Rhode Island">
+                        Rhode Island
+                      </option>
+                      <option value="South Carolina">
+                        South Carolina
+                      </option>
+                      <option value="South Dakota">
+                        South Dakota
+                      </option>
+                      <option value="Tennessee">
                         Tennessee
                       </option>
-                      <option value="TX">
+                      <option value="Texas">
                         Texas
+                      </option>
+                      <option value="Utah">
+                        Utah
+                      </option>
+                      <option value="Vermont">
+                        Vermont
+                      </option>
+                      <option value="Virginia">
+                        Virginia
+                      </option>
+                      <option value="Washington">
+                        Washington
+                      </option>
+                      <option value="West Virginia">
+                        West Virginia
+                      </option>
+                      <option value="Wisconsin">
+                        Wisconsin
+                      </option>
+                      <option value="Wyoming">
+                        Wyoming
                       </option>
                     </select>
                   </div>
@@ -632,7 +582,7 @@ export const LPORFForm: React.FC<
                     id="petitioner-address-zip"
                     label={`${t(
                       "petitioner.address.zipCode.label",
-                    )} *`}
+                    )}`}
                     value={
                       formData.petitioner.address
                         .zipCode
@@ -663,7 +613,7 @@ export const LPORFForm: React.FC<
                   id="defendant-fullName"
                   label={`${t(
                     "defendant.fullName.label",
-                  )} *`}
+                  )}`}
                   value={
                     formData.defendant.fullName
                   }
@@ -679,7 +629,9 @@ export const LPORFForm: React.FC<
                   required
                   enableVoiceInput={true}
                   autoComplete="name"
-                  helpText="Enter the full legal name of the defendant"
+                  helpText={t(
+                    "defendant.fullName.helpText",
+                  )}
                 />
 
                 {/* Parent/Guardian Name for Minor Defendants */}
@@ -702,7 +654,9 @@ export const LPORFForm: React.FC<
                     "defendant.parentGuardianName.placeholder",
                   )}
                   enableVoiceInput={true}
-                  helpText="Enter parent or guardian name if defendant is a minor"
+                  helpText={t(
+                    "defendant.parentGuardianName.helpText",
+                  )}
                 />
               </div>
             </section>
@@ -933,7 +887,6 @@ export const LPORFForm: React.FC<
                             {t(
                               "lporf.addresses.minorChildrenAddress.state.label",
                             )}{" "}
-                            *
                           </label>
                           <select
                             value={
@@ -950,29 +903,164 @@ export const LPORFForm: React.FC<
                             className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                             required
                           >
-                            <option value="LA">
-                              Louisiana
-                            </option>
-                            <option value="AL">
+                            <option value="Alabama">
                               Alabama
                             </option>
-                            <option value="AR">
+                            <option value="Alaska">
+                              Alaska
+                            </option>
+                            <option value="Arizona">
+                              Arizona
+                            </option>
+                            <option value="Arkansas">
                               Arkansas
                             </option>
-                            <option value="FL">
+                            <option value="California">
+                              California
+                            </option>
+                            <option value="Colorado">
+                              Colorado
+                            </option>
+                            <option value="Connecticut">
+                              Connecticut
+                            </option>
+                            <option value="Delaware">
+                              Delaware
+                            </option>
+                            <option value="District of Columbia">
+                              District of Columbia
+                            </option>
+                            <option value="Florida">
                               Florida
                             </option>
-                            <option value="GA">
+                            <option value="Georgia">
                               Georgia
                             </option>
-                            <option value="MS">
+                            <option value="Guam">
+                              Guam
+                            </option>
+                            <option value="Hawaii">
+                              Hawaii
+                            </option>
+                            <option value="Idaho">
+                              Idaho
+                            </option>
+                            <option value="Illinois">
+                              Illinois
+                            </option>
+                            <option value="Indiana">
+                              Indiana
+                            </option>
+                            <option value="Iowa">
+                              Iowa
+                            </option>
+                            <option value="Kansas">
+                              Kansas
+                            </option>
+                            <option value="Kentucky">
+                              Kentucky
+                            </option>
+                            <option value="Louisiana">
+                              Louisiana
+                            </option>
+                            <option value="Maine">
+                              Maine
+                            </option>
+                            <option value="Maryland">
+                              Maryland
+                            </option>
+                            <option value="Massachusetts">
+                              Massachusetts
+                            </option>
+                            <option value="Michigan">
+                              Michigan
+                            </option>
+                            <option value="Minnesota">
+                              Minnesota
+                            </option>
+                            <option value="Mississippi">
                               Mississippi
                             </option>
-                            <option value="TN">
+                            <option value="Missouri">
+                              Missouri
+                            </option>
+                            <option value="Montana">
+                              Montana
+                            </option>
+                            <option value="Nebraska">
+                              Nebraska
+                            </option>
+                            <option value="Nevada">
+                              Nevada
+                            </option>
+                            <option value="New Hampshire">
+                              New Hampshire
+                            </option>
+                            <option value="New Jersey">
+                              New Jersey
+                            </option>
+                            <option value="New Mexico">
+                              New Mexico
+                            </option>
+                            <option value="New York">
+                              New York
+                            </option>
+                            <option value="North Carolina">
+                              North Carolina
+                            </option>
+                            <option value="North Dakota">
+                              North Dakota
+                            </option>
+                            <option value="Ohio">
+                              Ohio
+                            </option>
+                            <option value="Oklahoma">
+                              Oklahoma
+                            </option>
+                            <option value="Oregon">
+                              Oregon
+                            </option>
+                            <option value="Pennsylvania">
+                              Pennsylvania
+                            </option>
+                            <option value="Puerto Rico">
+                              Puerto Rico
+                            </option>
+                            <option value="Rhode Island">
+                              Rhode Island
+                            </option>
+                            <option value="South Carolina">
+                              South Carolina
+                            </option>
+                            <option value="South Dakota">
+                              South Dakota
+                            </option>
+                            <option value="Tennessee">
                               Tennessee
                             </option>
-                            <option value="TX">
+                            <option value="Texas">
                               Texas
+                            </option>
+                            <option value="Utah">
+                              Utah
+                            </option>
+                            <option value="Vermont">
+                              Vermont
+                            </option>
+                            <option value="Virginia">
+                              Virginia
+                            </option>
+                            <option value="Washington">
+                              Washington
+                            </option>
+                            <option value="West Virginia">
+                              West Virginia
+                            </option>
+                            <option value="Wisconsin">
+                              Wisconsin
+                            </option>
+                            <option value="Wyoming">
+                              Wyoming
                             </option>
                           </select>
                         </div>
@@ -1008,11 +1096,15 @@ export const LPORFForm: React.FC<
             <section className="border border-gray-200 rounded-lg p-6">
               <AccessibleCheckbox
                 id="form-confirmation"
-                label="I confirm that all information provided is accurate and complete"
+                label={t(
+                  "common.confirmation.label",
+                )}
                 checked={confirmationChecked}
                 onChange={setConfirmationChecked}
                 required
-                helpText="Please review all information before submitting. This confirmation is required to proceed."
+                helpText={t(
+                  "common.confirmation.helpText",
+                )}
               />
             </section>
 

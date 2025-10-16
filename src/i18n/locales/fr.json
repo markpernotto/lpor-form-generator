@@ -4,6 +4,10 @@
     "populateTestData": "Remplir les données de test",
     "submit": "Soumettre le formulaire",
     "yes": "Oui",
+    "confirmation": {
+      "label": "Je confirme que toutes les informations fournies sont exactes et complètes",
+      "helpText": "Veuillez vérifier toutes les informations avant de soumettre. Cette confirmation est requise pour continuer."
+    },
     "success": {
       "title": "Formulaire soumis avec succès !",
       "description": "Votre formulaire {{formType}} a été généré et téléchargé sur votre appareil.",
@@ -22,23 +26,23 @@
   },
   "court": {
     "clerk": {
-      "label": "Clerc*",
+      "label": "Clerc",
       "placeholder": "Entrez le nom du greffier"
     },
     "courtName": {
-      "label": "Nom du tribunal et paroisse/ville *",
+      "label": "Nom du tribunal et paroisse/ville",
       "placeholder": "Entrez le nom du tribunal et la paroisse/ville"
     },
     "division": {
-      "label": "Division*",
+      "label": "Division",
       "placeholder": "Entrez dans la division"
     },
     "docketNumber": {
-      "label": "Numéro de dossier *",
+      "label": "Numéro de dossier",
       "placeholder": "Entrez le numéro de dossier"
     },
     "filedDate": {
-      "label": "Date de dépôt *"
+      "label": "Date de dépôt"
     },
     "sectionTitle": "Renseignements judiciaires"
   },
@@ -49,11 +53,13 @@
     },
     "fullName": {
       "label": "Nom complet",
-      "placeholder": "Entrez le nom complet du défendeur"
+      "placeholder": "Entrez le nom complet du défendeur",
+      "helpText": "Entrez le nom légal complet du défendeur"
     },
     "parentGuardianName": {
       "label": "Nom du parent/tuteur (si le défendeur est mineur)",
-      "placeholder": "Entrez le nom du parent ou du tuteur"
+      "placeholder": "Entrez le nom du parent ou du tuteur",
+      "helpText": "Entrez le nom du parent ou du tuteur si le défendeur est mineur"
     },
     "race": {
       "label": "Course",

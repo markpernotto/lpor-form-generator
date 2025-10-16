@@ -110,22 +110,22 @@
   "court": {
     "sectionTitle": "Información del Tribunal",
     "courtName": {
-      "label": "Nombre del Tribunal y Parroquia/Ciudad *",
+      "label": "Nombre del Tribunal y Parroquia/Ciudad",
       "placeholder": "Ingrese el nombre del tribunal y parroquia/ciudad"
     },
     "docketNumber": {
-      "label": "Número de Expediente *",
+      "label": "Número de Expediente",
       "placeholder": "Ingrese el número de expediente"
     },
     "division": {
-      "label": "División *",
+      "label": "División",
       "placeholder": "Ingrese la división"
     },
     "filedDate": {
-      "label": "Fecha de Presentación *"
+      "label": "Fecha de Presentación"
     },
     "clerk": {
-      "label": "Secretario *",
+      "label": "Secretario",
       "placeholder": "Ingrese el nombre del secretario"
     }
   },
@@ -184,11 +184,13 @@
     "sectionTitle": "Información del Demandado",
     "fullName": {
       "label": "Nombre Completo",
-      "placeholder": "Ingrese el nombre completo del demandado"
+      "placeholder": "Ingrese el nombre completo del demandado",
+      "helpText": "Ingrese el nombre legal completo del demandado"
     },
     "parentGuardianName": {
       "label": "Nombre del Padre/Tutor (si el demandado es menor)",
-      "placeholder": "Ingrese el nombre del padre o tutor"
+      "placeholder": "Ingrese el nombre del padre o tutor",
+      "helpText": "Ingrese el nombre del padre o tutor si el demandado es menor"
     },
     "alias": {
       "label": "Alias/También Conocido Como",
@@ -283,6 +285,10 @@
     "no": "No",
     "submit": "Enviar Formulario",
     "populateTestData": "Llenar con Datos de Prueba",
+    "confirmation": {
+      "label": "Confirmo que toda la información proporcionada es precisa y completa",
+      "helpText": "Por favor, revise toda la información antes de enviar. Esta confirmación es requerida para continuar."
+    },
     "success": {
       "title": "¡Formulario enviado exitosamente!",
       "description": "Su formulario {{formType}} ha sido generado y descargado a su dispositivo.",

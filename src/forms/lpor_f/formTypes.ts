@@ -28,7 +28,6 @@ export interface LPORFFormData {
     maidenMiddleName: string;
     lastName: string;
     dateOfBirth: string;
-    stateOfResidence: string; // New field for LPOR-F
     race: string;
     address: {
       street: string;

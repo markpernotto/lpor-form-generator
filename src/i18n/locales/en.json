@@ -110,22 +110,22 @@
   "court": {
     "sectionTitle": "Court Information",
     "courtName": {
-      "label": "Court Name and Parish/City *",
+      "label": "Court Name and Parish/City",
       "placeholder": "Enter court name and parish/city"
     },
     "docketNumber": {
-      "label": "Docket Number *",
+      "label": "Docket Number",
       "placeholder": "Enter docket number"
     },
     "division": {
-      "label": "Division *",
+      "label": "Division",
       "placeholder": "Enter division"
     },
     "filedDate": {
-      "label": "Filed Date *"
+      "label": "Filed Date"
     },
     "clerk": {
-      "label": "Clerk *",
+      "label": "Clerk",
       "placeholder": "Enter clerk name"
     }
   },
@@ -184,11 +184,13 @@
     "sectionTitle": "Defendant Information",
     "fullName": {
       "label": "Full Name",
-      "placeholder": "Enter defendant's full name"
+      "placeholder": "Enter defendant's full name",
+      "helpText": "Enter the full legal name of the defendant"
     },
     "parentGuardianName": {
       "label": "Parent/Guardian Name (if defendant is a minor)",
-      "placeholder": "Enter parent or guardian name"
+      "placeholder": "Enter parent or guardian name",
+      "helpText": "Enter parent or guardian name if defendant is a minor"
     },
     "alias": {
       "label": "Alias/Also Known As",
@@ -283,6 +285,10 @@
     "no": "No",
     "submit": "Submit Form",
     "populateTestData": "Populate Test Data",
+    "confirmation": {
+      "label": "I confirm that all information provided is accurate and complete",
+      "helpText": "Please review all information before submitting. This confirmation is required to proceed."
+    },
     "success": {
       "title": "Form Submitted Successfully!",
       "description": "Your {{formType}} form has been generated and downloaded to your device.",
