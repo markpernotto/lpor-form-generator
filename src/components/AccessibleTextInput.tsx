@@ -56,10 +56,11 @@ export const AccessibleTextInput: React.FC<
   const inputClasses = `
     w-full p-3 border rounded-md transition-colors
     focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500
+    dark:text-gray-100
     ${
       errorMessage
-        ? "border-red-300 bg-red-50 focus:border-red-500 focus:ring-red-500"
-        : "border-gray-300 bg-white hover:border-gray-400"
+        ? "border-red-300 bg-red-50 focus:border-red-500 focus:ring-red-500 dark:border-red-600 dark:bg-red-900/20 dark:focus:border-red-400"
+        : "border-gray-300 bg-white hover:border-gray-400 dark:border-gray-600 dark:bg-gray-800 dark:hover:border-gray-500"
     }
   `.trim();
 
@@ -67,8 +68,8 @@ export const AccessibleTextInput: React.FC<
     block text-sm font-medium mb-2
     ${
       errorMessage
-        ? "text-red-700"
-        : "text-gray-700"
+        ? "text-red-700 dark:text-red-400"
+        : "text-gray-700 dark:text-gray-300"
     }
   `.trim();
 
@@ -124,7 +125,7 @@ export const AccessibleTextInput: React.FC<
       {helpText && (
         <p
           id={helpTextId}
-          className="text-sm text-gray-600"
+          className="text-sm text-gray-600 dark:text-gray-400"
         >
           {helpText}
         </p>
@@ -133,7 +134,7 @@ export const AccessibleTextInput: React.FC<
       {errorMessage && (
         <p
           id={errorId}
-          className="text-sm text-red-600"
+          className="text-sm text-red-600 dark:text-red-400"
           role="alert"
           aria-live="polite"
         >

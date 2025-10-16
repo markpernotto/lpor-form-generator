@@ -288,14 +288,14 @@ export const LPORFForm: React.FC<
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-white">
+    <div className="max-w-4xl mx-auto p-6 bg-white dark:bg-gray-900">
       {!showSuccessModal ? (
         <>
           <div className="mb-8">
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2">
               {t("lporfForm.title")}
             </h1>
-            <p className="text-gray-600 mb-4">
+            <p className="text-gray-600 dark:text-gray-400 mb-4">
               {t("lporfForm.subtitle")}
             </p>
 
@@ -303,7 +303,7 @@ export const LPORFForm: React.FC<
             <button
               type="button"
               onClick={populateTestData}
-              className="mb-6 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+              className="mb-6 px-4 py-2 bg-blue-600 dark:bg-blue-700 text-white rounded hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors"
             >
               {t("common.populateTestData")}
             </button>
@@ -318,15 +318,15 @@ export const LPORFForm: React.FC<
             {/* Users do not edit these fields directly - they are handled behind the scenes */}
 
             {/* Filing Purpose Section - New for LPOR-F Confidential Address Form */}
-            <section className="border border-gray-200 rounded-lg p-6">
-              <h2 className="text-xl font-semibold text-gray-900 mb-4">
+            <section className="border border-gray-200 dark:border-gray-700 rounded-lg p-6 dark:bg-gray-800/50">
+              <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-4">
                 {t(
-                  "lporf.filingPurpose.sectionTitle",
+                  "lporfForm.filingPurpose.title",
                 )}
               </h2>
-              <p className="text-gray-600 mb-4">
+              <p className="text-gray-600 dark:text-gray-400 mb-4">
                 {t(
-                  "lporf.filingPurpose.description",
+                  "lporfForm.filingPurpose.subtitle",
                 )}
               </p>
 
@@ -395,8 +395,8 @@ export const LPORFForm: React.FC<
             </section>
 
             {/* Petitioner Information Section */}
-            <section className="border border-gray-200 rounded-lg p-6">
-              <h2 className="text-xl font-semibold text-gray-900 mb-4">
+            <section className="border border-gray-200 dark:border-gray-700 rounded-lg p-6 dark:bg-gray-800/50">
+              <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-4">
                 {t("petitioner.sectionTitle")}
               </h2>
 
@@ -470,7 +470,7 @@ export const LPORFForm: React.FC<
 
               {/* Petitioner Address Section */}
               <div className="mt-6">
-                <h3 className="text-lg font-medium text-gray-900 mb-4">
+                <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">
                   {t(
                     "petitioner.address.sectionTitle",
                   )}
@@ -582,8 +582,8 @@ export const LPORFForm: React.FC<
             </section>
 
             {/* Defendant Information Section */}
-            <section className="border border-gray-200 rounded-lg p-6">
-              <h2 className="text-xl font-semibold text-gray-900 mb-4">
+            <section className="border border-gray-200 dark:border-gray-700 rounded-lg p-6 dark:bg-gray-800/50">
+              <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-4">
                 {t("defendant.sectionTitle")}
               </h2>
 
@@ -643,13 +643,13 @@ export const LPORFForm: React.FC<
             {/* Minor Children Section - New for LPOR-F */}
             {formData.filingPurpose
               .forMinorChildren && (
-              <section className="border border-gray-200 rounded-lg p-6">
-                <h2 className="text-xl font-semibold text-gray-900 mb-4">
+              <section className="border border-gray-200 dark:border-gray-700 rounded-lg p-6 dark:bg-gray-800/50">
+                <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-4">
                   {t(
                     "lporf.minorChildren.sectionTitle",
                   )}
                 </h2>
-                <p className="text-gray-600 mb-4">
+                <p className="text-gray-600 dark:text-gray-400 mb-4">
                   {t(
                     "lporf.minorChildren.description",
                   )}
@@ -705,13 +705,13 @@ export const LPORFForm: React.FC<
             {/* Alleged Incompetent Persons Section - New for LPOR-F */}
             {formData.filingPurpose
               .forAllegedIncompetent && (
-              <section className="border border-gray-200 rounded-lg p-6">
-                <h2 className="text-xl font-semibold text-gray-900 mb-4">
+              <section className="border border-gray-200 dark:border-gray-700 rounded-lg p-6 dark:bg-gray-800/50">
+                <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-4">
                   {t(
                     "lporf.allegedIncompetent.sectionTitle",
                   )}
                 </h2>
-                <p className="text-gray-600 mb-4">
+                <p className="text-gray-600 dark:text-gray-400 mb-4">
                   {t(
                     "lporf.allegedIncompetent.description",
                   )}
@@ -800,8 +800,8 @@ export const LPORFForm: React.FC<
                 />
 
                 {/* Warning about different addresses */}
-                <div className="mt-4 p-4 bg-amber-50 border border-amber-200 rounded-md">
-                  <p className="text-sm text-amber-800">
+                <div className="mt-4 p-4 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-md">
+                  <p className="text-sm text-amber-800 dark:text-amber-300">
                     <strong>
                       {t(
                         "common.success.important",
@@ -818,7 +818,7 @@ export const LPORFForm: React.FC<
                   formData.filingPurpose
                     .forMinorChildren && (
                     <div className="mt-6">
-                      <h3 className="text-lg font-medium text-gray-900 mb-4">
+                      <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">
                         {t(
                           "lporf.addresses.minorChildrenAddress.title",
                         )}
@@ -939,7 +939,7 @@ export const LPORFForm: React.FC<
             )}
 
             {/* Confirmation Section */}
-            <section className="border border-gray-200 rounded-lg p-6">
+            <section className="border border-gray-200 dark:border-gray-700 rounded-lg p-6 dark:bg-gray-800/50">
               <AccessibleCheckbox
                 id="form-confirmation"
                 label={t(
@@ -961,8 +961,8 @@ export const LPORFForm: React.FC<
                 disabled={!confirmationChecked}
                 className={`px-6 py-3 font-medium rounded transition-colors ${
                   confirmationChecked
-                    ? "bg-blue-600 text-white hover:bg-blue-700"
-                    : "bg-gray-300 text-gray-500 cursor-not-allowed"
+                    ? "bg-blue-600 dark:bg-blue-700 text-white hover:bg-blue-700 dark:hover:bg-blue-600"
+                    : "bg-gray-300 dark:bg-gray-700 text-gray-500 dark:text-gray-400 cursor-not-allowed"
                 }`}
               >
                 {t("common.submit")}

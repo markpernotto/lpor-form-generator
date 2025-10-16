@@ -83,7 +83,11 @@
   },
   "lporfForm": {
     "subtitle": "RAPA-F - À utiliser lorsque le demandeur ne veut pas que le défendeur connaisse l'adresse",
-    "title": "Formulaire d'adresse confidentielle"
+    "title": "Formulaire d'adresse confidentielle",
+    "filingPurpose": {
+      "title": "Objet du dépôt (Paragraphe 1)",
+      "subtitle": "Le demandeur dépose cette requête au nom de :"
+    }
   },
   "lporf": {
     "petitioner": {

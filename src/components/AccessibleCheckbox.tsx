@@ -48,10 +48,11 @@ export const AccessibleCheckbox: React.FC<
   const checkboxClasses = `
     h-4 w-4 text-blue-600 border-gray-300 rounded transition-colors
     focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
+    dark:border-gray-600 dark:bg-gray-800 dark:focus:ring-offset-gray-900
     ${
       errorMessage
-        ? "border-red-300"
-        : "border-gray-300"
+        ? "border-red-300 dark:border-red-600"
+        : "border-gray-300 dark:border-gray-600"
     }
     ${
       disabled
@@ -64,8 +65,8 @@ export const AccessibleCheckbox: React.FC<
     ml-2 text-sm font-medium select-none
     ${
       errorMessage
-        ? "text-red-700"
-        : "text-gray-700"
+        ? "text-red-700 dark:text-red-400"
+        : "text-gray-700 dark:text-gray-300"
     }
     ${
       disabled
@@ -114,7 +115,7 @@ export const AccessibleCheckbox: React.FC<
       {helpText && (
         <p
           id={helpTextId}
-          className="text-sm text-gray-600 ml-6"
+          className="text-sm text-gray-600 dark:text-gray-400 ml-6"
         >
           {helpText}
         </p>
@@ -123,7 +124,7 @@ export const AccessibleCheckbox: React.FC<
       {errorMessage && (
         <p
           id={errorId}
-          className="text-sm text-red-600 ml-6"
+          className="text-sm text-red-600 dark:text-red-400 ml-6"
           role="alert"
           aria-live="polite"
         >

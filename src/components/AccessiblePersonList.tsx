@@ -87,7 +87,7 @@ export const AccessiblePersonList: React.FC<
 
   return (
     <fieldset className="space-y-4">
-      <legend className="text-lg font-medium text-gray-900">
+      <legend className="text-lg font-medium text-gray-900 dark:text-gray-100">
         {label}
         {required && (
           <span className="text-red-500 ml-1">
@@ -97,14 +97,14 @@ export const AccessiblePersonList: React.FC<
       </legend>
 
       {description && (
-        <p className="text-sm text-gray-600 mt-1">
+        <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
           {description}
         </p>
       )}
 
       {error && (
         <div
-          className="text-red-600 text-sm mt-1"
+          className="text-red-600 dark:text-red-400 text-sm mt-1"
           role="alert"
         >
           {error}
@@ -113,17 +113,17 @@ export const AccessiblePersonList: React.FC<
 
       <div className="space-y-6">
         {entries.length === 0 ? (
-          <p className="text-gray-500 text-sm italic">
+          <p className="text-gray-500 dark:text-gray-400 text-sm italic">
             {emptyStateText}
           </p>
         ) : (
           entries.map((entry, index) => (
             <div
               key={entry.id}
-              className="border border-gray-200 rounded-lg p-4 space-y-4"
+              className="border border-gray-200 dark:border-gray-700 rounded-lg p-4 space-y-4 dark:bg-gray-800/50"
             >
               <div className="flex justify-between items-center">
-                <h4 className="font-medium text-gray-900">
+                <h4 className="font-medium text-gray-900 dark:text-gray-100">
                   Entry {index + 1}
                 </h4>
                 <button
@@ -131,7 +131,7 @@ export const AccessiblePersonList: React.FC<
                   onClick={() =>
                     removeEntry(entry.id)
                   }
-                  className="text-red-600 hover:text-red-800 text-sm font-medium"
+                  className="text-red-600 dark:text-red-400 hover:text-red-800 dark:hover:text-red-300 text-sm font-medium"
                   aria-label={`Remove entry ${
                     index + 1
                   }`}
@@ -198,10 +198,10 @@ export const AccessiblePersonList: React.FC<
             type="button"
             onClick={addEntry}
             disabled={hasReachedMax}
-            className={`inline-flex items-center px-4 py-2 border shadow-sm text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 ${
+            className={`inline-flex items-center px-4 py-2 border shadow-sm text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:focus:ring-offset-gray-900 ${
               hasReachedMax
-                ? "border-gray-200 text-gray-400 bg-gray-50 cursor-not-allowed"
-                : "border-gray-300 text-gray-700 bg-white hover:bg-gray-50"
+                ? "border-gray-200 dark:border-gray-700 text-gray-400 dark:text-gray-500 bg-gray-50 dark:bg-gray-800 cursor-not-allowed"
+                : "border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700"
             }`}
             aria-disabled={hasReachedMax}
           >
@@ -211,7 +211,7 @@ export const AccessiblePersonList: React.FC<
 
           {hasReachedMax && maxEntriesMessage && (
             <p
-              className="text-sm text-amber-600 mt-2"
+              className="text-sm text-amber-600 dark:text-amber-400 mt-2"
               role="status"
             >
               ⚠️ {maxEntriesMessage}

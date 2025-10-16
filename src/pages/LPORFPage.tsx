@@ -2,6 +2,8 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { LPORFForm } from "../forms/lpor_f/LPORFForm";
 import { LanguageSelector } from "../components/LanguageSelector";
+import { ThemeToggle } from "../components/ThemeToggle";
+import { ThemeProvider } from "../contexts/ThemeContext";
 import { downloadLPORFPDF } from "../forms/lpor_f/pdfGenerator";
 import type { LPORFFormData } from "../forms/lpor_f/formTypes";
 import { useTranslation } from "../i18n/hooks/useTranslation";
@@ -51,21 +53,24 @@ export const LPORFPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Language Selector */}
-      <div className="bg-white shadow-sm border-b">
-        <div className="max-w-4xl mx-auto px-6 py-4 flex justify-end">
-          <LanguageSelector />
+    <ThemeProvider>
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+        {/* Language Selector and Theme Toggle */}
+        <div className="bg-white dark:bg-gray-800 shadow-sm border-b dark:border-gray-700">
+          <div className="max-w-4xl mx-auto px-6 py-4 flex justify-end gap-3">
+            <ThemeToggle />
+            <LanguageSelector />
+          </div>
+        </div>
+
+        {/* Main Content */}
+        <div className="py-8">
+          <LPORFForm
+            onSubmit={handleFormSubmit}
+            initialData={initialFormData}
+          />
         </div>
       </div>
-
-      {/* Main Content */}
-      <div className="py-8">
-        <LPORFForm
-          onSubmit={handleFormSubmit}
-          initialData={initialFormData}
-        />
-      </div>
-    </div>
+    </ThemeProvider>
   );
 };

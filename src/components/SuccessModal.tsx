@@ -18,7 +18,7 @@ export const SuccessModal: React.FC<
     <div className="fixed inset-0 z-50 overflow-y-auto">
       {/* Background overlay */}
       <div
-        className="fixed inset-0 bg-black bg-opacity-50 transition-opacity"
+        className="fixed inset-0 bg-black bg-opacity-50 dark:bg-opacity-70 transition-opacity"
         onClick={onClose}
         aria-hidden="true"
       />
@@ -26,7 +26,7 @@ export const SuccessModal: React.FC<
       {/* Modal */}
       <div className="flex min-h-full items-center justify-center p-4">
         <div
-          className="relative bg-white rounded-lg shadow-xl max-w-md w-full p-6"
+          className="relative bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-md w-full p-6"
           role="dialog"
           aria-modal="true"
           aria-labelledby="success-title"
@@ -35,7 +35,7 @@ export const SuccessModal: React.FC<
           {/* Title */}
           <h3
             id="success-title"
-            className="text-lg font-semibold text-gray-900 text-center mb-2"
+            className="text-lg font-semibold text-gray-900 dark:text-gray-100 text-center mb-2"
           >
             {t("common.success.title")}
           </h3>
@@ -43,7 +43,7 @@ export const SuccessModal: React.FC<
           {/* Description */}
           <div
             id="success-description"
-            className="text-sm text-gray-600 space-y-3"
+            className="text-sm text-gray-600 dark:text-gray-400 space-y-3"
           >
             <p className="text-center">
               {t("common.success.description", {
@@ -51,13 +51,13 @@ export const SuccessModal: React.FC<
               })}
             </p>
 
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
-              <h4 className="font-medium text-blue-900 mb-2">
+            <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-3">
+              <h4 className="font-medium text-blue-900 dark:text-blue-300 mb-2">
                 {t(
                   "common.success.nextSteps.title",
                 )}
               </h4>
-              <ul className="text-sm text-blue-800 space-y-1">
+              <ul className="text-sm text-blue-800 dark:text-blue-300 space-y-1">
                 <li>
                   •{" "}
                   {t(
@@ -85,8 +85,8 @@ export const SuccessModal: React.FC<
               </ul>
             </div>
 
-            <div className="bg-amber-50 border border-amber-200 rounded-lg p-3">
-              <p className="text-sm text-amber-800">
+            <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg p-3">
+              <p className="text-sm text-amber-800 dark:text-amber-300">
                 <span className="font-medium">
                   {t("common.success.important")}
                 </span>{" "}
@@ -101,7 +101,7 @@ export const SuccessModal: React.FC<
           <div className="flex gap-3 mt-6">
             <button
               onClick={onClose}
-              className="flex-1 px-4 py-2 bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
+              className="flex-1 px-4 py-2 bg-blue-600 dark:bg-blue-700 text-white font-medium rounded-md hover:bg-blue-700 dark:hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition-colors"
               autoFocus
             >
               {t("common.success.newForm")}
