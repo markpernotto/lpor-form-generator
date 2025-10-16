@@ -156,6 +156,28 @@
     "race": {
       "label": "Race",
       "placeholder": "Enter race"
+    },
+    "address": {
+      "sectionTitle": "Petitioner Address",
+      "street": {
+        "label": "Street Address",
+        "placeholder": "Enter street address"
+      },
+      "aptNumber": {
+        "label": "Apartment/Unit Number",
+        "placeholder": "Enter apartment or unit number"
+      },
+      "city": {
+        "label": "City",
+        "placeholder": "Enter city"
+      },
+      "state": {
+        "label": "State"
+      },
+      "zipCode": {
+        "label": "ZIP Code",
+        "placeholder": "Enter ZIP code"
+      }
     }
   },
   "defendant": {

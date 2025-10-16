@@ -240,13 +240,6 @@ export const getDefaultLPORFFormData =
       state: "LA",
       zipCode: "",
     },
-    allegedIncompetentAddress: {
-      street: "",
-      aptNumber: "",
-      city: "",
-      state: "LA",
-      zipCode: "",
-    },
 
     defendant: {
       fullName: "",

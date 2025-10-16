@@ -205,6 +205,28 @@
       "label": "Course",
       "placeholder": "Entrer dans la course"
     },
+    "address": {
+      "sectionTitle": "Adresse du pétitionnaire",
+      "street": {
+        "label": "Adresse de rue",
+        "placeholder": "Entrez l'adresse de la rue"
+      },
+      "aptNumber": {
+        "label": "Numéro d'appartement/unité",
+        "placeholder": "Entrez le numéro d'appartement ou d'unité"
+      },
+      "city": {
+        "label": "Ville",
+        "placeholder": "Entrez la ville"
+      },
+      "state": {
+        "label": "État"
+      },
+      "zipCode": {
+        "label": "Code postal",
+        "placeholder": "Entrez le code postal"
+      }
+    },
     "sectionTitle": "Renseignements sur le pétitionnaire",
     "sex": {
       "label": "Sexe",

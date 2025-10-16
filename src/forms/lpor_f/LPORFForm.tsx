@@ -404,6 +404,147 @@ export const LPORFForm: React.FC<
                   </select>
                 </div>
               </div>
+
+              {/* Petitioner Address Section */}
+              <div className="mt-6">
+                <h3 className="text-lg font-medium text-gray-900 mb-4">
+                  {t(
+                    "petitioner.address.sectionTitle",
+                  )}
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <AccessibleTextInput
+                    id="petitioner-address-street"
+                    label={`${t(
+                      "petitioner.address.street.label",
+                    )} *`}
+                    value={
+                      formData.petitioner.address
+                        .street
+                    }
+                    onChange={(value) =>
+                      handleInputChange(
+                        "petitioner.address.street",
+                        value,
+                      )
+                    }
+                    placeholder={t(
+                      "petitioner.address.street.placeholder",
+                    )}
+                    required
+                  />
+
+                  <AccessibleTextInput
+                    id="petitioner-address-apt"
+                    label={t(
+                      "petitioner.address.aptNumber.label",
+                    )}
+                    value={
+                      formData.petitioner.address
+                        .aptNumber || ""
+                    }
+                    onChange={(value) =>
+                      handleInputChange(
+                        "petitioner.address.aptNumber",
+                        value,
+                      )
+                    }
+                    placeholder={t(
+                      "petitioner.address.aptNumber.placeholder",
+                    )}
+                  />
+
+                  <AccessibleTextInput
+                    id="petitioner-address-city"
+                    label={`${t(
+                      "petitioner.address.city.label",
+                    )} *`}
+                    value={
+                      formData.petitioner.address
+                        .city
+                    }
+                    onChange={(value) =>
+                      handleInputChange(
+                        "petitioner.address.city",
+                        value,
+                      )
+                    }
+                    placeholder={t(
+                      "petitioner.address.city.placeholder",
+                    )}
+                    required
+                  />
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      {t(
+                        "petitioner.address.state.label",
+                      )}{" "}
+                      *
+                    </label>
+                    <select
+                      value={
+                        formData.petitioner
+                          .address.state
+                      }
+                      onChange={(e) =>
+                        handleInputChange(
+                          "petitioner.address.state",
+                          e.target.value,
+                        )
+                      }
+                      className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                      required
+                    >
+                      <option value="LA">
+                        Louisiana
+                      </option>
+                      <option value="AL">
+                        Alabama
+                      </option>
+                      <option value="AR">
+                        Arkansas
+                      </option>
+                      <option value="FL">
+                        Florida
+                      </option>
+                      <option value="GA">
+                        Georgia
+                      </option>
+                      <option value="MS">
+                        Mississippi
+                      </option>
+                      <option value="TN">
+                        Tennessee
+                      </option>
+                      <option value="TX">
+                        Texas
+                      </option>
+                    </select>
+                  </div>
+
+                  <AccessibleTextInput
+                    id="petitioner-address-zip"
+                    label={`${t(
+                      "petitioner.address.zipCode.label",
+                    )} *`}
+                    value={
+                      formData.petitioner.address
+                        .zipCode
+                    }
+                    onChange={(value) =>
+                      handleInputChange(
+                        "petitioner.address.zipCode",
+                        value,
+                      )
+                    }
+                    placeholder={t(
+                      "petitioner.address.zipCode.placeholder",
+                    )}
+                    required
+                  />
+                </div>
+              </div>
             </section>
 
             {/* Defendant Information Section */}
@@ -773,155 +914,6 @@ export const LPORFForm: React.FC<
                           }
                           placeholder={t(
                             "lporf.addresses.minorChildrenAddress.zipCode.placeholder",
-                          )}
-                          required
-                        />
-                      </div>
-                    </div>
-                  )}
-
-                {!formData.sameAddressForAll &&
-                  formData.filingPurpose
-                    .forAllegedIncompetent && (
-                    <div className="mt-6">
-                      <h3 className="text-lg font-medium text-gray-900 mb-4">
-                        {t(
-                          "lporf.addresses.allegedIncompetentAddress.title",
-                        )}
-                      </h3>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <AccessibleTextInput
-                          id="alleged-incompetent-address-street"
-                          label={t(
-                            "lporf.addresses.allegedIncompetentAddress.street.label",
-                          )}
-                          value={
-                            formData
-                              .allegedIncompetentAddress
-                              .street
-                          }
-                          onChange={(value) =>
-                            handleInputChange(
-                              "allegedIncompetentAddress.street",
-                              value,
-                            )
-                          }
-                          placeholder={t(
-                            "lporf.addresses.allegedIncompetentAddress.street.placeholder",
-                          )}
-                          required
-                        />
-
-                        <AccessibleTextInput
-                          id="alleged-incompetent-address-apt"
-                          label={t(
-                            "lporf.addresses.allegedIncompetentAddress.aptNumber.label",
-                          )}
-                          value={
-                            formData
-                              .allegedIncompetentAddress
-                              .aptNumber || ""
-                          }
-                          onChange={(value) =>
-                            handleInputChange(
-                              "allegedIncompetentAddress.aptNumber",
-                              value,
-                            )
-                          }
-                          placeholder={t(
-                            "lporf.addresses.allegedIncompetentAddress.aptNumber.placeholder",
-                          )}
-                        />
-
-                        <AccessibleTextInput
-                          id="alleged-incompetent-address-city"
-                          label={t(
-                            "lporf.addresses.allegedIncompetentAddress.city.label",
-                          )}
-                          value={
-                            formData
-                              .allegedIncompetentAddress
-                              .city
-                          }
-                          onChange={(value) =>
-                            handleInputChange(
-                              "allegedIncompetentAddress.city",
-                              value,
-                            )
-                          }
-                          placeholder={t(
-                            "lporf.addresses.allegedIncompetentAddress.city.placeholder",
-                          )}
-                          required
-                        />
-
-                        <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-1">
-                            {t(
-                              "lporf.addresses.allegedIncompetentAddress.state.label",
-                            )}{" "}
-                            *
-                          </label>
-                          <select
-                            value={
-                              formData
-                                .allegedIncompetentAddress
-                                .state
-                            }
-                            onChange={(e) =>
-                              handleInputChange(
-                                "allegedIncompetentAddress.state",
-                                e.target.value,
-                              )
-                            }
-                            className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                            required
-                          >
-                            <option value="LA">
-                              Louisiana
-                            </option>
-                            <option value="AL">
-                              Alabama
-                            </option>
-                            <option value="AR">
-                              Arkansas
-                            </option>
-                            <option value="FL">
-                              Florida
-                            </option>
-                            <option value="GA">
-                              Georgia
-                            </option>
-                            <option value="MS">
-                              Mississippi
-                            </option>
-                            <option value="TN">
-                              Tennessee
-                            </option>
-                            <option value="TX">
-                              Texas
-                            </option>
-                          </select>
-                        </div>
-
-                        <AccessibleTextInput
-                          id="alleged-incompetent-address-zip"
-                          label={t(
-                            "lporf.addresses.allegedIncompetentAddress.zipCode.label",
-                          )}
-                          value={
-                            formData
-                              .allegedIncompetentAddress
-                              .zipCode
-                          }
-                          onChange={(value) =>
-                            handleInputChange(
-                              "allegedIncompetentAddress.zipCode",
-                              value,
-                            )
-                          }
-                          placeholder={t(
-                            "lporf.addresses.allegedIncompetentAddress.zipCode.placeholder",
                           )}
                           required
                         />

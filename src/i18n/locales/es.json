@@ -156,6 +156,28 @@
     "race": {
       "label": "Raza",
       "placeholder": "Ingrese la raza"
+    },
+    "address": {
+      "sectionTitle": "Dirección del Solicitante",
+      "street": {
+        "label": "Dirección de la Calle",
+        "placeholder": "Ingrese la dirección de la calle"
+      },
+      "aptNumber": {
+        "label": "Número de Apartamento/Unidad",
+        "placeholder": "Ingrese el número de apartamento o unidad"
+      },
+      "city": {
+        "label": "Ciudad",
+        "placeholder": "Ingrese la ciudad"
+      },
+      "state": {
+        "label": "Estado"
+      },
+      "zipCode": {
+        "label": "Código Postal",
+        "placeholder": "Ingrese el código postal"
+      }
     }
   },
   "defendant": {

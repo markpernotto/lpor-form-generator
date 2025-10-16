@@ -61,13 +61,6 @@ export interface LPORFFormData {
     state: string;
     zipCode: string;
   };
-  allegedIncompetentAddress: {
-    street: string;
-    aptNumber?: string;
-    city: string;
-    state: string;
-    zipCode: string;
-  };
 
   // Defendant Information
   defendant: {
