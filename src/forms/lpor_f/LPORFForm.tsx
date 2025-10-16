@@ -41,6 +41,13 @@ export const LPORFForm: React.FC<
   const [showSuccessModal, setShowSuccessModal] =
     useState(false);
 
+  // State for validation errors
+  const [validationErrors, setValidationErrors] =
+    useState<{
+      minorChildren?: string;
+      allegedIncompetent?: string;
+    }>({});
+
   // Update form data when initialData changes (court information only)
   useEffect(() => {
     if (initialData) {
@@ -129,6 +136,51 @@ export const LPORFForm: React.FC<
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Validate filing purpose requirements
+    const errors: {
+      minorChildren?: string;
+      allegedIncompetent?: string;
+    } = {};
+
+    // Check if minor children checkbox is checked but no children added
+    if (
+      formData.filingPurpose.forMinorChildren &&
+      formData.minorChildren.length === 0
+    ) {
+      errors.minorChildren = t(
+        "lporf.minorChildren.validationError",
+      );
+    }
+
+    // Check if alleged incompetent checkbox is checked but no incompetent persons added
+    if (
+      formData.filingPurpose
+        .forAllegedIncompetent &&
+      formData.allegedIncompetent.length === 0
+    ) {
+      errors.allegedIncompetent = t(
+        "lporf.allegedIncompetent.validationError",
+      );
+    }
+
+    // If there are validation errors, set them and prevent submission
+    if (Object.keys(errors).length > 0) {
+      setValidationErrors(errors);
+      // Scroll to first error
+      const firstErrorElement =
+        document.querySelector('[role="alert"]');
+      if (firstErrorElement) {
+        firstErrorElement.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+        });
+      }
+      return;
+    }
+
+    // Clear any previous validation errors
+    setValidationErrors({});
 
     // Call the original onSubmit handler (for PDF generation)
     onSubmit?.(formData);
@@ -712,6 +764,13 @@ export const LPORFForm: React.FC<
                   relationshipPlaceholder={t(
                     "lporf.minorChildren.relationshipPlaceholder",
                   )}
+                  maxEntries={6}
+                  maxEntriesMessage={t(
+                    "lporf.minorChildren.maxEntriesMessage",
+                  )}
+                  error={
+                    validationErrors.minorChildren
+                  }
                 />
               </section>
             )}
@@ -769,6 +828,13 @@ export const LPORFForm: React.FC<
                   relationshipPlaceholder={t(
                     "lporf.allegedIncompetent.relationshipPlaceholder",
                   )}
+                  maxEntries={2}
+                  maxEntriesMessage={t(
+                    "lporf.allegedIncompetent.maxEntriesMessage",
+                  )}
+                  error={
+                    validationErrors.allegedIncompetent
+                  }
                 />
               </section>
             )}
@@ -805,6 +871,20 @@ export const LPORFForm: React.FC<
                     }))
                   }
                 />
+
+                {/* Warning about different addresses */}
+                <div className="mt-4 p-4 bg-amber-50 border border-amber-200 rounded-md">
+                  <p className="text-sm text-amber-800">
+                    <strong>
+                      {t(
+                        "common.success.important",
+                      )}
+                    </strong>{" "}
+                    {t(
+                      "lporf.addresses.differentAddressWarning",
+                    )}
+                  </p>
+                </div>
 
                 {/* Conditional address sections based on same address setting */}
                 {!formData.sameAddressForAll &&

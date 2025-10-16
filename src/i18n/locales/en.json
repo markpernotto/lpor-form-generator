@@ -30,6 +30,7 @@
     "addresses": {
       "sectionTitle": "Address Information (Paragraph 2)",
       "description": "Please provide address information for all parties. Check the box below if all parties live at the same address.",
+      "differentAddressWarning": "If children or incompetent persons have different addresses, a separate form must be completed for each address.",
       "sameAddressForAll": {
         "label": "All parties live at the same address"
       },
@@ -91,7 +92,9 @@
       "dobLabel": "Date of Birth",
       "relationshipLabel": "Relationship to Petitioner",
       "namePlaceholder": "Enter child's full name",
-      "relationshipPlaceholder": "e.g., Daughter, Son"
+      "relationshipPlaceholder": "e.g., Daughter, Son",
+      "maxEntriesMessage": "Maximum 6 children per form. Please complete a separate form for additional children.",
+      "validationError": "At least one minor child must be added when filing on behalf of minor children."
     },
     "allegedIncompetent": {
       "sectionTitle": "Alleged Incompetent Information",
@@ -104,7 +107,9 @@
       "dobLabel": "Date of Birth",
       "relationshipLabel": "Relationship to Petitioner",
       "namePlaceholder": "Enter person's full name",
-      "relationshipPlaceholder": "e.g., Parent, Sibling"
+      "relationshipPlaceholder": "e.g., Parent, Sibling",
+      "maxEntriesMessage": "Maximum 2 incompetent persons per form. Please complete a separate form for additional persons.",
+      "validationError": "At least one alleged incompetent person must be added when filing on behalf of alleged incompetent persons."
     }
   },
   "court": {

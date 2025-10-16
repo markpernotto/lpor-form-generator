@@ -26,6 +26,8 @@ interface AccessiblePersonListProps {
   relationshipPlaceholder?: string;
   required?: boolean;
   error?: string;
+  maxEntries?: number;
+  maxEntriesMessage?: string;
 }
 
 export const AccessiblePersonList: React.FC<
@@ -45,7 +47,12 @@ export const AccessiblePersonList: React.FC<
   relationshipPlaceholder,
   required = false,
   error,
+  maxEntries,
+  maxEntriesMessage,
 }) => {
+  const hasReachedMax =
+    maxEntries !== undefined &&
+    entries.length >= maxEntries;
   const addEntry = () => {
     const newEntry: PersonEntry = {
       id: `${Date.now()}-${Math.random()}`,
@@ -186,14 +193,31 @@ export const AccessiblePersonList: React.FC<
           ))
         )}
 
-        <button
-          type="button"
-          onClick={addEntry}
-          className="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-        >
-          <span className="mr-2">+</span>
-          {addButtonText}
-        </button>
+        <div>
+          <button
+            type="button"
+            onClick={addEntry}
+            disabled={hasReachedMax}
+            className={`inline-flex items-center px-4 py-2 border shadow-sm text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 ${
+              hasReachedMax
+                ? "border-gray-200 text-gray-400 bg-gray-50 cursor-not-allowed"
+                : "border-gray-300 text-gray-700 bg-white hover:bg-gray-50"
+            }`}
+            aria-disabled={hasReachedMax}
+          >
+            <span className="mr-2">+</span>
+            {addButtonText}
+          </button>
+
+          {hasReachedMax && maxEntriesMessage && (
+            <p
+              className="text-sm text-amber-600 mt-2"
+              role="status"
+            >
+              ⚠️ {maxEntriesMessage}
+            </p>
+          )}
+        </div>
       </div>
     </fieldset>
   );

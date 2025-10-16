@@ -30,6 +30,7 @@
     "addresses": {
       "sectionTitle": "Información de direcciones (Párrafo 2)",
       "description": "Proporcione la información de direcciones para todas las partes. Marque la casilla a continuación si todas las partes viven en la misma dirección.",
+      "differentAddressWarning": "Si los niños o personas incapacitadas tienen direcciones diferentes, se debe completar un formulario separado para cada dirección.",
       "sameAddressForAll": {
         "label": "Todas las partes viven en la misma dirección"
       },
@@ -91,7 +92,9 @@
       "dobLabel": "Fecha de Nacimiento",
       "relationshipLabel": "Relación con el Peticionario",
       "namePlaceholder": "Ingrese el nombre completo del menor",
-      "relationshipPlaceholder": "ej: Hija, Hijo"
+      "relationshipPlaceholder": "ej: Hija, Hijo",
+      "maxEntriesMessage": "Máximo 6 niños por formulario. Complete un formulario separado para niños adicionales.",
+      "validationError": "Se debe agregar al menos un menor de edad al presentar en nombre de menores de edad."
     },
     "allegedIncompetent": {
       "sectionTitle": "Información de Presuntos Incapacitados",
@@ -104,7 +107,9 @@
       "dobLabel": "Fecha de Nacimiento",
       "relationshipLabel": "Relación con el Peticionario",
       "namePlaceholder": "Ingrese el nombre completo de la persona",
-      "relationshipPlaceholder": "ej: Padre, Hermano/a"
+      "relationshipPlaceholder": "ej: Padre, Hermano/a",
+      "maxEntriesMessage": "Máximo 2 personas incapacitadas por formulario. Complete un formulario separado para personas adicionales.",
+      "validationError": "Se debe agregar al menos una persona presuntamente incapacitada al presentar en nombre de personas presuntamente incapacitadas."
     }
   },
   "court": {

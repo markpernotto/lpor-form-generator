@@ -108,6 +108,7 @@
     "addresses": {
       "sectionTitle": "Informations d'adresse (Paragraphe 2)",
       "description": "Veuillez fournir les informations d'adresse pour toutes les parties. Cochez la case ci-dessous si toutes les parties vivent à la même adresse.",
+      "differentAddressWarning": "Si les enfants ou les personnes incapables ont des adresses différentes, un formulaire séparé doit être rempli pour chaque adresse.",
       "sameAddressForAll": {
         "label": "Toutes les parties vivent à la même adresse"
       },
@@ -169,7 +170,9 @@
       "dobLabel": "Date de naissance",
       "relationshipLabel": "Relation au demandeur",
       "namePlaceholder": "Entrez le nom complet de l'enfant",
-      "relationshipPlaceholder": "ex: Fille, Fils"
+      "relationshipPlaceholder": "ex: Fille, Fils",
+      "maxEntriesMessage": "Maximum 6 enfants par formulaire. Veuillez remplir un formulaire séparé pour les enfants supplémentaires.",
+      "validationError": "Au moins un enfant mineur doit être ajouté lors du dépôt au nom d'enfants mineurs."
     },
     "allegedIncompetent": {
       "sectionTitle": "Informations sur les personnes présumées incapables",
@@ -182,7 +185,9 @@
       "dobLabel": "Date de naissance",
       "relationshipLabel": "Relation au demandeur",
       "namePlaceholder": "Entrez le nom complet de la personne",
-      "relationshipPlaceholder": "ex: Parent, Frère/Sœur"
+      "relationshipPlaceholder": "ex: Parent, Frère/Sœur",
+      "maxEntriesMessage": "Maximum 2 personnes incapables par formulaire. Veuillez remplir un formulaire séparé pour les personnes supplémentaires.",
+      "validationError": "Au moins une personne présumée incapable doit être ajoutée lors du dépôt au nom de personnes présumées incapables."
     }
   },
   "petitioner": {
