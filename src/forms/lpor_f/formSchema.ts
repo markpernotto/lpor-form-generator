@@ -281,8 +281,16 @@ export const getTestLPORFFormData =
     // Override filing purpose for test
     filingPurpose: {
       forPetitioner: true,
-      forMinorChildren: false,
+      forMinorChildren: true,
       forAllegedIncompetent: false,
+    },
+
+    minorChildrenAddress: {
+      street: "8080 Test Ave",
+      aptNumber: "Apt 4878",
+      city: "Baton Rouge",
+      state: "LA",
+      zipCode: "70802",
     },
 
     petitioner: {
