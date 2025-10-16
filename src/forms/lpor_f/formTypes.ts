@@ -13,6 +13,7 @@ export interface LPORFFormData {
   division?: string;
   filedDate?: string;
   clerk?: string;
+  parishCity?: string;
 
   // Filing Purpose (new for LPOR-F confidential address form)
   filingPurpose: {

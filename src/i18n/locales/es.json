@@ -28,18 +28,20 @@
       }
     },
     "addresses": {
-      "sectionTitle": "Información de Dirección (Párrafo 2)",
+      "sectionTitle": "Información de direcciones (Párrafo 2)",
+      "description": "Proporcione la información de direcciones para todas las partes. Marque la casilla a continuación si todas las partes viven en la misma dirección.",
       "sameAddressForAll": {
         "label": "Todas las partes viven en la misma dirección"
       },
       "minorChildrenAddress": {
-        "sectionTitle": "Dirección de Menores/Presuntos Incapacitados",
+        "title": "Dirección de los menores",
+        "sectionTitle": "Dirección de los menores",
         "street": {
-          "label": "Dirección de la Calle",
+          "label": "Dirección de la calle",
           "placeholder": "Ingrese la dirección de la calle"
         },
         "aptNumber": {
-          "label": "Apt. No.",
+          "label": "Núm. Apt.",
           "placeholder": "Ingrese el número de apartamento"
         },
         "city": {
@@ -50,7 +52,30 @@
           "label": "Estado"
         },
         "zipCode": {
-          "label": "Código Postal",
+          "label": "Código postal",
+          "placeholder": "Ingrese el código postal"
+        }
+      },
+      "allegedIncompetentAddress": {
+        "title": "Dirección de las personas presuntamente incompetentes",
+        "sectionTitle": "Dirección de las personas presuntamente incompetentes",
+        "street": {
+          "label": "Dirección de la calle",
+          "placeholder": "Ingrese la dirección de la calle"
+        },
+        "aptNumber": {
+          "label": "Núm. Apt.",
+          "placeholder": "Ingrese el número de apartamento"
+        },
+        "city": {
+          "label": "Ciudad",
+          "placeholder": "Ingrese la ciudad"
+        },
+        "state": {
+          "label": "Estado"
+        },
+        "zipCode": {
+          "label": "Código postal",
           "placeholder": "Ingrese el código postal"
         }
       }
@@ -58,36 +83,28 @@
     "minorChildren": {
       "sectionTitle": "Información de Menores de Edad",
       "description": "Agregue detalles para cada menor de edad (Nombre, Fecha de Nacimiento, Relación con el Peticionario):",
-      "addButton": "Agregar Menor de Edad",
-      "emptyState": "No se han agregado menores de edad aún",
-      "name": {
-        "label": "Nombre",
-        "placeholder": "Ingrese el nombre completo del menor"
-      },
-      "dateOfBirth": {
-        "label": "Fecha de Nacimiento"
-      },
-      "relationship": {
-        "label": "Relación con el Peticionario",
-        "placeholder": "ej: Hija, Hijo"
-      }
+      "listLabel": "Lista de Menores de Edad",
+      "listDescription": "Agregue detalles para cada menor de edad a continuación:",
+      "addButtonText": "Agregar Menor de Edad",
+      "emptyStateText": "No se han agregado menores de edad aún",
+      "nameLabel": "Nombre",
+      "dobLabel": "Fecha de Nacimiento",
+      "relationshipLabel": "Relación con el Peticionario",
+      "namePlaceholder": "Ingrese el nombre completo del menor",
+      "relationshipPlaceholder": "ej: Hija, Hijo"
     },
     "allegedIncompetent": {
       "sectionTitle": "Información de Presuntos Incapacitados",
       "description": "Agregue detalles para cada persona presuntamente incapacitada (Nombre, Fecha de Nacimiento, Relación con el Peticionario):",
-      "addButton": "Agregar Presunto Incapacitado",
-      "emptyState": "No se han agregado presuntos incapacitados aún",
-      "name": {
-        "label": "Nombre",
-        "placeholder": "Ingrese el nombre completo de la persona"
-      },
-      "dateOfBirth": {
-        "label": "Fecha de Nacimiento"
-      },
-      "relationship": {
-        "label": "Relación con el Peticionario",
-        "placeholder": "ej: Padre, Hermano/a"
-      }
+      "listLabel": "Lista de Presuntos Incapacitados",
+      "listDescription": "Agregue detalles para cada persona presuntamente incapacitada a continuación:",
+      "addButtonText": "Agregar Presunto Incapacitado",
+      "emptyStateText": "No se han agregado presuntos incapacitados aún",
+      "nameLabel": "Nombre",
+      "dobLabel": "Fecha de Nacimiento",
+      "relationshipLabel": "Relación con el Peticionario",
+      "namePlaceholder": "Ingrese el nombre completo de la persona",
+      "relationshipPlaceholder": "ej: Padre, Hermano/a"
     }
   },
   "court": {

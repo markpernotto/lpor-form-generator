@@ -107,11 +107,36 @@
     },
     "addresses": {
       "sectionTitle": "Informations d'adresse (Paragraphe 2)",
+      "description": "Veuillez fournir les informations d'adresse pour toutes les parties. Cochez la case ci-dessous si toutes les parties vivent à la même adresse.",
       "sameAddressForAll": {
         "label": "Toutes les parties vivent à la même adresse"
       },
       "minorChildrenAddress": {
-        "sectionTitle": "Adresse des enfants mineurs/personnes présumées incapables",
+        "title": "Adresse des enfants mineurs",
+        "sectionTitle": "Adresse des enfants mineurs",
+        "street": {
+          "label": "Adresse de la rue",
+          "placeholder": "Entrez l'adresse de la rue"
+        },
+        "aptNumber": {
+          "label": "Apt. No.",
+          "placeholder": "Entrez le numéro d'appartement"
+        },
+        "city": {
+          "label": "Ville",
+          "placeholder": "Entrez la ville"
+        },
+        "state": {
+          "label": "État"
+        },
+        "zipCode": {
+          "label": "Code postal",
+          "placeholder": "Entrez le code postal"
+        }
+      },
+      "allegedIncompetentAddress": {
+        "title": "Adresse des personnes présumées incapables",
+        "sectionTitle": "Adresse des personnes présumées incapables",
         "street": {
           "label": "Adresse de la rue",
           "placeholder": "Entrez l'adresse de la rue"
@@ -136,36 +161,28 @@
     "minorChildren": {
       "sectionTitle": "Informations sur les enfants mineurs",
       "description": "Ajoutez les détails pour chaque enfant mineur (Nom, Date de naissance, Relation au demandeur):",
-      "addButton": "Ajouter un enfant mineur",
-      "emptyState": "Aucun enfant mineur ajouté encore",
-      "name": {
-        "label": "Nom",
-        "placeholder": "Entrez le nom complet de l'enfant"
-      },
-      "dateOfBirth": {
-        "label": "Date de naissance"
-      },
-      "relationship": {
-        "label": "Relation au demandeur",
-        "placeholder": "ex: Fille, Fils"
-      }
+      "listLabel": "Liste des enfants mineurs",
+      "listDescription": "Ajoutez les détails pour chaque enfant mineur ci-dessous:",
+      "addButtonText": "Ajouter un enfant mineur",
+      "emptyStateText": "Aucun enfant mineur ajouté encore",
+      "nameLabel": "Nom",
+      "dobLabel": "Date de naissance",
+      "relationshipLabel": "Relation au demandeur",
+      "namePlaceholder": "Entrez le nom complet de l'enfant",
+      "relationshipPlaceholder": "ex: Fille, Fils"
     },
     "allegedIncompetent": {
       "sectionTitle": "Informations sur les personnes présumées incapables",
       "description": "Ajoutez les détails pour chaque personne présumée incapable (Nom, Date de naissance, Relation au demandeur):",
-      "addButton": "Ajouter une personne présumée incapable",
-      "emptyState": "Aucune personne présumée incapable ajoutée encore",
-      "name": {
-        "label": "Nom",
-        "placeholder": "Entrez le nom complet de la personne"
-      },
-      "dateOfBirth": {
-        "label": "Date de naissance"
-      },
-      "relationship": {
-        "label": "Relation au demandeur",
-        "placeholder": "ex: Parent, Frère/Sœur"
-      }
+      "listLabel": "Liste des personnes présumées incapables",
+      "listDescription": "Ajoutez les détails pour chaque personne présumée incapable ci-dessous:",
+      "addButtonText": "Ajouter une personne présumée incapable",
+      "emptyStateText": "Aucune personne présumée incapable ajoutée encore",
+      "nameLabel": "Nom",
+      "dobLabel": "Date de naissance",
+      "relationshipLabel": "Relation au demandeur",
+      "namePlaceholder": "Entrez le nom complet de la personne",
+      "relationshipPlaceholder": "ex: Parent, Frère/Sœur"
     }
   },
   "petitioner": {

@@ -13,9 +13,7 @@ import {
 import { useTranslation } from "../../i18n/hooks/useTranslation";
 import { AccessibleTextInput } from "../../components/AccessibleTextInput";
 import { AccessibleDateInput } from "../../components/AccessibleDateInput";
-import { AccessibleTextarea } from "../../components/AccessibleTextarea";
 import { AccessibleCheckbox } from "../../components/AccessibleCheckbox";
-import { AccessibleRadioGroup } from "../../components/AccessibleRadioGroup";
 import { AccessiblePersonList } from "../../components/AccessiblePersonList";
 import { SuccessModal } from "../../components/SuccessModal";
 
@@ -65,6 +63,13 @@ export const LPORFForm: React.FC<
           undefined && {
           filedDate: initialData.filedDate,
         }),
+        ...(initialData.clerk !== undefined && {
+          clerk: initialData.clerk,
+        }),
+        ...(initialData.parishCity !==
+          undefined && {
+          parishCity: initialData.parishCity,
+        }),
       }));
     }
   }, [initialData]);
@@ -94,46 +99,15 @@ export const LPORFForm: React.FC<
     });
   };
 
-  const handleCheckboxChange = (
-    field: string,
-    value: string,
-    checked: boolean,
+  // Helper function for handling person list updates
+  const handlePersonListChange = (
+    field: "minorChildren" | "allegedIncompetent",
+    entries: PersonEntry[],
   ) => {
-    setFormData((prev) => {
-      const keys = field.split(".");
-      const currentArray =
-        keys.length === 1
-          ? (prev[
-              field as keyof LPORFFormData
-            ] as string[])
-          : ((
-              prev[
-                keys[0] as keyof LPORFFormData
-              ] as Record<string, unknown>
-            )[keys[1]] as string[]);
-
-      const newArray = checked
-        ? [...currentArray, value]
-        : currentArray.filter(
-            (item) => item !== value,
-          );
-
-      if (keys.length === 1) {
-        return { ...prev, [field]: newArray };
-      }
-
-      const [parent, child] = keys;
-      const parentObj = prev[
-        parent as keyof LPORFFormData
-      ] as Record<string, unknown>;
-      return {
-        ...prev,
-        [parent]: {
-          ...parentObj,
-          [child]: newArray,
-        },
-      };
-    });
+    setFormData((prev) => ({
+      ...prev,
+      [field]: entries,
+    }));
   };
 
   const populateTestData = () => {
@@ -150,17 +124,6 @@ export const LPORFForm: React.FC<
         prev.division || testData.division,
       filedDate:
         prev.filedDate || testData.filedDate,
-    }));
-  };
-
-  // Helper function for handling person list updates
-  const handlePersonListChange = (
-    field: "minorChildren" | "allegedIncompetent",
-    entries: PersonEntry[],
-  ) => {
-    setFormData((prev) => ({
-      ...prev,
-      [field]: entries,
     }));
   };
 
