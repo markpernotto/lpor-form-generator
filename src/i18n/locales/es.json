@@ -21,6 +21,7 @@
     "filingPurpose": {
       "sectionTitle": "Propósito de la Presentación (Párrafo 1)",
       "description": "El peticionario presenta esta petición en nombre de:",
+      "validationError": "Debe seleccionar al menos una opción de propósito de presentación.",
       "forPetitioner": {
         "label": "Peticionario"
       },
@@ -291,6 +292,7 @@
     }
   },
   "common": {
+    "language": "Idioma",
     "yes": "Sí",
     "no": "No",
     "submit": "Enviar Formulario",

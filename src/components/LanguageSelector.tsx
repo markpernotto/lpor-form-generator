@@ -4,8 +4,11 @@ import {
   useParams,
   useLocation,
 } from "react-router-dom";
+import { AccessibleSelect } from "./AccessibleSelect";
+import { useTranslation } from "../i18n/hooks/useTranslation";
 
 export const LanguageSelector: React.FC = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();
   const { lang } = useParams<{ lang: string }>();
@@ -36,23 +39,21 @@ export const LanguageSelector: React.FC = () => {
     navigate(newPath);
   };
 
+  const languageOptions = [
+    { value: "en", label: "English" },
+    { value: "es", label: "Español" },
+    { value: "fr", label: "Français" },
+  ];
+
   return (
-    <div className="mb-4 flex items-center justify-center gap-2">
-      <span className="text-sm text-gray-600">
-        Language:
-      </span>
-      <select
+    <div className="w-48">
+      <AccessibleSelect
+        id="language-selector"
+        label={t("common.language")}
         value={currentLanguage}
-        onChange={(e) => {
-          console.log(e.target.value);
-          handleLanguageChange(e.target.value);
-        }}
-        className="px-3 py-1 border border-gray-300 rounded text-sm bg-white"
-      >
-        <option value="en">English</option>
-        <option value="es">Español</option>
-        <option value="fr">Français</option>
-      </select>
+        onChange={handleLanguageChange}
+        options={languageOptions}
+      />
     </div>
   );
 };

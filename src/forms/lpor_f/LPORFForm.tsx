@@ -132,6 +132,7 @@ export const LPORFForm: React.FC<
   // State for validation errors
   const [validationErrors, setValidationErrors] =
     useState<{
+      filingPurpose?: string;
       minorChildren?: string;
       allegedIncompetent?: string;
     }>({});
@@ -179,18 +180,43 @@ export const LPORFForm: React.FC<
         return { ...prev, [field]: value };
       }
 
-      // Handle nested fields
-      const [parent, child] = keys;
-      const parentObj = prev[
-        parent as keyof LPORFFormData
-      ] as Record<string, unknown>;
-      return {
-        ...prev,
-        [parent]: {
-          ...parentObj,
-          [child]: value,
-        },
-      };
+      // Handle nested fields (2 or 3 levels deep)
+      if (keys.length === 2) {
+        const [parent, child] = keys;
+        const parentObj = prev[
+          parent as keyof LPORFFormData
+        ] as Record<string, unknown>;
+        return {
+          ...prev,
+          [parent]: {
+            ...parentObj,
+            [child]: value,
+          },
+        };
+      }
+
+      // Handle 3-level nested fields (e.g., petitioner.address.aptNumber)
+      if (keys.length === 3) {
+        const [parent, middle, child] = keys;
+        const parentObj = prev[
+          parent as keyof LPORFFormData
+        ] as Record<string, unknown>;
+        const middleObj = parentObj[
+          middle
+        ] as Record<string, unknown>;
+        return {
+          ...prev,
+          [parent]: {
+            ...parentObj,
+            [middle]: {
+              ...middleObj,
+              [child]: value,
+            },
+          },
+        };
+      }
+
+      return prev;
     });
   };
 
@@ -227,9 +253,23 @@ export const LPORFForm: React.FC<
 
     // Validate filing purpose requirements
     const errors: {
+      filingPurpose?: string;
       minorChildren?: string;
       allegedIncompetent?: string;
     } = {};
+
+    // Check if at least one filing purpose checkbox is selected
+    const hasFilingPurpose =
+      formData.filingPurpose.forPetitioner ||
+      formData.filingPurpose.forMinorChildren ||
+      formData.filingPurpose
+        .forAllegedIncompetent;
+
+    if (!hasFilingPurpose) {
+      errors.filingPurpose = t(
+        "lporf.filingPurpose.validationError",
+      );
+    }
 
     // Check if minor children checkbox is checked but no children added
     if (
@@ -288,9 +328,9 @@ export const LPORFForm: React.FC<
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-white dark:bg-gray-900">
+    <div className="bg-white dark:bg-gray-900">
       {!showSuccessModal ? (
-        <>
+        <div className="max-w-4xl mx-auto p-6">
           <div className="mb-8">
             <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2">
               {t("lporfForm.title")}
@@ -392,6 +432,16 @@ export const LPORFForm: React.FC<
                   }
                 />
               </div>
+
+              {/* Filing Purpose Validation Error */}
+              {validationErrors.filingPurpose && (
+                <div
+                  role="alert"
+                  className="mt-4 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-md text-sm text-red-800 dark:text-red-300"
+                >
+                  {validationErrors.filingPurpose}
+                </div>
+              )}
             </section>
 
             {/* Petitioner Information Section */}
@@ -495,6 +545,7 @@ export const LPORFForm: React.FC<
                       "petitioner.address.street.placeholder",
                     )}
                     required
+                    enableVoiceInput={true}
                   />
 
                   <AccessibleTextInput
@@ -515,6 +566,7 @@ export const LPORFForm: React.FC<
                     placeholder={t(
                       "petitioner.address.aptNumber.placeholder",
                     )}
+                    enableVoiceInput={true}
                   />
 
                   <AccessibleTextInput
@@ -536,6 +588,7 @@ export const LPORFForm: React.FC<
                       "petitioner.address.city.placeholder",
                     )}
                     required
+                    enableVoiceInput={true}
                   />
 
                   <AccessibleSelect
@@ -576,6 +629,7 @@ export const LPORFForm: React.FC<
                       "petitioner.address.zipCode.placeholder",
                     )}
                     required
+                    enableVoiceInput={true}
                   />
                 </div>
               </div>
@@ -969,15 +1023,15 @@ export const LPORFForm: React.FC<
               </button>
             </div>
           </form>
-        </>
-      ) : null}
-
-      {/* Success Modal */}
-      <SuccessModal
-        isOpen={showSuccessModal}
-        onClose={handleSuccessModalClose}
-        formType="LPOR-F"
-      />
+        </div>
+      ) : (
+        <SuccessModal
+          isOpen={showSuccessModal}
+          onClose={handleSuccessModalClose}
+          formType="LPOR-F"
+          inline={true}
+        />
+      )}
     </div>
   );
 };

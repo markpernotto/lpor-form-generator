@@ -21,6 +21,7 @@
     "filingPurpose": {
       "sectionTitle": "Filing Purpose (Paragraph 1)",
       "description": "Petitioner files this petition on behalf of:",
+      "validationError": "You must select at least one filing purpose option.",
       "forPetitioner": {
         "label": "Petitioner"
       },
@@ -291,6 +292,7 @@
     }
   },
   "common": {
+    "language": "Language",
     "yes": "Yes",
     "no": "No",
     "submit": "Submit Form",

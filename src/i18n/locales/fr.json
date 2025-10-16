@@ -1,5 +1,6 @@
 {
   "common": {
+    "language": "Langue",
     "no": "Non",
     "populateTestData": "Remplir les données de test",
     "submit": "Soumettre le formulaire",
@@ -99,6 +100,7 @@
     "filingPurpose": {
       "sectionTitle": "Objet du dépôt (Paragraphe 1)",
       "description": "Le demandeur dépose cette pétition au nom de:",
+      "validationError": "Vous devez sélectionner au moins une option d'objet de dépôt.",
       "forPetitioner": {
         "label": "Demandeur"
       },
