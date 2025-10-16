@@ -106,12 +106,6 @@ export const SuccessModal: React.FC<
             >
               {t("common.success.newForm")}
             </button>
-            <button
-              onClick={() => window.print()}
-              className="flex-1 px-4 py-2 bg-gray-100 text-gray-700 font-medium rounded-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors"
-            >
-              {t("common.success.print")}
-            </button>
           </div>
         </div>
       </div>
