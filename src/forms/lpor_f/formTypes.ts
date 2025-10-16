@@ -29,7 +29,6 @@ export interface LPORFFormData {
     lastName: string;
     dateOfBirth: string;
     stateOfResidence: string; // New field for LPOR-F
-    sex: "F" | "M";
     race: string;
     address: {
       street: string;
@@ -65,10 +64,8 @@ export interface LPORFFormData {
   // Defendant Information
   defendant: {
     fullName: string;
-    guardianFullName?: string;
+    parentGuardianName?: string; // For minor defendants
     alias?: string;
-    dateOfBirth: string;
-    sex: "F" | "M";
     race: string;
     address: {
       street: string;

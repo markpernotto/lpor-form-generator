@@ -186,19 +186,13 @@
       "label": "Nombre Completo",
       "placeholder": "Ingrese el nombre completo del demandado"
     },
+    "parentGuardianName": {
+      "label": "Nombre del Padre/Tutor (si el demandado es menor)",
+      "placeholder": "Ingrese el nombre del padre o tutor"
+    },
     "alias": {
       "label": "Alias/También Conocido Como",
       "placeholder": "Ingrese cualquier alias conocido"
-    },
-    "dateOfBirth": {
-      "label": "Fecha de Nacimiento"
-    },
-    "sex": {
-      "label": "Sexo",
-      "options": {
-        "female": "Femenino",
-        "male": "Masculino"
-      }
     },
     "race": {
       "label": "Raza",

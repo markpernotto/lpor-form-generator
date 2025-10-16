@@ -204,7 +204,7 @@ export async function generateLPORFPDF(
     color: rgb(0, 0, 0),
   });
   page.drawText(
-    formData.defendant.guardianFullName ?? "",
+    formData.defendant.parentGuardianName ?? "",
     {
       x: 50,
       y: 692,

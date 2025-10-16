@@ -186,19 +186,13 @@
       "label": "Full Name",
       "placeholder": "Enter defendant's full name"
     },
+    "parentGuardianName": {
+      "label": "Parent/Guardian Name (if defendant is a minor)",
+      "placeholder": "Enter parent or guardian name"
+    },
     "alias": {
       "label": "Alias/Also Known As",
       "placeholder": "Enter any known aliases"
-    },
-    "dateOfBirth": {
-      "label": "Date of Birth"
-    },
-    "sex": {
-      "label": "Sex",
-      "options": {
-        "female": "Female",
-        "male": "Male"
-      }
     },
     "race": {
       "label": "Race",

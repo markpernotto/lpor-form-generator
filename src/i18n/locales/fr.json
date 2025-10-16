@@ -47,25 +47,19 @@
       "label": "Alias/Aussi connu sous le nom de",
       "placeholder": "Entrez des alias connus"
     },
-    "dateOfBirth": {
-      "label": "Date de naissance"
-    },
     "fullName": {
       "label": "Nom complet",
       "placeholder": "Entrez le nom complet du défendeur"
+    },
+    "parentGuardianName": {
+      "label": "Nom du parent/tuteur (si le défendeur est mineur)",
+      "placeholder": "Entrez le nom du parent ou du tuteur"
     },
     "race": {
       "label": "Course",
       "placeholder": "Entrer dans la course"
     },
-    "sectionTitle": "Renseignements sur le défendeur",
-    "sex": {
-      "label": "Sexe",
-      "options": {
-        "female": "Femelle",
-        "male": "Mâle"
-      }
-    }
+    "sectionTitle": "Renseignements sur le défendeur"
   },
   "emergencyRequest": {
     "emergencyReason": {

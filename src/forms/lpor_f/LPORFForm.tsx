@@ -325,36 +325,6 @@ export const LPORFForm: React.FC<
                   helpText="Enter your date of birth"
                 />
 
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    {t("petitioner.sex.label")} *
-                  </label>
-                  <select
-                    value={
-                      formData.petitioner.sex
-                    }
-                    onChange={(e) =>
-                      handleInputChange(
-                        "petitioner.sex",
-                        e.target.value,
-                      )
-                    }
-                    className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                    required
-                  >
-                    <option value="F">
-                      {t(
-                        "petitioner.sex.options.female",
-                      )}
-                    </option>
-                    <option value="M">
-                      {t(
-                        "petitioner.sex.options.male",
-                      )}
-                    </option>
-                  </select>
-                </div>
-
                 {/* New field for LPOR-F: State of Residence */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -377,29 +347,164 @@ export const LPORFForm: React.FC<
                     className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     required
                   >
-                    <option value="Louisiana">
-                      Louisiana
-                    </option>
-                    <option value="Alabama">
+                    <option value="AL">
                       Alabama
                     </option>
-                    <option value="Arkansas">
+                    <option value="AK">
+                      Alaska
+                    </option>
+                    <option value="AZ">
+                      Arizona
+                    </option>
+                    <option value="AR">
                       Arkansas
                     </option>
-                    <option value="Florida">
+                    <option value="CA">
+                      California
+                    </option>
+                    <option value="CO">
+                      Colorado
+                    </option>
+                    <option value="CT">
+                      Connecticut
+                    </option>
+                    <option value="DE">
+                      Delaware
+                    </option>
+                    <option value="DC">
+                      District of Columbia
+                    </option>
+                    <option value="FL">
                       Florida
                     </option>
-                    <option value="Georgia">
+                    <option value="GA">
                       Georgia
                     </option>
-                    <option value="Mississippi">
+                    <option value="GU">
+                      Guam
+                    </option>
+                    <option value="HI">
+                      Hawaii
+                    </option>
+                    <option value="ID">
+                      Idaho
+                    </option>
+                    <option value="IL">
+                      Illinois
+                    </option>
+                    <option value="IN">
+                      Indiana
+                    </option>
+                    <option value="IA">
+                      Iowa
+                    </option>
+                    <option value="KS">
+                      Kansas
+                    </option>
+                    <option value="KY">
+                      Kentucky
+                    </option>
+                    <option value="LA">
+                      Louisiana
+                    </option>
+                    <option value="ME">
+                      Maine
+                    </option>
+                    <option value="MD">
+                      Maryland
+                    </option>
+                    <option value="MA">
+                      Massachusetts
+                    </option>
+                    <option value="MI">
+                      Michigan
+                    </option>
+                    <option value="MN">
+                      Minnesota
+                    </option>
+                    <option value="MS">
                       Mississippi
                     </option>
-                    <option value="Tennessee">
+                    <option value="MO">
+                      Missouri
+                    </option>
+                    <option value="MT">
+                      Montana
+                    </option>
+                    <option value="NE">
+                      Nebraska
+                    </option>
+                    <option value="NV">
+                      Nevada
+                    </option>
+                    <option value="NH">
+                      New Hampshire
+                    </option>
+                    <option value="NJ">
+                      New Jersey
+                    </option>
+                    <option value="NM">
+                      New Mexico
+                    </option>
+                    <option value="NY">
+                      New York
+                    </option>
+                    <option value="NC">
+                      North Carolina
+                    </option>
+                    <option value="ND">
+                      North Dakota
+                    </option>
+                    <option value="OH">
+                      Ohio
+                    </option>
+                    <option value="OK">
+                      Oklahoma
+                    </option>
+                    <option value="OR">
+                      Oregon
+                    </option>
+                    <option value="PA">
+                      Pennsylvania
+                    </option>
+                    <option value="PR">
+                      Puerto Rico
+                    </option>
+                    <option value="RI">
+                      Rhode Island
+                    </option>
+                    <option value="SC">
+                      South Carolina
+                    </option>
+                    <option value="SD">
+                      South Dakota
+                    </option>
+                    <option value="TN">
                       Tennessee
                     </option>
-                    <option value="Texas">
+                    <option value="TX">
                       Texas
+                    </option>
+                    <option value="UT">
+                      Utah
+                    </option>
+                    <option value="VT">
+                      Vermont
+                    </option>
+                    <option value="VA">
+                      Virginia
+                    </option>
+                    <option value="WA">
+                      Washington
+                    </option>
+                    <option value="WV">
+                      West Virginia
+                    </option>
+                    <option value="WI">
+                      Wisconsin
+                    </option>
+                    <option value="WY">
+                      Wyoming
                     </option>
                   </select>
                 </div>
@@ -577,52 +682,28 @@ export const LPORFForm: React.FC<
                   helpText="Enter the full legal name of the defendant"
                 />
 
-                <AccessibleDateInput
-                  id="defendant-dateOfBirth"
-                  label={`${t(
-                    "defendant.dateOfBirth.label",
-                  )} *`}
+                {/* Parent/Guardian Name for Minor Defendants */}
+                <AccessibleTextInput
+                  id="defendant-parent-guardian"
+                  label={t(
+                    "defendant.parentGuardianName.label",
+                  )}
                   value={
-                    formData.defendant.dateOfBirth
+                    formData.defendant
+                      .parentGuardianName || ""
                   }
                   onChange={(value) =>
                     handleInputChange(
-                      "defendant.dateOfBirth",
+                      "defendant.parentGuardianName",
                       value,
                     )
                   }
-                  type="date"
-                  required
-                  helpText="Enter the defendant's date of birth"
+                  placeholder={t(
+                    "defendant.parentGuardianName.placeholder",
+                  )}
+                  enableVoiceInput={true}
+                  helpText="Enter parent or guardian name if defendant is a minor"
                 />
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    {t("defendant.sex.label")} *
-                  </label>
-                  <select
-                    value={formData.defendant.sex}
-                    onChange={(e) =>
-                      handleInputChange(
-                        "defendant.sex",
-                        e.target.value,
-                      )
-                    }
-                    className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                    required
-                  >
-                    <option value="F">
-                      {t(
-                        "defendant.sex.options.female",
-                      )}
-                    </option>
-                    <option value="M">
-                      {t(
-                        "defendant.sex.options.male",
-                      )}
-                    </option>
-                  </select>
-                </div>
               </div>
             </section>
 
