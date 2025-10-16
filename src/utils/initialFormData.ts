@@ -15,9 +15,9 @@ export function createInitialLPORFData(): Partial<LPORFFormData> {
     initialData.courtName = court; // Keep encoded (e.g., "Caddo%20Parish%20Court")
   }
 
-  const docket = getQueryParam("docket");
-  if (docket) {
-    initialData.docketNumber = docket;
+  const parishCity = getQueryParam("parishCity");
+  if (parishCity) {
+    initialData.parishCity = parishCity;
   }
 
   const division = getQueryParam("division");
@@ -25,9 +25,27 @@ export function createInitialLPORFData(): Partial<LPORFFormData> {
     initialData.division = division;
   }
 
+  // Support both 'number' and 'docket' for backward compatibility
+  const number = getQueryParam("number");
+  const docket = getQueryParam("docket");
+  if (number) {
+    initialData.docketNumber = number;
+  } else if (docket) {
+    initialData.docketNumber = docket;
+  }
+
+  // Support both 'filed' and 'filed_date' for backward compatibility
+  const filed = getQueryParam("filed");
   const filedDate = getQueryParam("filed_date");
-  if (filedDate) {
-    initialData.filedDate = filedDate; // Expected format: YYYY-MM-DD
+  if (filed) {
+    initialData.filedDate = filed; // Expected format: YYYY-MM-DD
+  } else if (filedDate) {
+    initialData.filedDate = filedDate;
+  }
+
+  const clerk = getQueryParam("clerk");
+  if (clerk) {
+    initialData.clerk = clerk;
   }
 
   return initialData;
@@ -37,17 +55,21 @@ export function createInitialLPORFData(): Partial<LPORFFormData> {
  * Examples of query parameter usage for LPOR F Court Information:
  *
  * Basic court info:
- * ?court=Caddo%20Parish%20Court&docket=2024-12345&division=A
+ * ?court=Caddo%20Parish%20Court&number=2024-12345&division=A
  *
- * With filed date:
- * ?court=Orleans%20Parish&docket=2024-CV-001&division=B&filed_date=2024-10-14
+ * With filed date and clerk:
+ * ?court=Orleans%20Parish&parishCity=New%20Orleans&number=2024-CV-001&division=B&filed=2024-10-14&clerk=John%20Doe
  *
  * Full example:
- * ?court=Jefferson%20Parish%20Court&docket=2024-CV-001&division=B&filed_date=2024-10-14
+ * ?court=Jefferson%20Parish%20Court&parishCity=Jefferson&number=2024-CV-001&division=B&filed=2024-10-14&clerk=Jane%20Smith
+ *
+ * With debug mode to show test data button:
+ * ?court=Jefferson%20Parish%20Court&number=2024-CV-001&debug=true
  *
  * Note:
- * - Spaces in court names should be URL encoded as %20
+ * - Spaces in values should be URL encoded as %20
  * - Filed date should be in YYYY-MM-DD format
  * - Only court information fields are pre-populated
  * - Users will still fill in petitioner, defendant, and violation details
+ * - Backward compatibility: 'docket' and 'filed_date' params still work
  */

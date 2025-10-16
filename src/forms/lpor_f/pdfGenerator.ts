@@ -84,6 +84,13 @@ export async function generateLPORFPDF(
     font: font,
     color: rgb(0, 0, 0),
   });
+  page.drawText(`${formData.parishCity ?? ""}`, {
+    x: 450,
+    y: 737,
+    size: 10,
+    font: font,
+    color: rgb(0, 0, 0),
+  });
   page.drawLine({
     start: { x: 445, y: 735 },
     end: { x: 585, y: 735 },
@@ -104,6 +111,13 @@ export async function generateLPORFPDF(
     font: font,
     color: rgb(0, 0, 0),
   });
+  page.drawText(`${formData.division ?? ""}`, {
+    x: 415,
+    y: 707,
+    size: 10,
+    font: font,
+    color: rgb(0, 0, 0),
+  });
   page.drawLine({
     start: { x: 410, y: 705 },
     end: { x: 460, y: 705 },
@@ -117,6 +131,16 @@ export async function generateLPORFPDF(
     font: font,
     color: rgb(0, 0, 0),
   });
+  page.drawText(
+    `${formData.docketNumber ?? ""}`,
+    {
+      x: 530,
+      y: 707,
+      size: 10,
+      font: font,
+      color: rgb(0, 0, 0),
+    },
+  );
   page.drawLine({
     start: { x: 525, y: 705 },
     end: { x: 585, y: 705 },
@@ -130,6 +154,13 @@ export async function generateLPORFPDF(
     font: font,
     color: rgb(0, 0, 0),
   });
+  page.drawText(`${formData.filedDate ?? ""}`, {
+    x: 400,
+    y: 692,
+    size: 10,
+    font: font,
+    color: rgb(0, 0, 0),
+  });
   page.drawLine({
     start: { x: 395, y: 690 },
     end: { x: 480, y: 690 },
@@ -139,6 +170,13 @@ export async function generateLPORFPDF(
   page.drawText("CLERK", {
     x: 490,
     y: 690,
+    size: 10,
+    font: font,
+    color: rgb(0, 0, 0),
+  });
+  page.drawText(`${formData.clerk ?? ""}`, {
+    x: 540,
+    y: 692,
     size: 10,
     font: font,
     color: rgb(0, 0, 0),

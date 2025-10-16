@@ -57,3 +57,21 @@ export function hasQueryParam(
   const params = getUrlSearchParams();
   return params.has(key);
 }
+
+/**
+ * Check if debug mode is enabled via URL parameter
+ * Debug mode is enabled when ?debug=true or ?showTestData=true is present
+ * @returns True if debug mode is enabled, false otherwise
+ */
+export function isDebugMode(): boolean {
+  const params = getUrlSearchParams();
+  const debug = params.get("debug");
+  const showTestData = params.get("showTestData");
+
+  return (
+    debug === "true" ||
+    debug === "1" ||
+    showTestData === "true" ||
+    showTestData === "1"
+  );
+}

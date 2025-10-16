@@ -17,6 +17,7 @@ import { AccessibleCheckbox } from "../../components/AccessibleCheckbox";
 import { AccessibleSelect } from "../../components/AccessibleSelect";
 import { AccessiblePersonList } from "../../components/AccessiblePersonList";
 import { SuccessModal } from "../../components/SuccessModal";
+import { isDebugMode } from "../../utils/queryParams";
 
 // US States and Territories options for dropdown
 const US_STATES_OPTIONS = [
@@ -339,14 +340,16 @@ export const LPORFForm: React.FC<
               {t("lporfForm.subtitle")}
             </p>
 
-            {/* Test Data Button */}
-            <button
-              type="button"
-              onClick={populateTestData}
-              className="mb-6 px-4 py-2 bg-blue-600 dark:bg-blue-700 text-white rounded hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors"
-            >
-              {t("common.populateTestData")}
-            </button>
+            {/* Test Data Button - Only shown in debug mode */}
+            {isDebugMode() && (
+              <button
+                type="button"
+                onClick={populateTestData}
+                className="mb-6 px-4 py-2 bg-blue-600 dark:bg-blue-700 text-white rounded hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors"
+              >
+                {t("common.populateTestData")}
+              </button>
+            )}
           </div>
 
           <form
