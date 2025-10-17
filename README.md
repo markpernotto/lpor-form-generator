@@ -13,7 +13,7 @@ There is only one form currently, Form F, that is meant to generate this PDF doc
 - ♿ **WCAG 2.1 AA Compliant** - Full accessibility with ARIA labels and keyboard navigation
 - 🎤 **Voice Input** - Speech-to-text support for text fields
 - 📄 **Client-Side PDF Generation** - No server required, privacy-first approach
-- 🔗 **URL Parameter Pre-population** - Pre-fill court information via query parameters
+- 🔗 **URL Parameter Pre-population** - Pre-fill court information on generated PDF via query parameters sent to the form
 - 📱 **Responsive Design** - Works seamlessly on mobile, tablet, and desktop
 - 🚀 **Embeddable** - Easy iframe integration for other websites
 
@@ -61,7 +61,7 @@ There is only one form currently, Form F, that is meant to generate this PDF doc
 ### Quick Links
 
 - 🎯 **[Live Demo & Embedding Guide](https://victorious-forest-0c177cc0f.2.azurestaticapps.net/embed-demo.html)** - Interactive examples and implementation instructions
-- 🔗 **[URL Parameters Documentation](./URL_PARAMETERS.md)** - Guide to pre-populating form fields via URL
+- 🔗 **[URL Parameters Documentation](./URL_PARAMETERS.md)** - Guide to pre-populating court/non-form editable fields via URL
 - 🎨 **[Embedding Guide](./EMBEDDING.md)** - How to embed the form on your website
 - ♿ **[Accessibility Documentation](./ACCESSIBILITY.md)** - WCAG compliance and accessibility features
 
@@ -89,6 +89,11 @@ You can easily embed this form on your website using an iframe:
 ```
 
 **Pre-populate court information:**
+
+You can send information directly to the generated PDF by passing URL parameters to a specific form. This information will not appear in the form the User completes, but in the generated PDF output.
+
+Only fields that the User won't be able to complete but would be commonly known could be used to populate this information in this one particular use case. Otherwise, it can just be left blank.
+
 ```html
 <iframe 
   src="https://victorious-forest-0c177cc0f.2.azurestaticapps.net/en/lpor_f?widget=true&court=Orleans%20Parish%20Court&number=2024-12345&division=A"
