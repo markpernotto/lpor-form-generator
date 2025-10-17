@@ -4,7 +4,6 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
-import { LPOR14Page } from "./pages/LPOR14Page";
 import { LPORFPage } from "./pages/LPORFPage";
 import "./App.css";
 
@@ -22,12 +21,6 @@ function App() {
 
         {/* Legacy route redirect to English */}
         <Route
-          path="/lpor14"
-          element={
-            <Navigate to="/en/lpor14" replace />
-          }
-        />
-        <Route
           path="/lpor_f"
           element={
             <Navigate to="/en/lpor_f" replace />
@@ -35,10 +28,6 @@ function App() {
         />
 
         {/* Language-aware routes */}
-        <Route
-          path="/:lang/lpor14"
-          element={<LPOR14Page />}
-        />
         <Route
           path="/:lang/lpor_f"
           element={<LPORFPage />}

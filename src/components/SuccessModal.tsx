@@ -4,8 +4,8 @@ import { useTranslation } from "../i18n/hooks/useTranslation";
 interface SuccessModalProps {
   isOpen: boolean;
   onClose: () => void;
-  formType: "LPOR-F" | "LPOR-14";
-  inline?: boolean; // New prop to control inline vs overlay display
+  formType: string; // e.g., "LPOR-F", future forms can use any string
+  inline?: boolean; // Controls inline vs overlay display
 }
 
 export const SuccessModal: React.FC<
