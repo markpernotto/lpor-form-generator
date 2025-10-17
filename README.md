@@ -150,11 +150,4 @@ See [ACCESSIBILITY.md](./ACCESSIBILITY.md) for detailed accessibility features a
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
-## 📄 License
-
-[Add your license information here]
-
-## 🔗 Related Projects
-
-- **[Azure Translator Script](../README_TRANSLATOR.md)** - Translate locale files using Azure Translator Service
 
