@@ -5,38 +5,48 @@ import {
   Navigate,
 } from "react-router-dom";
 import { LPORFPage } from "./pages/LPORFPage";
+import { MasterIntakePage } from "./pages/MasterIntakePage";
+import { FormStateProvider } from "./contexts/FormStateContext";
 import "./App.css";
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        {/* Root redirect to English */}
-        <Route
-          path="/"
-          element={
-            <Navigate to="/en/lpor_f" replace />
-          }
-        />
+    <FormStateProvider>
+      <Router>
+        <Routes>
+          {/* Root redirect to master intake */}
+          <Route
+            path="/"
+            element={
+              <Navigate to="/intake" replace />
+            }
+          />
 
-        {/* Legacy route redirect to English */}
-        <Route
-          path="/lpor_f"
-          element={
-            <Navigate to="/en/lpor_f" replace />
-          }
-        />
+          {/* Master intake page - new comprehensive form */}
+          <Route
+            path="/intake"
+            element={<MasterIntakePage />}
+          />
 
-        {/* Language-aware routes */}
-        <Route
-          path="/:lang/lpor_f"
-          element={<LPORFPage />}
-        />
+          {/* Legacy LPOR-F route redirect to English */}
+          <Route
+            path="/lpor_f"
+            element={
+              <Navigate to="/en/lpor_f" replace />
+            }
+          />
 
-        {/* Add more language-aware routes here for other forms */}
-        {/* Example: <Route path="/:lang/other-form" element={<OtherFormPage />} /> */}
-      </Routes>
-    </Router>
+          {/* Language-aware routes for LPOR-F (legacy) */}
+          <Route
+            path="/:lang/lpor_f"
+            element={<LPORFPage />}
+          />
+
+          {/* Add more language-aware routes here for other forms */}
+          {/* Example: <Route path="/:lang/other-form" element={<OtherFormPage />} /> */}
+        </Routes>
+      </Router>
+    </FormStateProvider>
   );
 }
 

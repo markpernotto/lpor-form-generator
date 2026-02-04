@@ -46,8 +46,8 @@ export const AccessibleRadioGroup: React.FC<
     border rounded-md p-4 transition-colors
     ${
       errorMessage
-        ? "border-red-300 bg-red-50"
-        : "border-gray-300"
+        ? "border-red-300 bg-red-50 dark:border-red-600 dark:bg-red-900/20"
+        : "border-gray-300 dark:border-gray-600"
     }
   `.trim();
 
@@ -55,8 +55,8 @@ export const AccessibleRadioGroup: React.FC<
     text-sm font-medium px-2 -ml-2
     ${
       errorMessage
-        ? "text-red-700"
-        : "text-gray-700"
+        ? "text-red-700 dark:text-red-400"
+        : "text-gray-700 dark:text-gray-200"
     }
   `.trim();
 
@@ -75,7 +75,7 @@ export const AccessibleRadioGroup: React.FC<
   `.trim();
 
   const optionLabelClasses = `
-    ml-2 text-sm text-gray-700 cursor-pointer select-none
+    ml-2 text-sm text-gray-700 dark:text-gray-200 cursor-pointer select-none
   `.trim();
 
   return (
@@ -142,7 +142,7 @@ export const AccessibleRadioGroup: React.FC<
               {option.helpText && (
                 <p
                   id={optionHelpId}
-                  className="text-xs text-gray-500 ml-6 mt-1"
+                  className="text-xs text-gray-500 dark:text-gray-400 ml-6 mt-1"
                 >
                   {option.helpText}
                 </p>
@@ -155,7 +155,7 @@ export const AccessibleRadioGroup: React.FC<
       {helpText && (
         <p
           id={helpTextId}
-          className="text-sm text-gray-600 mt-3"
+          className="text-sm text-gray-600 dark:text-gray-400 mt-3"
         >
           {helpText}
         </p>
@@ -164,7 +164,7 @@ export const AccessibleRadioGroup: React.FC<
       {errorMessage && (
         <p
           id={errorId}
-          className="text-sm text-red-600 mt-3"
+          className="text-sm text-red-600 dark:text-red-400 mt-3"
           role="alert"
           aria-live="polite"
         >
