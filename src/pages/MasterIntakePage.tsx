@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { ThemeProvider } from "../contexts/ThemeContext";
 import { ThemeToggle } from "../components/ThemeToggle";
-import { LanguageSelector } from "../components/LanguageSelector";
 import { PDFDownloadModal } from "../components/PDFDownloadModal";
 import { useFormState } from "../contexts/FormStateContext";
+import { useTranslation } from "../i18n/hooks/useTranslation";
 
 // Section imports
 import {
@@ -34,6 +34,7 @@ import {
  */
 
 export const MasterIntakePage: React.FC = () => {
+  const { t } = useTranslation();
   const { resetForm, isFormComplete } =
     useFormState();
 
@@ -75,7 +76,7 @@ export const MasterIntakePage: React.FC = () => {
 
     if (!isFormComplete) {
       alert(
-        "Please complete all required fields before submitting.",
+        t("masterIntake.submit.incompleteError"),
       );
       return;
     }
@@ -93,16 +94,16 @@ export const MasterIntakePage: React.FC = () => {
             <div className="flex items-center justify-between">
               <div>
                 <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
-                  Protection Order Application
+                  {t("masterIntake.header.title")}
                 </h1>
                 <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                  Louisiana Petition for
-                  Protection from Abuse
+                  {t(
+                    "masterIntake.header.subtitle",
+                  )}
                 </p>
               </div>
               <div className="flex items-center gap-3">
                 <ThemeToggle />
-                <LanguageSelector />
               </div>
             </div>
           </div>
@@ -112,10 +113,8 @@ export const MasterIntakePage: React.FC = () => {
         <div className="bg-red-50 dark:bg-red-900/20 border-b border-red-200 dark:border-red-800">
           <div className="max-w-4xl mx-auto px-6 py-3">
             <p className="text-sm text-red-800 dark:text-red-300">
-              <strong>⚠️ Important:</strong> Your
-              information is NOT saved. Complete
-              this form in one session. Closing
-              this page will lose all progress.
+              <strong>⚠️ Important:</strong>{" "}
+              {t("masterIntake.warnings.noSave")}
             </p>
           </div>
         </div>
@@ -129,41 +128,54 @@ export const MasterIntakePage: React.FC = () => {
             {/* Introduction */}
             <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm">
               <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-3">
-                Before You Begin
+                {t(
+                  "masterIntake.beforeYouBegin.title",
+                )}
               </h2>
               <div className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
                 <p>
-                  This form will help you petition
-                  the court for a protection order
-                  against someone who has harmed
-                  or threatened you.
+                  {t(
+                    "masterIntake.beforeYouBegin.intro",
+                  )}
                 </p>
                 <p>
-                  <strong>You will need:</strong>
+                  <strong>
+                    {t(
+                      "masterIntake.beforeYouBegin.youWillNeed",
+                    )}
+                  </strong>
                 </p>
                 <ul className="list-disc list-inside ml-4 space-y-1">
                   <li>
-                    Details about the person you
-                    need protection from
+                    {t(
+                      "masterIntake.beforeYouBegin.items.personDetails",
+                    )}
                   </li>
                   <li>
-                    Dates and descriptions of
-                    incidents
+                    {t(
+                      "masterIntake.beforeYouBegin.items.incidentDates",
+                    )}
                   </li>
                   <li>
-                    Information about any children
-                    who need protection
+                    {t(
+                      "masterIntake.beforeYouBegin.items.childrenInfo",
+                    )}
                   </li>
                   <li>
-                    Your current address (or you
-                    can keep it private)
+                    {t(
+                      "masterIntake.beforeYouBegin.items.address",
+                    )}
                   </li>
                 </ul>
                 <p className="pt-2">
                   <strong>
-                    Time to complete:
+                    {t(
+                      "masterIntake.beforeYouBegin.timeToComplete",
+                    )}
                   </strong>{" "}
-                  20-30 minutes
+                  {t(
+                    "masterIntake.beforeYouBegin.duration",
+                  )}
                 </p>
               </div>
             </div>
@@ -337,12 +349,12 @@ export const MasterIntakePage: React.FC = () => {
             {/* Progress Indicator */}
             <div className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-sm">
               <h3 className="text-md font-semibold text-gray-900 dark:text-gray-100 mb-2">
-                Form Progress
+                {t("masterIntake.progress.title")}
               </h3>
               <p className="text-sm text-gray-600 dark:text-gray-400">
-                More sections will be added as we
-                continue development. Currently
-                showing 5 of 15 sections.
+                {t(
+                  "masterIntake.progress.description",
+                )}
               </p>
             </div>
 
@@ -360,12 +372,9 @@ export const MasterIntakePage: React.FC = () => {
                     htmlFor="final-confirmation"
                     className="text-sm text-gray-700 dark:text-gray-300"
                   >
-                    I swear that everything in
-                    this petition is true to the
-                    best of my knowledge. I
-                    understand that lying on this
-                    form is perjury, a crime
-                    punishable by law.
+                    {t(
+                      "masterIntake.finalConfirmation.label",
+                    )}
                   </label>
                 </div>
 
@@ -379,8 +388,9 @@ export const MasterIntakePage: React.FC = () => {
                         : "bg-gray-300 dark:bg-gray-700 text-gray-500 dark:text-gray-400 cursor-not-allowed"
                     }`}
                   >
-                    Generate Protection Order
-                    Forms
+                    {t(
+                      "masterIntake.submit.button",
+                    )}
                   </button>
 
                   <button
@@ -388,15 +398,19 @@ export const MasterIntakePage: React.FC = () => {
                     onClick={() => {
                       if (
                         confirm(
-                          "Are you sure? This will clear all information you've entered.",
+                          t(
+                            "masterIntake.finalConfirmation.clearConfirmation",
+                          ),
                         )
                       ) {
                         resetForm();
                       }
                     }}
-                    className="px-6 py-3 font-medium rounded border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                    className="px-6 py-3 font-medium rounded border-2 border-gray-400 dark:border-gray-600 text-gray-800 dark:text-gray-300 bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
                   >
-                    Clear Form
+                    {t(
+                      "masterIntake.finalConfirmation.clearButton",
+                    )}
                   </button>
                 </div>
               </div>
@@ -408,8 +422,7 @@ export const MasterIntakePage: React.FC = () => {
         <div className="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 mt-12">
           <div className="max-w-4xl mx-auto px-6 py-6">
             <p className="text-sm text-gray-600 dark:text-gray-400 text-center">
-              Louisiana Bar Association • Domestic
-              Violence Protection Order Intake
+              {t("masterIntake.footer.text")}
             </p>
           </div>
         </div>

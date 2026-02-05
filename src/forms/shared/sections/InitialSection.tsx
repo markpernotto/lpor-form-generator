@@ -1,12 +1,8 @@
 import React from "react";
 import { useFormState } from "../../../contexts/FormStateContext";
+import { useTranslation } from "../../../i18n/hooks/useTranslation";
 import { AccessibleRadioGroup } from "../../../components/AccessibleRadioGroup";
 import { AccessibleCheckbox } from "../../../components/AccessibleCheckbox";
-import {
-  FILING_TYPES,
-  FILING_FOR_OPTIONS,
-  WHO_NEEDS_PROTECTION,
-} from "../../../constants/formOptions";
 
 /**
  * Initial Questions Section
@@ -23,6 +19,7 @@ export const InitialSection: React.FC<
 > = ({ isExpanded = true, onToggle }) => {
   const { formData, updateField } =
     useFormState();
+  const { t } = useTranslation();
 
   // Determine if section is complete
   const isComplete = Boolean(
@@ -44,6 +41,58 @@ export const InitialSection: React.FC<
     updateField("who_needs_protection", updated);
   };
 
+  // Translated options
+  const filingTypeOptions = [
+    {
+      value: "initial",
+      label: t(
+        "intake.initial.filing_type.options.initial",
+      ),
+    },
+    {
+      value: "supplemental",
+      label: t(
+        "intake.initial.filing_type.options.supplemental",
+      ),
+    },
+  ];
+
+  const filingForOptions = [
+    {
+      value: "self",
+      label: t(
+        "intake.initial.filing_for.options.self",
+      ),
+    },
+    {
+      value: "behalf",
+      label: t(
+        "intake.initial.filing_for.options.behalf",
+      ),
+    },
+  ];
+
+  const whoNeedsProtectionOptions = [
+    {
+      value: "self",
+      label: t(
+        "intake.initial.who_needs_protection.options.self",
+      ),
+    },
+    {
+      value: "children",
+      label: t(
+        "intake.initial.who_needs_protection.options.children",
+      ),
+    },
+    {
+      value: "incompetent",
+      label: t(
+        "intake.initial.who_needs_protection.options.incompetent",
+      ),
+    },
+  ];
+
   return (
     <section className="border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
       {/* Section Header */}
@@ -55,11 +104,11 @@ export const InitialSection: React.FC<
       >
         <div className="flex items-center gap-3">
           <span className="text-lg font-semibold text-gray-900 dark:text-gray-100">
-            Initial Questions
+            {t("intake.initial.sectionTitle")}
           </span>
           {isComplete && (
             <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
-              ✓ Complete
+              ✓ {t("common.complete")}
             </span>
           )}
         </div>
@@ -86,44 +135,54 @@ export const InitialSection: React.FC<
           {/* Field 1: Filing Type */}
           <AccessibleRadioGroup
             name="filing_type"
-            label="Is this your first time filing for protection or are you updating a previous request?"
+            label={t(
+              "intake.initial.filing_type.label",
+            )}
             value={formData.filing_type || ""}
             onChange={(value) =>
               updateField("filing_type", value)
             }
-            options={FILING_TYPES}
+            options={filingTypeOptions}
             required
-            helpText="Choose 'First time' if this is new, 'Update' if modifying existing petition"
+            helpText={t(
+              "intake.initial.filing_type.helpText",
+            )}
           />
 
           {/* Field 2: Filing For */}
           <AccessibleRadioGroup
             name="filing_for"
-            label="Are you filling this out for yourself or someone else?"
+            label={t(
+              "intake.initial.filing_for.label",
+            )}
             value={formData.filing_for || ""}
             onChange={(value) =>
               updateField("filing_for", value)
             }
-            options={FILING_FOR_OPTIONS}
+            options={filingForOptions}
             required
-            helpText="Choose 'For myself' if you need protection, 'For someone else' if helping another person"
+            helpText={t(
+              "intake.initial.filing_for.helpText",
+            )}
           />
 
           {/* Field 3: Who Needs Protection (Checkboxes) */}
           <fieldset className="space-y-3">
             <legend className="text-sm font-medium text-gray-900 dark:text-gray-100">
-              Who needs protection? (Check all
-              that apply)
+              {t(
+                "intake.initial.who_needs_protection.label",
+              )}
               <span className="text-red-500 ml-1">
                 *
               </span>
             </legend>
             <p className="text-sm text-gray-600 dark:text-gray-400">
-              Select everyone who needs to be
-              protected from harm
+              {t(
+                "intake.initial.who_needs_protection.helpText",
+              )}
             </p>
 
-            {WHO_NEEDS_PROTECTION.map(
+            {whoNeedsProtectionOptions.map(
               (option) => (
                 <AccessibleCheckbox
                   key={option.value}
@@ -150,8 +209,9 @@ export const InitialSection: React.FC<
                   className="text-sm text-red-600 dark:text-red-400"
                   role="alert"
                 >
-                  Please select at least one
-                  option
+                  {t(
+                    "intake.initial.who_needs_protection.validationError",
+                  )}
                 </p>
               )}
           </fieldset>

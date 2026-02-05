@@ -1,5 +1,6 @@
 import React from "react";
 import { useFormState } from "../../../contexts/FormStateContext";
+import { useTranslation } from "../../../i18n/hooks/useTranslation";
 import { AccessibleTextInput } from "../../../components/AccessibleTextInput";
 import { AccessibleDateInput } from "../../../components/AccessibleDateInput";
 import { AccessibleCheckbox } from "../../../components/AccessibleCheckbox";
@@ -19,6 +20,7 @@ export const PetitionerSection: React.FC<
 > = ({ isExpanded = true, onToggle }) => {
   const { formData, updateField } =
     useFormState();
+  const { t } = useTranslation();
 
   const isComplete = Boolean(
     formData.petitioner_full_name &&
@@ -37,11 +39,11 @@ export const PetitionerSection: React.FC<
       >
         <div className="flex items-center gap-3">
           <span className="text-lg font-semibold text-gray-900 dark:text-gray-100">
-            Your Information
+            {t("intake.petitioner.sectionTitle")}
           </span>
           {isComplete && (
             <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
-              ✓ Complete
+              ✓ {t("common.complete")}
             </span>
           )}
         </div>
@@ -66,7 +68,9 @@ export const PetitionerSection: React.FC<
         <div className="px-6 py-6 space-y-6 bg-white dark:bg-gray-800/50">
           <AccessibleTextInput
             id="petitioner-full-name"
-            label="What is your full legal name?"
+            label={t(
+              "intake.petitioner.full_name.label",
+            )}
             value={
               formData.petitioner_full_name || ""
             }
@@ -76,15 +80,21 @@ export const PetitionerSection: React.FC<
                 value,
               )
             }
-            placeholder="Enter your full legal name"
+            placeholder={t(
+              "intake.petitioner.full_name.placeholder",
+            )}
             required
-            helpText="Enter your name exactly as it appears on official documents"
+            helpText={t(
+              "intake.petitioner.full_name.helpText",
+            )}
             enableVoiceInput
           />
 
           <AccessibleDateInput
             id="petitioner-birth-date"
-            label="What is your date of birth?"
+            label={t(
+              "intake.petitioner.birth_date.label",
+            )}
             value={
               formData.petitioner_birth_date || ""
             }
@@ -95,12 +105,16 @@ export const PetitionerSection: React.FC<
               )
             }
             required
-            helpText="Format: MM/DD/YYYY"
+            helpText={t(
+              "intake.petitioner.birth_date.helpText",
+            )}
           />
 
           <AccessibleCheckbox
             id="petitioner-louisiana-resident"
-            label="I am a resident of Louisiana"
+            label={t(
+              "intake.petitioner.louisiana_resident.label",
+            )}
             checked={
               formData.petitioner_louisiana_resident ||
               false
@@ -111,7 +125,9 @@ export const PetitionerSection: React.FC<
                 checked,
               )
             }
-            helpText="You must be a Louisiana resident to use this form"
+            helpText={t(
+              "intake.petitioner.louisiana_resident.helpText",
+            )}
           />
         </div>
       )}

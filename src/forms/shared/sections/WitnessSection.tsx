@@ -3,6 +3,7 @@ import { useFormState } from "../../../contexts/FormStateContext";
 import { AccessibleCheckbox } from "../../../components/AccessibleCheckbox";
 import { AccessiblePersonList } from "../../../components/AccessiblePersonList";
 import type { PersonEntry } from "../../../components/AccessiblePersonList";
+import { useTranslation } from "../../../i18n/hooks/useTranslation";
 
 /**
  * Witness Section
@@ -22,6 +23,7 @@ export const WitnessSection: React.FC<
     updateField,
     updateMultipleFields,
   } = useFormState();
+  const { t } = useTranslation();
 
   const handleWitnessesChange = (
     witnesses: PersonEntry[],
@@ -45,7 +47,7 @@ export const WitnessSection: React.FC<
       >
         <div className="flex items-center gap-3">
           <span className="text-lg font-semibold text-gray-900 dark:text-gray-100">
-            Witnesses
+            {t("intake.witness.sectionTitle")}
           </span>
           {isComplete && (
             <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
@@ -74,20 +76,17 @@ export const WitnessSection: React.FC<
         <div className="px-6 py-6 space-y-6 bg-white dark:bg-gray-800/50">
           <div className="p-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-md">
             <p className="text-sm text-blue-800 dark:text-blue-300">
-              <strong>
-                Witnesses Strengthen Your Case:
-              </strong>{" "}
-              People who saw or heard the abuse,
-              or who you told about it afterwards,
-              can testify at your hearing. You
-              don't need witnesses to get a
-              protection order, but they can help.
+              {t(
+                "intake.witness.strengthen_case_notice",
+              )}
             </p>
           </div>
 
           <AccessibleCheckbox
             id="have-witnesses"
-            label="Do you have witnesses who can testify about the abuse?"
+            label={t(
+              "intake.witness.have_witnesses.label",
+            )}
             checked={
               formData.have_witnesses || false
             }
@@ -103,7 +102,9 @@ export const WitnessSection: React.FC<
                 });
               }
             }}
-            helpText="Check this if you have people who can testify about the abuse (not required)"
+            helpText={t(
+              "intake.witness.have_witnesses.helpText",
+            )}
           />
 
           {formData.have_witnesses && (
@@ -144,18 +145,34 @@ export const WitnessSection: React.FC<
 
               <AccessiblePersonList
                 id="witnesses"
-                label="List potential witnesses"
+                label={t(
+                  "intake.witness.witness_list_label",
+                )}
                 entries={formData.witnesses || []}
                 onEntriesChange={
                   handleWitnessesChange
                 }
-                addButtonText="Add witness"
-                emptyStateText="No witnesses added yet"
-                nameLabel="Witness name"
-                dobLabel="Date of Birth"
-                relationshipLabel="How do they know about the abuse?"
-                namePlaceholder="Full name"
-                relationshipPlaceholder="e.g., Neighbor who heard incident, Friend I told about abuse"
+                addButtonText={t(
+                  "intake.witness.add_button_text",
+                )}
+                emptyStateText={t(
+                  "intake.witness.empty_state_text",
+                )}
+                nameLabel={t(
+                  "intake.witness.witness_name_label",
+                )}
+                dobLabel={t(
+                  "intake.witness.witness_dob_label",
+                )}
+                relationshipLabel={t(
+                  "intake.witness.witness_relationship_label",
+                )}
+                namePlaceholder={t(
+                  "intake.witness.name_placeholder",
+                )}
+                relationshipPlaceholder={t(
+                  "intake.witness.relationship_placeholder",
+                )}
               />
 
               {formData.witnesses &&
@@ -195,13 +212,9 @@ export const WitnessSection: React.FC<
               undefined && (
               <div className="p-4 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-md">
                 <p className="text-sm text-gray-700 dark:text-gray-300">
-                  <strong>No witnesses?</strong>{" "}
-                  You can still get a protection
-                  order. Your own testimony under
-                  oath is evidence. Many
-                  protection orders are granted
-                  based on the victim's testimony
-                  alone.
+                  {t(
+                    "intake.witness.no_witnesses_notice",
+                  )}
                 </p>
               </div>
             )}

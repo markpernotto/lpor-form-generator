@@ -6,6 +6,7 @@ import { AccessibleTextInput } from "../../../components/AccessibleTextInput";
 import { AccessibleRadioGroup } from "../../../components/AccessibleRadioGroup";
 import { AccessibleSelect } from "../../../components/AccessibleSelect";
 import { LOUISIANA_PARISHES } from "../../../constants/formOptions";
+import { useTranslation } from "../../../i18n/hooks/useTranslation";
 
 /**
  * Legal Status Section
@@ -22,6 +23,7 @@ export const LegalStatusSection: React.FC<
 > = ({ isExpanded = true, onToggle }) => {
   const { formData, updateField } =
     useFormState();
+  const { t } = useTranslation();
 
   const showDivorceDetails =
     useConditionalDisplay(
@@ -46,7 +48,7 @@ export const LegalStatusSection: React.FC<
       >
         <div className="flex items-center gap-3">
           <span className="text-lg font-semibold text-gray-900 dark:text-gray-100">
-            Legal Status
+            {t("intake.legalStatus.sectionTitle")}
           </span>
           {isComplete && (
             <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
@@ -75,23 +77,24 @@ export const LegalStatusSection: React.FC<
         <div className="px-6 py-6 space-y-6 bg-white dark:bg-gray-800/50">
           <div className="p-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-md">
             <p className="text-sm text-blue-800 dark:text-blue-300">
-              <strong>Existing Cases:</strong>{" "}
-              Tell us about any divorce or custody
-              cases involving you and the person
-              you're afraid of. This helps the
-              court coordinate your protection
-              order with other legal proceedings.
+              {t(
+                "intake.legalStatus.existing_cases_notice",
+              )}
             </p>
           </div>
 
           <fieldset className="space-y-4">
             <legend className="text-base font-semibold text-gray-900 dark:text-gray-100 mb-2">
-              Divorce Proceedings
+              {t(
+                "intake.legalStatus.divorce_proceedings_legend",
+              )}
             </legend>
 
             <AccessibleCheckbox
               id="pending-divorce"
-              label="Is there a pending divorce case between you and this person?"
+              label={t(
+                "intake.legalStatus.pending_divorce.label",
+              )}
               checked={
                 formData.pending_divorce || false
               }
@@ -115,14 +118,18 @@ export const LegalStatusSection: React.FC<
                   );
                 }
               }}
-              helpText="Check this only if there is currently a divorce case pending"
+              helpText={t(
+                "intake.legalStatus.pending_divorce.helpText",
+              )}
             />
 
             {showDivorceDetails && (
               <>
                 <AccessibleRadioGroup
                   name="divorce-petitioner"
-                  label="Who filed for divorce?"
+                  label={t(
+                    "intake.legalStatus.divorce_petitioner.label",
+                  )}
                   value={
                     formData.divorce_petitioner ||
                     ""
@@ -136,15 +143,21 @@ export const LegalStatusSection: React.FC<
                   options={[
                     {
                       value: "i_filed",
-                      label: "I filed",
+                      label: t(
+                        "intake.legalStatus.divorce_petitioner.options.i_filed",
+                      ),
                     },
                     {
                       value: "they_filed",
-                      label: "They filed",
+                      label: t(
+                        "intake.legalStatus.divorce_petitioner.options.they_filed",
+                      ),
                     },
                     {
                       value: "joint",
-                      label: "Joint filing",
+                      label: t(
+                        "intake.legalStatus.divorce_petitioner.options.joint",
+                      ),
                     },
                   ]}
                   required
@@ -152,7 +165,9 @@ export const LegalStatusSection: React.FC<
 
                 <AccessibleSelect
                   id="divorce-parish"
-                  label="Which parish is the divorce case in?"
+                  label={t(
+                    "intake.legalStatus.divorce_parish.label",
+                  )}
                   value={
                     formData.divorce_parish || ""
                   }
@@ -168,7 +183,9 @@ export const LegalStatusSection: React.FC<
 
                 <AccessibleTextInput
                   id="divorce-case-number"
-                  label="Divorce case number (if known)"
+                  label={t(
+                    "intake.legalStatus.divorce_case_number.label",
+                  )}
                   value={
                     formData.divorce_case_number ||
                     ""
@@ -179,8 +196,12 @@ export const LegalStatusSection: React.FC<
                       value,
                     )
                   }
-                  placeholder="e.g., 2025-12345"
-                  helpText="Optional but helpful for court coordination"
+                  placeholder={t(
+                    "intake.legalStatus.divorce_case_number.placeholder",
+                  )}
+                  helpText={t(
+                    "intake.legalStatus.divorce_case_number.helpText",
+                  )}
                 />
               </>
             )}
@@ -188,12 +209,16 @@ export const LegalStatusSection: React.FC<
 
           <fieldset className="space-y-4 pt-4 border-t border-gray-200 dark:border-gray-700">
             <legend className="text-base font-semibold text-gray-900 dark:text-gray-100 mb-2">
-              Custody Proceedings
+              {t(
+                "intake.legalStatus.custody_proceedings_legend",
+              )}
             </legend>
 
             <AccessibleCheckbox
               id="pending-custody"
-              label="Is there a pending custody case?"
+              label={t(
+                "intake.legalStatus.pending_custody.label",
+              )}
               checked={
                 formData.pending_custody || false
               }
@@ -213,14 +238,18 @@ export const LegalStatusSection: React.FC<
                   );
                 }
               }}
-              helpText="Check this only if there is currently a custody case pending"
+              helpText={t(
+                "intake.legalStatus.pending_custody.helpText",
+              )}
             />
 
             {showCustodyDetails && (
               <>
                 <AccessibleSelect
                   id="custody-parish"
-                  label="Which parish is the custody case in?"
+                  label={t(
+                    "intake.legalStatus.custody_parish.label",
+                  )}
                   value={
                     formData.custody_parish || ""
                   }
@@ -236,7 +265,9 @@ export const LegalStatusSection: React.FC<
 
                 <AccessibleTextInput
                   id="custody-case-number"
-                  label="Custody case number (if known)"
+                  label={t(
+                    "intake.legalStatus.custody_case_number.label",
+                  )}
                   value={
                     formData.custody_case_number ||
                     ""
@@ -247,8 +278,12 @@ export const LegalStatusSection: React.FC<
                       value,
                     )
                   }
-                  placeholder="e.g., 2025-67890"
-                  helpText="Optional but helpful for court coordination"
+                  placeholder={t(
+                    "intake.legalStatus.custody_case_number.placeholder",
+                  )}
+                  helpText={t(
+                    "intake.legalStatus.custody_case_number.helpText",
+                  )}
                 />
               </>
             )}
@@ -256,11 +291,9 @@ export const LegalStatusSection: React.FC<
 
           <div className="p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-md">
             <p className="text-sm text-green-800 dark:text-green-300">
-              <strong>Note:</strong> If case
-              numbers are filed in different
-              parishes, the court can still
-              coordinate your protection order
-              with those proceedings.
+              {t(
+                "intake.legalStatus.coordination_notice",
+              )}
             </p>
           </div>
         </div>

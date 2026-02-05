@@ -4,6 +4,7 @@ import { useConditionalDisplay } from "../../../hooks/useConditionalDisplay";
 import { AccessibleCheckbox } from "../../../components/AccessibleCheckbox";
 import { AccessibleRadioGroup } from "../../../components/AccessibleRadioGroup";
 import { AccessibleTextInput } from "../../../components/AccessibleTextInput";
+import { useTranslation } from "../../../i18n/hooks/useTranslation";
 
 /**
  * Firearms Section
@@ -23,6 +24,7 @@ export const FirearmsSection: React.FC<
     updateField,
     updateMultipleFields,
   } = useFormState();
+  const { t } = useTranslation();
 
   const showGunDetails = useConditionalDisplay(
     "show_if:abuser_has_guns=true",
@@ -41,7 +43,7 @@ export const FirearmsSection: React.FC<
       >
         <div className="flex items-center gap-3">
           <span className="text-lg font-semibold text-gray-900 dark:text-gray-100">
-            Firearms & Weapons
+            {t("intake.firearms.sectionTitle")}
           </span>
           {isComplete && (
             <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
@@ -70,19 +72,17 @@ export const FirearmsSection: React.FC<
         <div className="px-6 py-6 space-y-6 bg-white dark:bg-gray-800/50">
           <div className="p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-md">
             <p className="text-sm text-red-800 dark:text-red-300">
-              <strong>
-                ⚠️ Important Safety Information:
-              </strong>{" "}
-              Access to firearms significantly
-              increases danger in domestic
-              violence situations. This
-              information helps protect you.
+              {t(
+                "intake.firearms.safety_warning",
+              )}
             </p>
           </div>
 
           <AccessibleCheckbox
             id="abuser-has-guns"
-            label="Does the person you're afraid of have access to guns or other weapons?"
+            label={t(
+              "intake.firearms.abuser_has_guns.label",
+            )}
             checked={
               formData.abuser_has_guns || false
             }
@@ -101,14 +101,18 @@ export const FirearmsSection: React.FC<
                 });
               }
             }}
-            helpText="Check this if they have access to guns they own, have in their home, car, or can easily get"
+            helpText={t(
+              "intake.firearms.abuser_has_guns.helpText",
+            )}
           />
 
           {showGunDetails && (
             <>
               <AccessibleRadioGroup
                 name="gun-threats"
-                label="Have they ever threatened you with a weapon?"
+                label={t(
+                  "intake.firearms.gun_threats.label",
+                )}
                 value={
                   formData.gun_threats === true
                     ? "yes"
@@ -126,16 +130,30 @@ export const FirearmsSection: React.FC<
                   );
                 }}
                 options={[
-                  { value: "yes", label: "Yes" },
-                  { value: "no", label: "No" },
+                  {
+                    value: "yes",
+                    label: t(
+                      "intake.firearms.gun_threats.options.yes",
+                    ),
+                  },
+                  {
+                    value: "no",
+                    label: t(
+                      "intake.firearms.gun_threats.options.no",
+                    ),
+                  },
                 ]}
                 required
-                helpText="Any type of weapon, including guns, knives, or other objects"
+                helpText={t(
+                  "intake.firearms.gun_threats.helpText",
+                )}
               />
 
               <AccessibleCheckbox
                 id="concealed-carry"
-                label="Do you know if they have a concealed carry permit?"
+                label={t(
+                  "intake.firearms.concealed_carry.label",
+                )}
                 checked={
                   formData.concealed_carry ||
                   false
@@ -146,12 +164,16 @@ export const FirearmsSection: React.FC<
                     checked,
                   )
                 }
-                helpText="License to carry hidden weapons (optional)"
+                helpText={t(
+                  "intake.firearms.concealed_carry.helpText",
+                )}
               />
 
               <AccessibleTextInput
                 id="number-of-guns"
-                label="Approximately how many firearms do they have?"
+                label={t(
+                  "intake.firearms.number_of_guns.label",
+                )}
                 value={
                   formData.number_of_guns?.toString() ||
                   ""
@@ -164,8 +186,12 @@ export const FirearmsSection: React.FC<
                       : undefined,
                   )
                 }
-                placeholder="Your best estimate"
-                helpText="Enter a number if you know, or leave blank"
+                placeholder={t(
+                  "intake.firearms.number_of_guns.placeholder",
+                )}
+                helpText={t(
+                  "intake.firearms.number_of_guns.helpText",
+                )}
               />
 
               <div className="p-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-md">

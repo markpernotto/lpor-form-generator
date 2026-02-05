@@ -4,17 +4,9 @@ import { useTheme } from "../contexts/ThemeContext";
 export const ThemeToggle: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
 
-  console.log(
-    "ThemeToggle rendering, current theme:",
-    theme,
-  );
-
   return (
     <button
-      onClick={() => {
-        console.log("Button clicked!");
-        toggleTheme();
-      }}
+      onClick={toggleTheme}
       aria-label={
         theme === "light"
           ? "Switch to dark mode"

@@ -20,20 +20,15 @@ const resources = {
 
 i18n.use(initReactI18next).init({
   resources,
-  lng: "en", // default language
+  lng: "en",
   fallbackLng: "en",
 
   interpolation: {
     escapeValue: false, // React already escapes values
   },
 
-  // Disable automatic language detection to prevent conflicts
-  detection: {
-    order: [], // Empty array disables detection
-  },
-
-  // Define supported languages
-  supportedLngs: ["en", "es", "fr"],
+  // Only support English for now
+  supportedLngs: ["en"],
 });
 
 export default i18n;

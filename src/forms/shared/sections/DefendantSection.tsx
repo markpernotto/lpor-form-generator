@@ -1,5 +1,6 @@
 import React from "react";
 import { useFormState } from "../../../contexts/FormStateContext";
+import { useTranslation } from "../../../i18n/hooks/useTranslation";
 import { useConditionalDisplay } from "../../../hooks/useConditionalDisplay";
 import { AccessibleTextInput } from "../../../components/AccessibleTextInput";
 import { AccessibleCheckbox } from "../../../components/AccessibleCheckbox";
@@ -22,6 +23,7 @@ export const DefendantSection: React.FC<
 > = ({ isExpanded = true, onToggle }) => {
   const { formData, updateField } =
     useFormState();
+  const { t } = useTranslation();
 
   const showParentGuardian =
     useConditionalDisplay(
@@ -53,11 +55,11 @@ export const DefendantSection: React.FC<
       >
         <div className="flex items-center gap-3">
           <span className="text-lg font-semibold text-gray-900 dark:text-gray-100">
-            Person You Need Protection From
+            {t("intake.defendant.sectionTitle")}
           </span>
           {isComplete && (
             <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
-              ✓ Complete
+              ✓ {t("common.complete")}
             </span>
           )}
         </div>
@@ -82,19 +84,25 @@ export const DefendantSection: React.FC<
         <div className="px-6 py-6 space-y-6 bg-white dark:bg-gray-800/50">
           <AccessibleTextInput
             id="abuser-name"
-            label="What is the full name of the person you need protection from?"
+            label={t(
+              "intake.defendant.name.label",
+            )}
             value={formData.abuser_name || ""}
             onChange={(value) =>
               updateField("abuser_name", value)
             }
-            placeholder="Enter their legal name if you know it"
+            placeholder={t(
+              "intake.defendant.name.placeholder",
+            )}
             required
             enableVoiceInput
           />
 
           <AccessibleCheckbox
             id="abuser-is-minor"
-            label="This person is under 18 years old"
+            label={t(
+              "intake.defendant.is_minor.label",
+            )}
             checked={
               formData.abuser_is_minor || false
             }
@@ -104,13 +112,17 @@ export const DefendantSection: React.FC<
                 checked,
               )
             }
-            helpText="Check this only if the person you need protection from is a minor"
+            helpText={t(
+              "intake.defendant.is_minor.helpText",
+            )}
           />
 
           {showParentGuardian && (
             <AccessibleTextInput
               id="parent-guardian-name"
-              label="What is the name of their parent or guardian?"
+              label={t(
+                "intake.defendant.parent_guardian.label",
+              )}
               value={
                 formData.parent_guardian_name ||
                 ""
@@ -121,9 +133,13 @@ export const DefendantSection: React.FC<
                   value,
                 )
               }
-              placeholder="Parent or guardian's name"
+              placeholder={t(
+                "intake.defendant.parent_guardian.placeholder",
+              )}
               required
-              helpText="Required if abuser is under 18"
+              helpText={t(
+                "intake.defendant.parent_guardian.helpText",
+              )}
               enableVoiceInput
             />
           )}
@@ -131,7 +147,9 @@ export const DefendantSection: React.FC<
           <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
             <AccessibleRadioGroup
               name="know-abuser-address"
-              label="Do you know where this person lives or works?"
+              label={t(
+                "intake.defendant.know_address.label",
+              )}
               value={
                 formData.know_abuser_address ===
                 true
@@ -150,17 +168,21 @@ export const DefendantSection: React.FC<
               options={[
                 {
                   value: "yes",
-                  label:
-                    "Yes, I know where they can be found",
+                  label: t(
+                    "intake.defendant.know_address.options.yes",
+                  ),
                 },
                 {
                   value: "no",
-                  label:
-                    "No, I don't know their address",
+                  label: t(
+                    "intake.defendant.know_address.options.no",
+                  ),
                 },
               ]}
               required
-              helpText="We need an address to serve them with court papers. If you don't know, the court may help locate them."
+              helpText={t(
+                "intake.defendant.know_address.helpText",
+              )}
             />
           </div>
 
@@ -168,15 +190,17 @@ export const DefendantSection: React.FC<
             <>
               <div className="p-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-md">
                 <p className="text-sm text-blue-800 dark:text-blue-300">
-                  Provide an address where they
-                  can be found. This can be their
-                  home or work address.
+                  {t(
+                    "intake.defendant.address_info",
+                  )}
                 </p>
               </div>
 
               <AccessibleSelect
                 id="abuser-parish"
-                label="Which Louisiana parish does this person live in?"
+                label={t(
+                  "intake.defendant.parish.label",
+                )}
                 value={
                   formData.abuser_parish || ""
                 }
@@ -193,7 +217,9 @@ export const DefendantSection: React.FC<
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <AccessibleTextInput
                   id="abuser-address-street"
-                  label="Street Address"
+                  label={t(
+                    "intake.defendant.address.street.label",
+                  )}
                   value={
                     formData.abuser_address_street ||
                     ""
@@ -204,14 +230,18 @@ export const DefendantSection: React.FC<
                       value,
                     )
                   }
-                  placeholder="Number and street name"
+                  placeholder={t(
+                    "intake.defendant.address.street.placeholder",
+                  )}
                   required
                   enableVoiceInput
                 />
 
                 <AccessibleTextInput
                   id="abuser-address-apt"
-                  label="Apartment/Unit Number"
+                  label={t(
+                    "intake.defendant.address.apt.label",
+                  )}
                   value={
                     formData.abuser_address_apt ||
                     ""
@@ -222,7 +252,9 @@ export const DefendantSection: React.FC<
                       value,
                     )
                   }
-                  placeholder="Apt, Suite, Unit (optional)"
+                  placeholder={t(
+                    "intake.defendant.address.apt.placeholder",
+                  )}
                   enableVoiceInput
                 />
               </div>
@@ -230,7 +262,9 @@ export const DefendantSection: React.FC<
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <AccessibleTextInput
                   id="abuser-address-city"
-                  label="City"
+                  label={t(
+                    "intake.defendant.address.city.label",
+                  )}
                   value={
                     formData.abuser_address_city ||
                     ""
@@ -241,14 +275,18 @@ export const DefendantSection: React.FC<
                       value,
                     )
                   }
-                  placeholder="City"
+                  placeholder={t(
+                    "intake.defendant.address.city.placeholder",
+                  )}
                   required
                   enableVoiceInput
                 />
 
                 <AccessibleTextInput
                   id="abuser-address-state"
-                  label="State"
+                  label={t(
+                    "intake.defendant.address.state.label",
+                  )}
                   value={
                     formData.abuser_address_state ||
                     "LA"
@@ -259,13 +297,17 @@ export const DefendantSection: React.FC<
                       value,
                     )
                   }
-                  placeholder="State"
+                  placeholder={t(
+                    "intake.defendant.address.state.placeholder",
+                  )}
                   required
                 />
 
                 <AccessibleTextInput
                   id="abuser-address-zip"
-                  label="ZIP Code"
+                  label={t(
+                    "intake.defendant.address.zip.label",
+                  )}
                   value={
                     formData.abuser_address_zip ||
                     ""
@@ -276,7 +318,9 @@ export const DefendantSection: React.FC<
                       value,
                     )
                   }
-                  placeholder="5-digit ZIP"
+                  placeholder={t(
+                    "intake.defendant.address.zip.placeholder",
+                  )}
                   required
                 />
               </div>

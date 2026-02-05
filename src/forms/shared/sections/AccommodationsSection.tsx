@@ -4,6 +4,7 @@ import { useConditionalDisplay } from "../../../hooks/useConditionalDisplay";
 import { AccessibleRadioGroup } from "../../../components/AccessibleRadioGroup";
 import { AccessibleTextInput } from "../../../components/AccessibleTextInput";
 import { AccessibleCheckbox } from "../../../components/AccessibleCheckbox";
+import { useTranslation } from "../../../i18n/hooks/useTranslation";
 
 /**
  * Accommodations Section
@@ -20,6 +21,7 @@ export const AccommodationsSection: React.FC<
 > = ({ isExpanded = true, onToggle }) => {
   const { formData, updateField } =
     useFormState();
+  const { t } = useTranslation();
 
   const showInterpreterLanguage =
     useConditionalDisplay(
@@ -45,7 +47,9 @@ export const AccommodationsSection: React.FC<
       >
         <div className="flex items-center gap-3">
           <span className="text-lg font-semibold text-gray-900 dark:text-gray-100">
-            Court Accommodations
+            {t(
+              "intake.accommodations.sectionTitle",
+            )}
           </span>
           {isComplete && (
             <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
@@ -74,16 +78,17 @@ export const AccommodationsSection: React.FC<
         <div className="px-6 py-6 space-y-6 bg-white dark:bg-gray-800/50">
           <div className="p-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-md">
             <p className="text-sm text-blue-800 dark:text-blue-300">
-              <strong>Your Rights:</strong> The
-              court must provide reasonable
-              accommodations to ensure you can
-              participate fully in your hearing.
+              {t(
+                "intake.accommodations.rights_notice",
+              )}
             </p>
           </div>
 
           <AccessibleRadioGroup
             name="need-interpreter"
-            label="Do you need an interpreter for your court hearing?"
+            label={t(
+              "intake.accommodations.need_interpreter.label",
+            )}
             value={
               formData.need_interpreter === true
                 ? "yes"
@@ -108,23 +113,29 @@ export const AccommodationsSection: React.FC<
             options={[
               {
                 value: "yes",
-                label:
-                  "Yes, I need an interpreter",
+                label: t(
+                  "intake.accommodations.need_interpreter.options.yes",
+                ),
               },
               {
                 value: "no",
-                label:
-                  "No, I don't need an interpreter",
+                label: t(
+                  "intake.accommodations.need_interpreter.options.no",
+                ),
               },
             ]}
             required
-            helpText="Available at no cost to you"
+            helpText={t(
+              "intake.accommodations.need_interpreter.helpText",
+            )}
           />
 
           {showInterpreterLanguage && (
             <AccessibleTextInput
               id="interpreter-language"
-              label="What language do you need?"
+              label={t(
+                "intake.accommodations.interpreter_language.label",
+              )}
               value={
                 formData.interpreter_language ||
                 ""
@@ -135,15 +146,21 @@ export const AccommodationsSection: React.FC<
                   value,
                 )
               }
-              placeholder="e.g., Spanish, Vietnamese, American Sign Language"
+              placeholder={t(
+                "intake.accommodations.interpreter_language.placeholder",
+              )}
               required
-              helpText="The court will arrange for a qualified interpreter"
+              helpText={t(
+                "intake.accommodations.interpreter_language.helpText",
+              )}
             />
           )}
 
           <AccessibleRadioGroup
             name="witness-interpreter"
-            label="Will any witnesses need an interpreter?"
+            label={t(
+              "intake.accommodations.witness_interpreter.label",
+            )}
             value={
               formData.witness_interpreter ===
               true
@@ -169,23 +186,29 @@ export const AccommodationsSection: React.FC<
             options={[
               {
                 value: "yes",
-                label:
-                  "Yes, witnesses need an interpreter",
+                label: t(
+                  "intake.accommodations.witness_interpreter.options.yes",
+                ),
               },
               {
                 value: "no",
-                label:
-                  "No, witnesses don't need an interpreter",
+                label: t(
+                  "intake.accommodations.witness_interpreter.options.no",
+                ),
               },
             ]}
             required
-            helpText="Tell us if any witnesses will need language assistance"
+            helpText={t(
+              "intake.accommodations.witness_interpreter.helpText",
+            )}
           />
 
           {showWitnessLanguage && (
             <AccessibleTextInput
               id="witness-language"
-              label="What language do witnesses need?"
+              label={t(
+                "intake.accommodations.witness_language.label",
+              )}
               value={
                 formData.witness_language || ""
               }
@@ -195,15 +218,21 @@ export const AccommodationsSection: React.FC<
                   value,
                 )
               }
-              placeholder="e.g., Spanish, Vietnamese"
+              placeholder={t(
+                "intake.accommodations.witness_language.placeholder",
+              )}
               required
-              helpText="Specify the language witnesses speak"
+              helpText={t(
+                "intake.accommodations.witness_language.helpText",
+              )}
             />
           )}
 
           <AccessibleCheckbox
             id="disability-accommodations"
-            label="Do you need other accommodations due to a disability?"
+            label={t(
+              "intake.accommodations.disability_accommodations.label",
+            )}
             checked={
               formData.disability_accommodations ||
               false
@@ -214,15 +243,16 @@ export const AccommodationsSection: React.FC<
                 checked,
               )
             }
-            helpText="Wheelchair access, hearing assistance, etc."
+            helpText={t(
+              "intake.accommodations.disability_accommodations.helpText",
+            )}
           />
 
           <div className="p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-md">
             <p className="text-sm text-green-800 dark:text-green-300">
-              <strong>Note:</strong> The court
-              clerk will contact you about
-              accommodation arrangements after you
-              file your petition.
+              {t(
+                "intake.accommodations.clerk_notice",
+              )}
             </p>
           </div>
         </div>

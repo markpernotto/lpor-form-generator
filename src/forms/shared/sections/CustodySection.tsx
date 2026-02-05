@@ -4,6 +4,7 @@ import { useConditionalDisplay } from "../../../hooks/useConditionalDisplay";
 import { AccessibleCheckbox } from "../../../components/AccessibleCheckbox";
 import { AccessibleSelect } from "../../../components/AccessibleSelect";
 import { CHILD_LOCATIONS } from "../../../constants/formOptions";
+import { useTranslation } from "../../../i18n/hooks/useTranslation";
 
 /**
  * Custody Section
@@ -20,6 +21,7 @@ export const CustodySection: React.FC<
 > = ({ isExpanded = true, onToggle }) => {
   const { formData, updateField } =
     useFormState();
+  const { t } = useTranslation();
 
   const showCustodyOptions =
     useConditionalDisplay(
@@ -41,7 +43,7 @@ export const CustodySection: React.FC<
       >
         <div className="flex items-center gap-3">
           <span className="text-lg font-semibold text-gray-900 dark:text-gray-100">
-            Temporary Custody
+            {t("intake.custody.sectionTitle")}
           </span>
           {isComplete && (
             <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
@@ -71,31 +73,26 @@ export const CustodySection: React.FC<
           {!showCustodyOptions ? (
             <div className="p-4 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-md">
               <p className="text-sm text-gray-700 dark:text-gray-300">
-                This section only applies if you
-                have children. You indicated
-                earlier that you don't have
-                children, so you can skip this
-                section.
+                {t(
+                  "intake.custody.not_applicable_notice",
+                )}
               </p>
             </div>
           ) : (
             <>
               <div className="p-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-md">
                 <p className="text-sm text-blue-800 dark:text-blue-300">
-                  <strong>
-                    Temporary Custody:
-                  </strong>{" "}
-                  The court can grant you
-                  temporary custody of your
-                  children until a full hearing.
-                  This is separate from permanent
-                  custody arrangements.
+                  {t(
+                    "intake.custody.temporary_custody_notice",
+                  )}
                 </p>
               </div>
 
               <AccessibleCheckbox
                 id="request-temporary-custody"
-                label="Do you want temporary custody of your children?"
+                label={t(
+                  "intake.custody.request_temporary_custody.label",
+                )}
                 checked={
                   formData.request_temporary_custody ||
                   false
@@ -106,12 +103,16 @@ export const CustodySection: React.FC<
                     checked,
                   )
                 }
-                helpText="Check this if you want temporary custody until the hearing"
+                helpText={t(
+                  "intake.custody.request_temporary_custody.helpText",
+                )}
               />
 
               <AccessibleSelect
                 id="children-current-location"
-                label="Where are your children right now?"
+                label={t(
+                  "intake.custody.children_current_location.label",
+                )}
                 value={
                   formData.children_current_location ||
                   ""
@@ -124,12 +125,16 @@ export const CustodySection: React.FC<
                 }
                 options={CHILD_LOCATIONS}
                 required
-                helpText="Current physical location of the children"
+                helpText={t(
+                  "intake.custody.children_current_location.helpText",
+                )}
               />
 
               <AccessibleCheckbox
                 id="police-retrieve-children"
-                label="Do you need police assistance to safely retrieve your children?"
+                label={t(
+                  "intake.custody.police_retrieve_children.label",
+                )}
                 checked={
                   formData.police_retrieve_children ||
                   false
@@ -140,12 +145,16 @@ export const CustodySection: React.FC<
                     checked,
                   )
                 }
-                helpText="Court can order police escort for child retrieval"
+                helpText={t(
+                  "intake.custody.police_retrieve_children.helpText",
+                )}
               />
 
               <AccessibleCheckbox
                 id="supervised-visitation"
-                label="Should the abuser's visitation be supervised?"
+                label={t(
+                  "intake.custody.supervised_visitation.label",
+                )}
                 checked={
                   formData.supervised_visitation ||
                   false
@@ -156,29 +165,24 @@ export const CustodySection: React.FC<
                     checked,
                   )
                 }
-                helpText="Require supervision if they get visitation rights"
+                helpText={t(
+                  "intake.custody.supervised_visitation.helpText",
+                )}
               />
 
               <div className="p-4 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-md">
                 <p className="text-sm text-amber-800 dark:text-amber-300">
-                  <strong>Child Safety:</strong>{" "}
-                  If your children witnessed abuse
-                  or were directly harmed,
-                  temporary custody helps protect
-                  them immediately. The court will
-                  schedule a full hearing within
-                  30 days.
+                  {t(
+                    "intake.custody.child_safety_notice",
+                  )}
                 </p>
               </div>
 
               <div className="p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-md">
                 <p className="text-sm text-green-800 dark:text-green-300">
-                  <strong>Note:</strong> Temporary
-                  custody in a protection order
-                  does not replace or override
-                  existing custody orders. The
-                  court will coordinate with any
-                  ongoing custody proceedings.
+                  {t(
+                    "intake.custody.coordination_notice",
+                  )}
                 </p>
               </div>
             </>

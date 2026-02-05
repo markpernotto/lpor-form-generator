@@ -1,5 +1,6 @@
 import React from "react";
 import { useFormState } from "../../../contexts/FormStateContext";
+import { useTranslation } from "../../../i18n/hooks/useTranslation";
 import { useConditionalDisplay } from "../../../hooks/useConditionalDisplay";
 import { AccessibleCheckbox } from "../../../components/AccessibleCheckbox";
 import { AccessibleTextInput } from "../../../components/AccessibleTextInput";
@@ -19,6 +20,7 @@ export const SafetySection: React.FC<
 > = ({ isExpanded = true, onToggle }) => {
   const { formData, updateField } =
     useFormState();
+  const { t } = useTranslation();
 
   // Show address fields only if NOT keeping address private
   const showAddressFields = useConditionalDisplay(
@@ -43,11 +45,11 @@ export const SafetySection: React.FC<
       >
         <div className="flex items-center gap-3">
           <span className="text-lg font-semibold text-gray-900 dark:text-gray-100">
-            Safety & Address
+            {t("intake.safety.sectionTitle")}
           </span>
           {isComplete && (
             <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
-              ✓ Complete
+              ✓ {t("common.complete")}
             </span>
           )}
         </div>
@@ -72,17 +74,20 @@ export const SafetySection: React.FC<
         <div className="px-6 py-6 space-y-6 bg-white dark:bg-gray-800/50">
           <div className="p-4 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-md">
             <p className="text-sm text-amber-800 dark:text-amber-300">
-              <strong>Privacy Protection:</strong>{" "}
-              If you don't want the abuser to know
-              your address, check the box below.
-              Your address will be kept
-              confidential in court records.
+              <strong>
+                {t(
+                  "intake.safety.privacy_warning_title",
+                )}
+              </strong>{" "}
+              {t("intake.safety.privacy_warning")}
             </p>
           </div>
 
           <AccessibleCheckbox
             id="keep-address-private"
-            label="Keep my address secret from the person I'm afraid of"
+            label={t(
+              "intake.safety.keep_private.label",
+            )}
             checked={
               formData.keep_address_private ||
               false
@@ -93,25 +98,32 @@ export const SafetySection: React.FC<
                 checked,
               )
             }
-            helpText="Select this if sharing your address could put you in danger"
+            helpText={t(
+              "intake.safety.keep_private.helpText",
+            )}
           />
 
           {showAddressFields && (
             <>
               <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
                 <h3 className="text-md font-medium text-gray-900 dark:text-gray-100 mb-4">
-                  Your Current Address
+                  {t(
+                    "intake.safety.address_title",
+                  )}
                 </h3>
                 <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
-                  This address will appear in
-                  court documents.
+                  {t(
+                    "intake.safety.address_note",
+                  )}
                 </p>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <AccessibleTextInput
                   id="current-address-street"
-                  label="Street Address"
+                  label={t(
+                    "intake.safety.address.street.label",
+                  )}
                   value={
                     formData.current_address_street ||
                     ""
@@ -122,14 +134,18 @@ export const SafetySection: React.FC<
                       value,
                     )
                   }
-                  placeholder="Number and street name"
+                  placeholder={t(
+                    "intake.safety.address.street.placeholder",
+                  )}
                   required
                   enableVoiceInput
                 />
 
                 <AccessibleTextInput
                   id="current-address-apt"
-                  label="Apartment/Unit Number"
+                  label={t(
+                    "intake.safety.address.apt.label",
+                  )}
                   value={
                     formData.current_address_apt ||
                     ""
@@ -140,7 +156,9 @@ export const SafetySection: React.FC<
                       value,
                     )
                   }
-                  placeholder="Apt, Suite, Unit (optional)"
+                  placeholder={t(
+                    "intake.safety.address.apt.placeholder",
+                  )}
                   enableVoiceInput
                 />
               </div>
@@ -148,7 +166,9 @@ export const SafetySection: React.FC<
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <AccessibleTextInput
                   id="current-address-city"
-                  label="City"
+                  label={t(
+                    "intake.safety.address.city.label",
+                  )}
                   value={
                     formData.current_address_city ||
                     ""
@@ -159,14 +179,18 @@ export const SafetySection: React.FC<
                       value,
                     )
                   }
-                  placeholder="City"
+                  placeholder={t(
+                    "intake.safety.address.city.placeholder",
+                  )}
                   required
                   enableVoiceInput
                 />
 
                 <AccessibleTextInput
                   id="current-address-state"
-                  label="State"
+                  label={t(
+                    "intake.safety.address.state.label",
+                  )}
                   value={
                     formData.current_address_state ||
                     "LA"
@@ -177,13 +201,17 @@ export const SafetySection: React.FC<
                       value,
                     )
                   }
-                  placeholder="LA"
+                  placeholder={t(
+                    "intake.safety.address.state.placeholder",
+                  )}
                   required
                 />
 
                 <AccessibleTextInput
                   id="current-address-zip"
-                  label="ZIP Code"
+                  label={t(
+                    "intake.safety.address.zip.label",
+                  )}
                   value={
                     formData.current_address_zip ||
                     ""
@@ -194,7 +222,9 @@ export const SafetySection: React.FC<
                       value,
                     )
                   }
-                  placeholder="5-digit ZIP"
+                  placeholder={t(
+                    "intake.safety.address.zip.placeholder",
+                  )}
                   required
                 />
               </div>

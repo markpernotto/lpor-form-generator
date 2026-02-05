@@ -6,6 +6,7 @@ import {
   LOUISIANA_PARISHES,
   VENUE_REASONS,
 } from "../../../constants/formOptions";
+import { useTranslation } from "../../../i18n/hooks/useTranslation";
 
 /**
  * Venue Section
@@ -22,6 +23,7 @@ export const VenueSection: React.FC<
 > = ({ isExpanded = true, onToggle }) => {
   const { formData, updateField } =
     useFormState();
+  const { t } = useTranslation();
 
   const handleVenueReasonsToggle = (
     reason: string,
@@ -53,7 +55,7 @@ export const VenueSection: React.FC<
       >
         <div className="flex items-center gap-3">
           <span className="text-lg font-semibold text-gray-900 dark:text-gray-100">
-            Filing Location
+            {t("intake.venue.sectionTitle")}
           </span>
           {isComplete && (
             <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
@@ -82,30 +84,34 @@ export const VenueSection: React.FC<
         <div className="px-6 py-6 space-y-6 bg-white dark:bg-gray-800/50">
           <div className="p-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-md">
             <p className="text-sm text-blue-800 dark:text-blue-300">
-              <strong>Where to File:</strong> You
-              must file in a parish where either
-              you live, the abuser lives, or where
-              the abuse happened. Choose the most
-              convenient location.
+              {t(
+                "intake.venue.where_to_file_notice",
+              )}
             </p>
           </div>
 
           <AccessibleSelect
             id="filing-parish"
-            label="Which parish will you file this petition in?"
+            label={t(
+              "intake.venue.filing_parish.label",
+            )}
             value={formData.filing_parish || ""}
             onChange={(value) =>
               updateField("filing_parish", value)
             }
             options={LOUISIANA_PARISHES}
             required
-            helpText="Select the Louisiana parish courthouse where you'll file"
+            helpText={t(
+              "intake.venue.filing_parish.helpText",
+            )}
           />
 
           <fieldset>
             <legend className="text-base font-semibold text-gray-900 dark:text-gray-100 mb-4">
-              Why are you filing in this parish?
-              (Check all that apply) *
+              {t(
+                "intake.venue.venue_reasons.label",
+              )}{" "}
+              *
             </legend>
 
             <div className="space-y-3">
@@ -127,16 +133,24 @@ export const VenueSection: React.FC<
                   }
                   helpText={
                     reason.value === "i_live_here"
-                      ? "Your current residence"
+                      ? t(
+                          "intake.venue.venue_reasons.helpText.i_live_here",
+                        )
                       : reason.value ===
                           "abuser_lives_here"
-                        ? "Where they currently live"
+                        ? t(
+                            "intake.venue.venue_reasons.helpText.abuser_lives_here",
+                          )
                         : reason.value ===
                             "abuse_happened_here"
-                          ? "Where incidents occurred"
+                          ? t(
+                              "intake.venue.venue_reasons.helpText.abuse_happened_here",
+                            )
                           : reason.value ===
                               "children_live_here"
-                            ? "Where your children reside"
+                            ? t(
+                                "intake.venue.venue_reasons.helpText.children_live_here",
+                              )
                             : undefined
                   }
                 />
@@ -147,18 +161,18 @@ export const VenueSection: React.FC<
           {!formData.venue_reasons ||
           formData.venue_reasons.length === 0 ? (
             <p className="text-sm text-red-600 dark:text-red-400">
-              * Please select at least one reason
+              *{" "}
+              {t(
+                "intake.venue.venue_reasons.validation_error",
+              )}
             </p>
           ) : null}
 
           <div className="p-4 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-md">
             <p className="text-sm text-amber-800 dark:text-amber-300">
-              <strong>Important:</strong> The
-              court must have jurisdiction over
-              your case. If you're unsure which
-              parish to choose, consider filing
-              where you currently live for safety
-              and convenience.
+              {t(
+                "intake.venue.jurisdiction_notice",
+              )}
             </p>
           </div>
         </div>

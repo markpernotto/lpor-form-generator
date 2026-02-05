@@ -5,6 +5,7 @@ import { AccessibleCheckbox } from "../../../components/AccessibleCheckbox";
 import { AccessibleTextInput } from "../../../components/AccessibleTextInput";
 import { AccessibleSelect } from "../../../components/AccessibleSelect";
 import { HOME_OWNERSHIP } from "../../../constants/formOptions";
+import { useTranslation } from "../../../i18n/hooks/useTranslation";
 
 /**
  * Property Section
@@ -21,6 +22,7 @@ export const PropertySection: React.FC<
 > = ({ isExpanded = true, onToggle }) => {
   const { formData, updateField } =
     useFormState();
+  const { t } = useTranslation();
 
   const showExclusiveUse = useConditionalDisplay(
     "show_if:shared_residence=true",
@@ -39,7 +41,7 @@ export const PropertySection: React.FC<
       >
         <div className="flex items-center gap-3">
           <span className="text-lg font-semibold text-gray-900 dark:text-gray-100">
-            Property & Pets
+            {t("intake.property.sectionTitle")}
           </span>
           {isComplete && (
             <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
@@ -68,23 +70,24 @@ export const PropertySection: React.FC<
         <div className="px-6 py-6 space-y-6 bg-white dark:bg-gray-800/50">
           <div className="p-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-md">
             <p className="text-sm text-blue-800 dark:text-blue-300">
-              <strong>
-                Property Protection:
-              </strong>{" "}
-              The court can order exclusive use of
-              your home and protect your personal
-              property and pets.
+              {t(
+                "intake.property.property_notice",
+              )}
             </p>
           </div>
 
           <fieldset className="space-y-4">
             <legend className="text-base font-semibold text-gray-900 dark:text-gray-100 mb-2">
-              Shared Residence
+              {t(
+                "intake.property.shared_residence_legend",
+              )}
             </legend>
 
             <AccessibleCheckbox
               id="shared-residence"
-              label="Do you and the abuser share a residence?"
+              label={t(
+                "intake.property.shared_residence.label",
+              )}
               checked={
                 formData.shared_residence || false
               }
@@ -104,14 +107,18 @@ export const PropertySection: React.FC<
                   );
                 }
               }}
-              helpText="Check this if you currently live together or recently lived together"
+              helpText={t(
+                "intake.property.shared_residence.helpText",
+              )}
             />
 
             {showExclusiveUse && (
               <>
                 <AccessibleCheckbox
                   id="request-exclusive-use"
-                  label="Do you want exclusive use of the home?"
+                  label={t(
+                    "intake.property.request_exclusive_use.label",
+                  )}
                   checked={
                     formData.request_exclusive_use ||
                     false
@@ -122,12 +129,16 @@ export const PropertySection: React.FC<
                       checked,
                     )
                   }
-                  helpText="Order them to leave and give you sole possession"
+                  helpText={t(
+                    "intake.property.request_exclusive_use.helpText",
+                  )}
                 />
 
                 <AccessibleSelect
                   id="home-ownership"
-                  label="Who owns or leases the home?"
+                  label={t(
+                    "intake.property.home_ownership.label",
+                  )}
                   value={
                     formData.home_ownership || ""
                   }
@@ -139,7 +150,9 @@ export const PropertySection: React.FC<
                   }
                   options={HOME_OWNERSHIP}
                   required
-                  helpText="Helps determine property rights"
+                  helpText={t(
+                    "intake.property.home_ownership.helpText",
+                  )}
                 />
               </>
             )}
@@ -147,12 +160,16 @@ export const PropertySection: React.FC<
 
           <fieldset className="space-y-4 pt-4 border-t border-gray-200 dark:border-gray-700">
             <legend className="text-base font-semibold text-gray-900 dark:text-gray-100 mb-2">
-              Personal Property Protection
+              {t(
+                "intake.property.property_protection_legend",
+              )}
             </legend>
 
             <AccessibleCheckbox
               id="protect-belongings"
-              label="Do you need to protect specific personal belongings?"
+              label={t(
+                "intake.property.protect_belongings.label",
+              )}
               checked={
                 formData.protect_belongings ||
                 false
@@ -163,12 +180,16 @@ export const PropertySection: React.FC<
                   checked,
                 )
               }
-              helpText="Prevent them from damaging or taking your property"
+              helpText={t(
+                "intake.property.protect_belongings.helpText",
+              )}
             />
 
             <AccessibleCheckbox
               id="police-escort"
-              label="Do you need police escort to retrieve your belongings?"
+              label={t(
+                "intake.property.police_escort.label",
+              )}
               checked={
                 formData.police_escort || false
               }
@@ -178,18 +199,22 @@ export const PropertySection: React.FC<
                   checked,
                 )
               }
-              helpText="Safe retrieval of items from shared residence"
+              helpText={t(
+                "intake.property.police_escort.helpText",
+              )}
             />
           </fieldset>
 
           <fieldset className="space-y-4 pt-4 border-t border-gray-200 dark:border-gray-700">
             <legend className="text-base font-semibold text-gray-900 dark:text-gray-100 mb-2">
-              Pet Safety
+              {t("intake.property.pets_legend")}
             </legend>
 
             <AccessibleCheckbox
               id="have-pets"
-              label="Do you have pets that need protection?"
+              label={t(
+                "intake.property.have_pets.label",
+              )}
               checked={
                 formData.have_pets || false
               }
@@ -202,13 +227,17 @@ export const PropertySection: React.FC<
                   );
                 }
               }}
-              helpText="Pets are often used to threaten or harm victims"
+              helpText={t(
+                "intake.property.have_pets.helpText",
+              )}
             />
 
             {formData.have_pets && (
               <AccessibleTextInput
                 id="pet-details"
-                label="Describe your pets"
+                label={t(
+                  "intake.property.pet_description.label",
+                )}
                 value={formData.pet_details || ""}
                 onChange={(value) =>
                   updateField(
@@ -216,19 +245,21 @@ export const PropertySection: React.FC<
                     value,
                   )
                 }
-                placeholder="e.g., Black Lab named Max, 2 cats"
-                helpText="Helps the court include pets in protection order"
+                placeholder={t(
+                  "intake.property.pet_description.placeholder",
+                )}
+                helpText={t(
+                  "intake.property.pet_description.helpText",
+                )}
               />
             )}
           </fieldset>
 
           <div className="p-4 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-md">
             <p className="text-sm text-amber-800 dark:text-amber-300">
-              <strong>Important:</strong>{" "}
-              Louisiana law recognizes that pets
-              are family members who may need
-              protection. The court can include
-              pets in your protection order.
+              {t(
+                "intake.property.pet_safety_notice",
+              )}
             </p>
           </div>
         </div>

@@ -1,10 +1,15 @@
 # 🏛️ LPOR Form Generator
 
-Louisiana Petition for Protection from Abuse - Confidential Address Form
+Louisiana Petition for Protection from Abuse - Intake Form
 
-A modern, accessible, multilingual web application for generating LPOR-F forms with PDF export capabilities. Built with React, TypeScript, and Tailwind CSS.
+A modern, accessible, multilingual web application for generating Louisiana Protection Order forms (LPOR) with PDF export capabilities. Built with React, TypeScript, and Tailwind CSS.
 
-There is only one form currently, Form F, that is meant to generate this PDF document, in a filled out form: https://www.lasc.org/court_managed_prog/LPOR/lpor_forms/Lpor_F.pdf
+Generates multiple LPOR forms based on user needs:
+- **Form B**: Petition for Protection from Abuse (main petition)
+- **Form C**: Request for Child Custody (when children are involved)
+- **Form F**: Confidential Address Form (when address privacy is needed)
+- **Form G**: Request for Temporary Restraining Order (emergency protection)
+- **Form B-R**: Rule to Show Cause (for violations of existing orders)
 
 ## ✨ Features
 
@@ -69,10 +74,10 @@ There is only one form currently, Form F, that is meant to generate this PDF doc
 
 The application is deployed at: **[https://victorious-forest-0c177cc0f.2.azurestaticapps.net](https://victorious-forest-0c177cc0f.2.azurestaticapps.net)**
 
-Direct form links:
-- English: `https://victorious-forest-0c177cc0f.2.azurestaticapps.net/en/lpor_f`
-- Spanish: `https://victorious-forest-0c177cc0f.2.azurestaticapps.net/es/lpor_f`
-- French: `https://victorious-forest-0c177cc0f.2.azurestaticapps.net/fr/lpor_f`
+### Main Intake Form:
+**https://victorious-forest-0c177cc0f.2.azurestaticapps.net/intake**
+
+This comprehensive intake form automatically determines which LPOR forms are needed and generates all required PDFs based on the user's situation.
 
 ## 🎨 Embedding the Form
 
@@ -80,27 +85,25 @@ You can easily embed this form on your website using an iframe:
 
 ```html
 <iframe 
-  src="https://victorious-forest-0c177cc0f.2.azurestaticapps.net/en/lpor_f?widget=true"
+  src="https://victorious-forest-0c177cc0f.2.azurestaticapps.net/en/intake?widget=true"
   width="100%"
   height="1000"
   style="border: none;"
-  title="LPOR-F Form">
+  title="LPOR Intake Form">
 </iframe>
 ```
 
 **Pre-populate court information:**
 
-You can send information directly to the generated PDF by passing URL parameters to a specific form. This information will not appear in the form the User completes, but in the generated PDF output.
-
-Only fields that the User won't be able to complete but would be commonly known could be used to populate this information in this one particular use case. Otherwise, it can just be left blank.
+You can send information directly to the generated PDFs by passing URL parameters. This information will not appear in the form the user completes, but will be included in the generated PDF output.
 
 ```html
 <iframe 
-  src="https://victorious-forest-0c177cc0f.2.azurestaticapps.net/en/lpor_f?widget=true&court=Orleans%20Parish%20Court&number=2024-12345&division=A"
+  src="https://victorious-forest-0c177cc0f.2.azurestaticapps.net/en/intake?widget=true&court=Orleans%20Parish%20Court&number=2024-12345&division=A"
   width="100%"
   height="1000"
   style="border: none;"
-  title="LPOR-F Form">
+  title="LPOR Intake Form">
 </iframe>
 ```
 
@@ -132,7 +135,7 @@ The form supports pre-populating court information via URL parameters:
 
 **Example:**
 ```
-https://victorious-forest-0c177cc0f.2.azurestaticapps.net/en/lpor_f?widget=true&court=Caddo%20Parish%20Court&number=2024-12345&division=A
+https://victorious-forest-0c177cc0f.2.azurestaticapps.net/en/intake?widget=true&court=Caddo%20Parish%20Court&number=2024-12345&division=A
 ```
 
 See [URL_PARAMETERS.md](./URL_PARAMETERS.md) for complete documentation.

@@ -1,6 +1,7 @@
 import React from "react";
 import { useFormState } from "../../../contexts/FormStateContext";
 import { AccessibleCheckbox } from "../../../components/AccessibleCheckbox";
+import { useTranslation } from "../../../i18n/hooks/useTranslation";
 
 /**
  * Abuse Types Section
@@ -17,6 +18,7 @@ export const AbuseSection: React.FC<
 > = ({ isExpanded = true, onToggle }) => {
   const { formData, updateField } =
     useFormState();
+  const { t } = useTranslation();
 
   const handleAbuseTypeToggle = (
     type: string,
@@ -45,7 +47,7 @@ export const AbuseSection: React.FC<
       >
         <div className="flex items-center gap-3">
           <span className="text-lg font-semibold text-gray-900 dark:text-gray-100">
-            Types of Abuse
+            {t("intake.abuse.sectionTitle")}
           </span>
           {isComplete && (
             <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
@@ -74,24 +76,24 @@ export const AbuseSection: React.FC<
         <div className="px-6 py-6 space-y-6 bg-white dark:bg-gray-800/50">
           <div className="p-4 bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-800 rounded-md">
             <p className="text-sm text-purple-800 dark:text-purple-300">
-              <strong>You are not alone.</strong>{" "}
-              Check all types of abuse you have
-              experienced. This helps the court
-              understand your situation fully.
+              {t("intake.abuse.not_alone_notice")}
             </p>
           </div>
 
           <fieldset>
             <legend className="text-base font-semibold text-gray-900 dark:text-gray-100 mb-4">
-              What types of abuse have you
-              experienced? (Check all that apply)
-              *
+              {t(
+                "intake.abuse.abuse_types_legend",
+              )}
+              {" *"}
             </legend>
 
             <div className="space-y-3">
               <AccessibleCheckbox
                 id="abuse-physical"
-                label="Physical abuse (hitting, pushing, slapping, restraining)"
+                label={t(
+                  "intake.abuse.physical.label",
+                )}
                 checked={
                   formData.abuse_types?.includes(
                     "physical",
@@ -103,12 +105,16 @@ export const AbuseSection: React.FC<
                     checked,
                   )
                 }
-                helpText="Any unwanted physical contact or violence"
+                helpText={t(
+                  "intake.abuse.physical.helpText",
+                )}
               />
 
               <AccessibleCheckbox
                 id="abuse-threats"
-                label="Threats of violence (threatened to hurt you or others)"
+                label={t(
+                  "intake.abuse.threats.label",
+                )}
                 checked={
                   formData.abuse_types?.includes(
                     "threats",
@@ -120,12 +126,16 @@ export const AbuseSection: React.FC<
                     checked,
                   )
                 }
-                helpText="Including threats to hurt children, pets, or family"
+                helpText={t(
+                  "intake.abuse.threats.helpText",
+                )}
               />
 
               <AccessibleCheckbox
                 id="abuse-sexual"
-                label="Sexual abuse or assault"
+                label={t(
+                  "intake.abuse.sexual.label",
+                )}
                 checked={
                   formData.abuse_types?.includes(
                     "sexual",
@@ -137,12 +147,16 @@ export const AbuseSection: React.FC<
                     checked,
                   )
                 }
-                helpText="Any unwanted sexual contact or coercion"
+                helpText={t(
+                  "intake.abuse.sexual.helpText",
+                )}
               />
 
               <AccessibleCheckbox
                 id="abuse-emotional"
-                label="Emotional/psychological abuse (name-calling, humiliation, control)"
+                label={t(
+                  "intake.abuse.emotional.label",
+                )}
                 checked={
                   formData.abuse_types?.includes(
                     "emotional",
@@ -154,12 +168,16 @@ export const AbuseSection: React.FC<
                     checked,
                   )
                 }
-                helpText="Constant criticism, isolation, intimidation"
+                helpText={t(
+                  "intake.abuse.emotional.helpText",
+                )}
               />
 
               <AccessibleCheckbox
                 id="abuse-stalking"
-                label="Stalking or harassment"
+                label={t(
+                  "intake.abuse.stalking.label",
+                )}
                 checked={
                   formData.abuse_types?.includes(
                     "stalking",
@@ -171,12 +189,16 @@ export const AbuseSection: React.FC<
                     checked,
                   )
                 }
-                helpText="Following you, unwanted contact, surveillance"
+                helpText={t(
+                  "intake.abuse.stalking.helpText",
+                )}
               />
 
               <AccessibleCheckbox
                 id="abuse-property"
-                label="Destruction of property (breaking your belongings)"
+                label={t(
+                  "intake.abuse.property_damage.label",
+                )}
                 checked={
                   formData.abuse_types?.includes(
                     "property_damage",
@@ -188,7 +210,9 @@ export const AbuseSection: React.FC<
                     checked,
                   )
                 }
-                helpText="Damaging your phone, car, clothes, or other items"
+                helpText={t(
+                  "intake.abuse.property_damage.helpText",
+                )}
               />
 
               <AccessibleCheckbox
@@ -212,8 +236,8 @@ export const AbuseSection: React.FC<
 
           {!isComplete && (
             <p className="text-sm text-red-600 dark:text-red-400">
-              * Please select at least one type of
-              abuse
+              *{" "}
+              {t("intake.abuse.validation_error")}
             </p>
           )}
 

@@ -2,6 +2,7 @@ import React from "react";
 import { useFormState } from "../../../contexts/FormStateContext";
 import { AccessibleTextarea } from "../../../components/AccessibleTextarea";
 import { AccessibleDateInput } from "../../../components/AccessibleDateInput";
+import { useTranslation } from "../../../i18n/hooks/useTranslation";
 
 /**
  * Incident Details Section
@@ -18,6 +19,7 @@ export const IncidentSection: React.FC<
 > = ({ isExpanded = true, onToggle }) => {
   const { formData, updateField } =
     useFormState();
+  const { t } = useTranslation();
 
   const isComplete = Boolean(
     formData.recent_incident_date &&
@@ -36,7 +38,7 @@ export const IncidentSection: React.FC<
       >
         <div className="flex items-center gap-3">
           <span className="text-lg font-semibold text-gray-900 dark:text-gray-100">
-            Incident Details
+            {t("intake.incident.sectionTitle")}
           </span>
           {isComplete && (
             <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
@@ -65,16 +67,15 @@ export const IncidentSection: React.FC<
         <div className="px-6 py-6 space-y-6 bg-white dark:bg-gray-800/50">
           <div className="p-4 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-md">
             <p className="text-sm text-amber-800 dark:text-amber-300">
-              <strong>Your Safety:</strong> If you
-              are in immediate danger right now,
-              please call 911 or go to a safe
-              location. This form can wait.
+              {t("intake.incident.safety_notice")}
             </p>
           </div>
 
           <AccessibleDateInput
             id="recent-incident-date"
-            label="When did the most recent incident happen?"
+            label={t(
+              "intake.incident.recent_incident_date.label",
+            )}
             value={
               formData.recent_incident_date || ""
             }
@@ -85,12 +86,16 @@ export const IncidentSection: React.FC<
               )
             }
             required
-            helpText="This helps establish urgency for your protection"
+            helpText={t(
+              "intake.incident.recent_incident_date.helpText",
+            )}
           />
 
           <AccessibleTextarea
             id="recent-incident-description"
-            label="Please describe what happened in the most recent incident"
+            label={t(
+              "intake.incident.recent_incident_description.label",
+            )}
             value={
               formData.recent_incident_description ||
               ""
@@ -101,45 +106,55 @@ export const IncidentSection: React.FC<
                 value,
               )
             }
-            placeholder="Be specific about what they did or said. Include threats, physical violence, property damage..."
+            placeholder={t(
+              "intake.incident.recent_incident_description.placeholder",
+            )}
             rows={6}
             required
-            helpText="Minimum 50 characters. Be as detailed as possible."
+            helpText={t(
+              "intake.incident.recent_incident_description.helpText",
+            )}
           />
 
           {formData.recent_incident_description &&
             formData.recent_incident_description
               .length < 50 && (
               <p className="text-sm text-red-600 dark:text-red-400">
-                Please provide more detail (
-                {
-                  formData
-                    .recent_incident_description
-                    .length
-                }
-                /50 characters minimum)
+                {t(
+                  "intake.incident.character_count_error",
+                  {
+                    count:
+                      formData
+                        .recent_incident_description
+                        .length,
+                  },
+                )}
               </p>
             )}
 
           <AccessibleTextarea
             id="past-incidents"
-            label="Please describe any past incidents of abuse (optional)"
+            label={t(
+              "intake.incident.past_incidents.label",
+            )}
             value={formData.past_incidents || ""}
             onChange={(value) =>
               updateField("past_incidents", value)
             }
-            placeholder="Include dates if you remember them. List the most serious incidents..."
+            placeholder={t(
+              "intake.incident.past_incidents.placeholder",
+            )}
             rows={6}
-            helpText="This helps show a pattern of behavior"
+            helpText={t(
+              "intake.incident.past_incidents.helpText",
+            )}
           />
 
           <div className="p-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-md">
             <p className="text-sm text-blue-800 dark:text-blue-300">
-              <strong>Remember:</strong> You don't
-              need to prove everything right now.
-              The court will hear your full story
-              at the hearing. Focus on the most
-              recent and serious incidents.
+              {t(
+                "intake.incident.remember_notice",
+              )}
             </p>
           </div>
         </div>

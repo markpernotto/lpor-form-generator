@@ -14,7 +14,7 @@ function App() {
     <FormStateProvider>
       <Router>
         <Routes>
-          {/* Root redirect to master intake */}
+          {/* Root redirect to intake */}
           <Route
             path="/"
             element={
@@ -22,23 +22,15 @@ function App() {
             }
           />
 
-          {/* Master intake page - new comprehensive form */}
+          {/* Main intake page */}
           <Route
             path="/intake"
             element={<MasterIntakePage />}
           />
 
-          {/* Legacy LPOR-F route redirect to English */}
+          {/* Legacy LPOR-F route */}
           <Route
             path="/lpor_f"
-            element={
-              <Navigate to="/en/lpor_f" replace />
-            }
-          />
-
-          {/* Language-aware routes for LPOR-F (legacy) */}
-          <Route
-            path="/:lang/lpor_f"
             element={<LPORFPage />}
           />
 

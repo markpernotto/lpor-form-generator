@@ -81,7 +81,11 @@ export const FormStateProvider: React.FC<
     const handleBeforeUnload = (
       e: BeforeUnloadEvent,
     ) => {
-      if (hasUserData) {
+      // Only show warning if user has data AND not during development hot reload
+      // In dev mode, Vite sets import.meta.hot
+      const isDevelopment = import.meta.env.DEV;
+
+      if (hasUserData && !isDevelopment) {
         e.preventDefault();
         e.returnValue =
           "Your information is NOT saved. Leaving will lose all progress. Are you sure?";

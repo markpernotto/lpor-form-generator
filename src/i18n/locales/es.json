@@ -1,4 +1,578 @@
 {
+  "common": {
+    "language": "Idioma",
+    "complete": "Completo",
+    "required": "Requerido"
+  },
+  "masterIntake": {
+    "header": {
+      "title": "Solicitud de Orden de Protección",
+      "subtitle": "Petición de Louisiana para Protección contra el Abuso"
+    },
+    "warnings": {
+      "noSave": "Su información NO se guarda. Complete este formulario en una sesión. Cerrar esta página perderá todo el progreso."
+    },
+    "beforeYouBegin": {
+      "title": "Antes de Comenzar",
+      "intro": "Este formulario le ayudará a solicitar al tribunal una orden de protección contra alguien que le ha hecho daño o amenazado.",
+      "youWillNeed": "Necesitará:",
+      "items": {
+        "personDetails": "Detalles sobre la persona de la que necesita protección",
+        "incidentDates": "Fechas y descripciones de los incidentes",
+        "childrenInfo": "Información sobre cualquier niño que necesite protección",
+        "address": "Su dirección actual (o puede mantenerla privada)"
+      },
+      "timeToComplete": "Tiempo para completar:",
+      "duration": "20-30 minutos"
+    },
+    "submit": {
+      "button": "Generar Formularios de Orden de Protección",
+      "incompleteError": "Por favor complete todos los campos requeridos antes de enviar."
+    },
+    "progress": {
+      "title": "Progreso del Formulario",
+      "description": "Se agregarán más secciones a medida que continuemos el desarrollo. Actualmente mostrando 5 de 15 secciones."
+    },
+    "finalConfirmation": {
+      "label": "Juro que todo en esta petición es verdad según mi mejor conocimiento. Entiendo que mentir en este formulario es perjurio, un delito punible por ley.",
+      "clearButton": "Limpiar Formulario",
+      "clearConfirmation": "¿Está seguro? Esto borrará toda la información que ha ingresado."
+    },
+    "footer": {
+      "text": "Asociación de Abogados de Louisiana • Solicitud de Orden de Protección contra Violencia Doméstica"
+    }
+  },
+  "intake": {
+    "initial": {
+      "sectionTitle": "Preguntas Iniciales",
+      "filing_type": {
+        "label": "¿Es esta la primera vez que solicita protección o está actualizando una solicitud anterior?",
+        "helpText": "Elija 'Primera vez' si es nueva, 'Actualizar' si está modificando una petición existente",
+        "options": {
+          "initial": "Primera vez solicitando",
+          "supplemental": "Actualizando petición anterior"
+        }
+      },
+      "filing_for": {
+        "label": "¿Está completando esto para usted mismo o para otra persona?",
+        "helpText": "Elija 'Para mí mismo' si necesita protección, 'Para otra persona' si está ayudando a alguien más",
+        "options": {
+          "self": "Para mí mismo",
+          "behalf": "Para otra persona"
+        }
+      },
+      "who_needs_protection": {
+        "label": "¿Quién necesita protección? (Marque todas las que correspondan)",
+        "helpText": "Seleccione a todos los que necesitan ser protegidos del daño",
+        "validationError": "Por favor seleccione al menos una opción",
+        "options": {
+          "self": "Yo mismo",
+          "children": "Menores de edad",
+          "incompetent": "Alguien que no puede protegerse a sí mismo"
+        }
+      }
+    },
+    "petitioner": {
+      "sectionTitle": "Su Información",
+      "full_name": {
+        "label": "¿Cuál es su nombre legal completo?",
+        "placeholder": "Ingrese su nombre legal completo",
+        "helpText": "Ingrese su nombre exactamente como aparece en documentos oficiales"
+      },
+      "birth_date": {
+        "label": "¿Cuál es su fecha de nacimiento?",
+        "helpText": "Formato: MM/DD/AAAA"
+      },
+      "louisiana_resident": {
+        "label": "Soy residente de Louisiana",
+        "helpText": "Debe ser residente de Louisiana para usar este formulario"
+      }
+    },
+    "defendant": {
+      "sectionTitle": "Persona de la Que Necesita Protección",
+      "name": {
+        "label": "¿Cuál es el nombre completo de la persona de la que necesita protección?",
+        "placeholder": "Ingrese su nombre legal si lo conoce"
+      },
+      "is_minor": {
+        "label": "Esta persona tiene menos de 18 años",
+        "helpText": "Marque esto solo si la persona de la que necesita protección es menor de edad"
+      },
+      "parent_guardian": {
+        "label": "¿Cuál es el nombre de su padre o tutor?",
+        "placeholder": "Nombre del padre o tutor",
+        "helpText": "Requerido si el agresor es menor de 18 años"
+      },
+      "know_address": {
+        "label": "¿Sabe dónde vive o trabaja esta persona?",
+        "helpText": "Necesitamos una dirección para notificarles los documentos judiciales. Si no lo sabe, el tribunal puede ayudar a localizarlos.",
+        "options": {
+          "yes": "Sí, sé dónde se le puede encontrar",
+          "no": "No, no conozco su dirección"
+        }
+      },
+      "address_info": "Proporcione una dirección donde se les pueda encontrar. Puede ser su dirección de casa o trabajo.",
+      "parish": {
+        "label": "¿En qué parroquia de Louisiana vive esta persona?"
+      },
+      "address": {
+        "street": {
+          "label": "Dirección",
+          "placeholder": "Número y nombre de la calle"
+        },
+        "apt": {
+          "label": "Número de Apartamento/Unidad",
+          "placeholder": "Apt, Suite, Unidad (opcional)"
+        },
+        "city": {
+          "label": "Ciudad",
+          "placeholder": "Ciudad"
+        },
+        "state": {
+          "label": "Estado",
+          "placeholder": "Estado"
+        },
+        "zip": {
+          "label": "Código Postal",
+          "placeholder": "Código postal de 5 dígitos"
+        }
+      }
+    },
+    "children": {
+      "sectionTitle": "Información de los Niños",
+      "have_children": {
+        "label": "¿Hay niños que necesiten protección?",
+        "helpText": "Incluya a todos los niños menores (menores de 18 años) que necesiten protección"
+      },
+      "list": {
+        "label": "Niños que Necesitan Protección",
+        "description": "Agregue los detalles de cada niño a continuación:",
+        "addButtonText": "Agregar Niño",
+        "emptyStateText": "No se han agregado niños todavía",
+        "nameLabel": "Nombre Completo del Niño",
+        "dobLabel": "Fecha de Nacimiento",
+        "relationshipLabel": "Relación con Usted",
+        "namePlaceholder": "Ingrese el nombre legal completo del niño",
+        "relationshipPlaceholder": "ej., Hija, Hijo, Hijastro"
+      },
+      "same_address": {
+        "label": "Los niños viven conmigo en mi dirección",
+        "helpText": "Seleccione sí si los niños comparten su dirección"
+      }
+    },
+    "safety": {
+      "sectionTitle": "Seguridad y Dirección",
+      "privacy_warning": "Si no quiere que el agresor conozca su dirección, marque la casilla a continuación. Su dirección se mantendrá confidencial en los registros judiciales.",
+      "privacy_warning_title": "Protección de Privacidad:",
+      "keep_private": {
+        "label": "Mantener mi dirección en secreto de la persona a la que le temo",
+        "helpText": "Seleccione esto si compartir su dirección podría ponerlo en peligro"
+      },
+      "address_title": "Su Dirección Actual",
+      "address_note": "Esta dirección aparecerá en los documentos judiciales.",
+      "address": {
+        "street": {
+          "label": "Dirección",
+          "placeholder": "Número y nombre de la calle"
+        },
+        "apt": {
+          "label": "Número de Apartamento/Unidad",
+          "placeholder": "Apt, Suite, Unidad (opcional)"
+        },
+        "city": {
+          "label": "Ciudad",
+          "placeholder": "Ciudad"
+        },
+        "state": {
+          "label": "Estado",
+          "placeholder": "LA"
+        },
+        "zip": {
+          "label": "Código Postal",
+          "placeholder": "Código postal de 5 dígitos"
+        }
+      }
+    },
+    "accommodations": {
+      "sectionTitle": "Adaptaciones del Tribunal",
+      "rights_notice": "Sus Derechos: El tribunal debe proporcionar adaptaciones razonables para asegurar que pueda participar completamente en su audiencia.",
+      "need_interpreter": {
+        "label": "¿Necesita un intérprete para su audiencia judicial?",
+        "helpText": "Disponible sin costo para usted",
+        "options": {
+          "yes": "Sí, necesito un intérprete",
+          "no": "No, no necesito un intérprete"
+        }
+      },
+      "interpreter_language": {
+        "label": "¿Qué idioma necesita?",
+        "placeholder": "p.ej., Español, Vietnamita, Lengua de Señas Americana",
+        "helpText": "El tribunal arreglará un intérprete calificado"
+      },
+      "witness_interpreter": {
+        "label": "¿Algún testigo necesitará un intérprete?",
+        "helpText": "Indíquenos si algún testigo necesitará asistencia lingüística",
+        "options": {
+          "yes": "Sí, los testigos necesitan un intérprete",
+          "no": "No, los testigos no necesitan un intérprete"
+        }
+      },
+      "witness_language": {
+        "label": "¿Qué idioma necesitan los testigos?",
+        "placeholder": "p.ej., Español, Vietnamita",
+        "helpText": "Especifique el idioma que hablan los testigos"
+      },
+      "disability_accommodations": {
+        "label": "¿Necesita otras adaptaciones debido a una discapacidad?",
+        "helpText": "Acceso para sillas de ruedas, asistencia auditiva, etc."
+      },
+      "clerk_notice": "Nota: El secretario del tribunal se comunicará con usted sobre los arreglos de adaptación después de que presente su petición."
+    },
+    "venue": {
+      "sectionTitle": "Ubicación de Presentación",
+      "where_to_file_notice": "Dónde Presentar: Debe presentar en una parroquia donde usted vive, el abusador vive, o donde ocurrió el abuso. Elija la ubicación más conveniente.",
+      "filing_parish": {
+        "label": "¿En qué parroquia presentará esta petición?",
+        "helpText": "Seleccione el tribunal de la parroquia de Luisiana donde presentará"
+      },
+      "venue_reasons": {
+        "label": "¿Por qué está presentando en esta parroquia? (Marque todas las que apliquen)",
+        "validation_error": "Seleccione al menos una razón",
+        "helpText": {
+          "i_live_here": "Su residencia actual",
+          "abuser_lives_here": "Donde viven actualmente",
+          "abuse_happened_here": "Donde ocurrieron los incidentes",
+          "children_live_here": "Donde residen sus hijos"
+        }
+      },
+      "jurisdiction_notice": "Importante: El tribunal debe tener jurisdicción sobre su caso. Si no está seguro de qué parroquia elegir, considere presentar donde vive actualmente por seguridad y conveniencia."
+    },
+    "relationship": {
+      "sectionTitle": "Su Relación",
+      "why_matters_notice": "Por qué esto importa: La ley de Luisiana proporciona órdenes de protección para relaciones específicas. Su relación con el abusador determina qué protecciones legales están disponibles.",
+      "relationship_type": {
+        "label": "¿Cuál es su relación con la persona a la que teme?",
+        "helpText": "Seleccione la opción que mejor describa su relación"
+      },
+      "have_child_together": {
+        "label": "¿Tienen un hijo juntos?",
+        "helpText": "Incluso si no están en una relación ahora"
+      },
+      "current_or_former_notice": "Actual o Anterior: Las órdenes de protección cubren tanto relaciones actuales como anteriores. No tiene que estar juntos ahora para calificar."
+    },
+    "legalStatus": {
+      "sectionTitle": "Estado Legal",
+      "existing_cases_notice": "Casos Existentes: Infórmenos sobre cualquier caso de divorcio o custodia que involucre a usted y la persona a la que teme. Esto ayuda al tribunal a coordinar su orden de protección con otros procedimientos legales.",
+      "divorce_proceedings_legend": "Procedimientos de Divorcio",
+      "pending_divorce": {
+        "label": "¿Hay un caso de divorcio pendiente entre usted y esta persona?",
+        "helpText": "Marque esto solo si actualmente hay un caso de divorcio pendiente"
+      },
+      "divorce_petitioner": {
+        "label": "¿Quién presentó el divorcio?",
+        "options": {
+          "i_filed": "Yo presenté",
+          "they_filed": "Ellos presentaron",
+          "joint": "Presentación conjunta"
+        }
+      },
+      "divorce_parish": {
+        "label": "¿En qué parroquia está el caso de divorcio?"
+      },
+      "divorce_case_number": {
+        "label": "Número de caso de divorcio (si lo conoce)",
+        "placeholder": "p.ej., 2025-12345",
+        "helpText": "Opcional pero útil para la coordinación del tribunal"
+      },
+      "custody_proceedings_legend": "Procedimientos de Custodia",
+      "pending_custody": {
+        "label": "¿Hay un caso de custodia pendiente?",
+        "helpText": "Marque esto solo si actualmente hay un caso de custodia pendiente"
+      },
+      "custody_parish": {
+        "label": "¿En qué parroquia está el caso de custodia?"
+      },
+      "custody_case_number": {
+        "label": "Número de caso de custodia (si lo conoce)",
+        "placeholder": "p.ej., 2025-67890",
+        "helpText": "Opcional pero útil para la coordinación del tribunal"
+      },
+      "coordination_notice": "Nota: Si los números de caso se presentan en diferentes parroquias, el tribunal aún puede coordinar su orden de protección con esos procedimientos."
+    },
+    "abuse": {
+      "sectionTitle": "Tipos de Abuso",
+      "not_alone_notice": "No está solo. Marque todos los tipos de abuso que ha experimentado. Esto ayuda al tribunal a comprender completamente su situación.",
+      "abuse_types_legend": "¿Qué tipos de abuso ha experimentado? (Marque todas las que apliquen)",
+      "physical": {
+        "label": "Abuso físico (golpes, empujones, bofetadas, restricción)",
+        "helpText": "Cualquier contacto físico no deseado o violencia"
+      },
+      "threats": {
+        "label": "Amenazas de violencia (amenazó con lastimarlo a usted o a otros)",
+        "helpText": "Incluyendo amenazas de lastimar a niños, mascotas o familiares"
+      },
+      "sexual": {
+        "label": "Abuso o agresión sexual",
+        "helpText": "Cualquier contacto sexual no deseado o coacción"
+      },
+      "emotional": {
+        "label": "Abuso emocional/psicológico (insultos, humillación, control)",
+        "helpText": "Comportamiento controlador, aislamiento, manipulación"
+      },
+      "stalking": {
+        "label": "Acoso o seguimiento",
+        "helpText": "Monitoreo no deseado, rastreo o seguimiento"
+      },
+      "harassment": {
+        "label": "Acoso (llamadas, mensajes de texto, mensajes no deseados)",
+        "helpText": "Contacto persistente no deseado"
+      },
+      "property_damage": {
+        "label": "Daño a la propiedad o mascotas",
+        "helpText": "Destrucción de pertenencias, daño a animales"
+      },
+      "validation_error": "Seleccione al menos un tipo de abuso",
+      "detailed_description_label": "Describa el abuso con más detalle (opcional)",
+      "detailed_description_helpText": "Puede proporcionar más información aquí, pero también describirá incidentes específicos en la siguiente sección",
+      "detailed_description_placeholder": "Describa lo que sucedió..."
+    },
+    "firearms": {
+      "sectionTitle": "Armas de Fuego y Armas",
+      "safety_warning": "⚠️ Información importante de seguridad: El acceso a armas de fuego aumenta significativamente el peligro en situaciones de violencia doméstica. Esta información ayuda a protegerte.",
+      "abuser_has_guns": {
+        "label": "¿La persona de quien tienes miedo tiene acceso a armas de fuego u otras armas?",
+        "helpText": "Marca esto si tienen acceso a armas que poseen, tienen en su casa, auto, o pueden obtener fácilmente"
+      },
+      "gun_threats": {
+        "label": "¿Alguna vez te han amenazado con un arma?",
+        "helpText": "Cualquier tipo de arma, incluyendo armas de fuego, cuchillos u otros objetos",
+        "options": {
+          "yes": "Sí",
+          "no": "No"
+        }
+      },
+      "concealed_carry": {
+        "label": "¿Sabes si tienen un permiso de porte oculto?",
+        "helpText": "Licencia para portar armas ocultas (opcional)"
+      },
+      "number_of_guns": {
+        "label": "¿Aproximadamente cuántas armas de fuego tienen?",
+        "helpText": "Ingresa un número si lo sabes, o deja en blanco",
+        "placeholder": "Tu mejor estimación"
+      },
+      "gun_types": {
+        "label": "¿Qué tipos de armas? (Marque todas las que apliquen)",
+        "options": {
+          "handgun": "Pistola",
+          "rifle": "Rifle",
+          "shotgun": "Escopeta",
+          "assault_weapon": "Arma de estilo de asalto",
+          "knife": "Cuchillos/Armas blancas",
+          "other": "Otras armas"
+        }
+      },
+      "gun_location": {
+        "label": "¿Dónde guardan las armas?",
+        "helpText": "P.ej., en casa, en su automóvil, en el trabajo"
+      },
+      "federal_law_notice": "Ley Federal: Según la ley federal, las personas sujetas a órdenes de protección no pueden poseer armas de fuego. El tribunal puede ordenarles que entreguen cualquier arma."
+    },
+    "incident": {
+      "sectionTitle": "Detalles del Incidente",
+      "safety_notice": "Su Seguridad: Si está en peligro inmediato en este momento, llame al 911 o vaya a un lugar seguro. Este formulario puede esperar.",
+      "recent_incident_date": {
+        "label": "¿Cuándo ocurrió el incidente más reciente?",
+        "helpText": "Esto ayuda a establecer la urgencia de su protección"
+      },
+      "recent_incident_description": {
+        "label": "Por favor describa lo que sucedió en el incidente más reciente",
+        "placeholder": "Sea específico sobre lo que hicieron o dijeron. Incluya amenazas, violencia física, daños a la propiedad...",
+        "helpText": "Mínimo 50 caracteres. Sea lo más detallado posible."
+      },
+      "character_count_error": "Por favor proporcione más detalles ({{count}}/50 caracteres mínimo)",
+      "past_incidents": {
+        "label": "Por favor describa cualquier incidente pasado de abuso (opcional)",
+        "placeholder": "Incluya fechas si las recuerda. Liste los incidentes más graves...",
+        "helpText": "Esto ayuda a mostrar un patrón de comportamiento"
+      },
+      "remember_notice": "Recuerde: No necesita probar todo ahora mismo. El tribunal escuchará su historia completa en la audiencia. Enfóquese en los incidentes más recientes y graves."
+    },
+    "relief": {
+      "sectionTitle": "Protección Solicitada",
+      "what_to_order_notice": "¿Qué quiere que ordene el tribunal? Marque todas las protecciones que necesita. Estas se incluirán en su orden de protección si se concede.",
+      "relief_legend": "Estoy pidiendo al tribunal que ordene: (Marque todas las que apliquen)",
+      "no_abuse": {
+        "label": "Dejar de abusar, acosar, acechar o amenazarme",
+        "helpText": "Prohibir todas las formas de abuso y acoso"
+      },
+      "no_contact": {
+        "label": "No tener contacto conmigo",
+        "helpText": "Sin contacto en persona, por teléfono, mensaje de texto, correo electrónico o redes sociales"
+      },
+      "stay_away": {
+        "label": "Mantenerse alejado de mi hogar, trabajo y escuela",
+        "helpText": "Mantener una distancia especificada de estos lugares"
+      },
+      "stay_away_home": {
+        "label": "Mantenerse alejado de mi hogar",
+        "helpText": "No puede venir a su residencia"
+      },
+      "stay_away_work": {
+        "label": "Mantenerse alejado de mi lugar de trabajo",
+        "helpText": "No puede venir a donde trabaja"
+      },
+      "stay_away_school": {
+        "label": "Mantenerse alejado de mi escuela",
+        "helpText": "No puede venir a su institución educativa"
+      },
+      "stay_away_children": {
+        "label": "Mantenerse alejado de la escuela/guardería de mis hijos",
+        "helpText": "Proteger a los niños en sus lugares de cuidado"
+      },
+      "move_out": {
+        "label": "Mudarse de nuestro hogar compartido",
+        "helpText": "Ordenar que se vayan si viven juntos"
+      },
+      "exclusive_use_home": {
+        "label": "Otorgarme el uso exclusivo de nuestro hogar compartido",
+        "helpText": "Remover al demandado de la residencia"
+      },
+      "surrender_firearms": {
+        "label": "Entregar todas las armas de fuego y armas",
+        "helpText": "Ordenar que entreguen todas las armas a las autoridades"
+      },
+      "child_support": {
+        "label": "Manutención de los hijos",
+        "helpText": "Apoyo financiero para los niños"
+      },
+      "spousal_support": {
+        "label": "Pensión alimenticia",
+        "helpText": "Apoyo financiero para usted"
+      },
+      "other_relief_label": "Otras protecciones que necesita (opcional)",
+      "other_relief_placeholder": "Describa cualquier otra protección que necesite que no esté listada arriba...",
+      "other_relief_helpText": "Sea específico sobre lo que necesita para estar seguro",
+      "validation_message": "* Por favor seleccione al menos un tipo de protección",
+      "remember_notice": "Recuerde: El juez decidirá qué protecciones otorgar según su situación. No dude en pedir todo lo que necesite para estar seguro.",
+      "surrender_weapons": {
+        "label": "Entregar todas las armas de fuego y armas",
+        "helpText": "Requerido por ley federal para órdenes de protección por violencia doméstica"
+      },
+      "temporary_custody": {
+        "label": "Otorgarme la custodia temporal de nuestros hijos",
+        "helpText": "Hasta que se pueda realizar una audiencia completa de custodia"
+      },
+      "no_child_contact": {
+        "label": "Sin contacto con nuestros hijos",
+        "helpText": "Restringir completamente el contacto del demandado con los niños"
+      },
+      "supervised_visitation": {
+        "label": "Permitir solo visitas supervisadas con los niños",
+        "helpText": "Las visitas deben ocurrir con un tercero presente"
+      },
+      "exclusive_use_home": {
+        "label": "Otorgarme el uso exclusivo de nuestro hogar compartido",
+        "helpText": "Remover al demandado de la residencia"
+      },
+      "pet_protection": {
+        "label": "Proteger a mis mascotas del daño",
+        "helpText": "Incluir mascotas en la orden de protección"
+      },
+      "other_relief": {
+        "label": "Otra protección (especifique abajo)"
+      },
+      "other_details": {
+        "label": "Describa cualquier otra protección que necesite",
+        "placeholder": "Explique qué otras órdenes está solicitando..."
+      },
+      "validation_error": "Seleccione al menos una forma de protección"
+    },
+    "property": {
+      "sectionTitle": "Propiedad y Mascotas",
+      "property_notice": "Protección de Propiedad: El tribunal puede ordenar el uso exclusivo de su hogar y proteger su propiedad personal y mascotas.",
+      "shared_residence_legend": "Residencia Compartida",
+      "shared_residence": {
+        "label": "¿Usted y el abusador comparten una residencia?",
+        "helpText": "¿Viven juntos actualmente o son propietarios/arrendatarios conjuntos de una casa?"
+      },
+      "request_exclusive_use": {
+        "label": "¿Quiere el uso exclusivo de la residencia?",
+        "helpText": "Esto requeriría que se vayan"
+      },
+      "home_ownership": {
+        "label": "¿Quién es el propietario o arrendatario de la residencia?",
+        "helpText": "Ayuda a determinar los derechos de propiedad"
+      },
+      "property_protection_legend": "Propiedad Personal",
+      "request_property_return": {
+        "label": "¿Necesita que el tribunal ordene la devolución de su propiedad personal?",
+        "helpText": "Artículos que le pertenecen que están reteniendo"
+      },
+      "property_description": {
+        "label": "Describa la propiedad que quiere que le devuelvan",
+        "placeholder": "Liste artículos importantes: teléfono, llaves, documentos, ropa, etc."
+      },
+      "pets_legend": "Seguridad de Mascotas",
+      "have_pets": {
+        "label": "¿Tiene mascotas que necesitan protección?",
+        "helpText": "Las mascotas pueden incluirse en las órdenes de protección"
+      },
+      "pet_description": {
+        "label": "Describa sus mascotas",
+        "placeholder": "Tipo, raza, nombre"
+      },
+      "pet_safety_notice": "Protección de Mascotas: La ley de Luisiana permite a los tribunales incluir mascotas en las órdenes de protección para prevenir daños o intimidación."
+    },
+    "custody": {
+      "sectionTitle": "Custodia Temporal",
+      "not_applicable_notice": "Esta sección solo aplica si tiene hijos. Indicó anteriormente que no tiene hijos, por lo que puede omitir esta sección.",
+      "temporary_custody_notice": "Custodia Temporal: El tribunal puede otorgarle la custodia temporal de sus hijos hasta una audiencia completa. Esto es separado de los arreglos de custodia permanente.",
+      "request_temporary_custody": {
+        "label": "¿Quiere la custodia temporal de sus hijos?",
+        "helpText": "Esto le daría custodia legal hasta la audiencia"
+      },
+      "current_custody": {
+        "label": "¿Dónde viven actualmente los niños?"
+      },
+      "custody_concerns": {
+        "label": "¿Tiene preocupaciones de seguridad sobre que los niños estén con el otro padre?",
+        "helpText": "Explique por qué se necesita custodia temporal"
+      },
+      "safety_explanation": {
+        "label": "Explique sus preocupaciones de seguridad",
+        "placeholder": "Describa por qué cree que los niños no están seguros..."
+      },
+      "hearing_notice": "Nota: La custodia temporal es efectiva hasta una audiencia completa. El tribunal programará una audiencia para determinar los arreglos de custodia permanente."
+    },
+    "witness": {
+      "sectionTitle": "Testigos",
+      "strengthen_case_notice": "Los Testigos Fortalecen Su Caso: Las personas que vieron o escucharon el abuso, o a quienes les contó después, pueden testificar en su audiencia. No necesita testigos para obtener una orden de protección, pero pueden ayudar.",
+      "have_witnesses": {
+        "label": "¿Tiene testigos que puedan testificar sobre el abuso?",
+        "helpText": "Personas que vieron, escucharon o saben sobre los incidentes"
+      },
+      "witness_list_label": "Liste sus testigos",
+      "witness_instructions": "Proporcione el nombre e información de contacto de cada testigo. Incluya cómo saben sobre el abuso (lo vieron, lo escucharon, usted les contó después, etc.).",
+      "witness_name_label": "Nombre del Testigo",
+      "witness_phone_label": "Número de Teléfono",
+      "witness_relationship_label": "Relación con Usted",
+      "no_witnesses_notice": "No Hay Testigos Listados: Está bien si no tiene testigos. El tribunal considerará su testimonio y cualquier otra evidencia que proporcione."
+    },
+    "affirmation": {
+      "sectionTitle": "Afirmación y Firma",
+      "legal_warning": "⚠️ Advertencia Legal: Hacer declaraciones falsas en este formulario es perjurio, un crimen punible por la ley. Solo proporcione información que sabe que es verdadera.",
+      "statement_true": {
+        "label": "Juro que todo en esta petición es verdad según mi mejor conocimiento",
+        "helpText": "Al marcar esta casilla, está jurando bajo juramento"
+      },
+      "understand_perjury": {
+        "label": "Entiendo que hacer declaraciones falsas es perjurio",
+        "helpText": "El perjurio es un crimen que puede resultar en multas o encarcelamiento"
+      },
+      "signature_notice": "Firma Electrónica: Cuando envíe este formulario, su nombre escrito servirá como su firma electrónica, que tiene el mismo efecto legal que una firma manuscrita.",
+      "ready_to_file": "Una vez que complete todas las secciones y marque estas casillas, estará listo para descargar su petición completa para presentarla en el tribunal."
+    }
+  },
   "form": {
     "title": "Orden de Prevención de Abuso Uniforme de Louisiana",
     "subtitle": "Orden para Modificar o Disolver una Orden de Prevención de Abuso Uniforme de Louisiana Anterior"

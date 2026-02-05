@@ -1,5 +1,6 @@
 import React from "react";
 import { useFormState } from "../../../contexts/FormStateContext";
+import { useTranslation } from "../../../i18n/hooks/useTranslation";
 import { useConditionalDisplay } from "../../../hooks/useConditionalDisplay";
 import { AccessibleCheckbox } from "../../../components/AccessibleCheckbox";
 import { AccessiblePersonList } from "../../../components/AccessiblePersonList";
@@ -23,6 +24,7 @@ export const ChildrenSection: React.FC<
     updateField,
     updateMultipleFields,
   } = useFormState();
+  const { t } = useTranslation();
 
   const showChildrenList = useConditionalDisplay(
     "show_if:have_children=true",
@@ -58,11 +60,11 @@ export const ChildrenSection: React.FC<
       >
         <div className="flex items-center gap-3">
           <span className="text-lg font-semibold text-gray-900 dark:text-gray-100">
-            Children Information
+            {t("intake.children.sectionTitle")}
           </span>
           {isComplete && (
             <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
-              ✓ Complete
+              ✓ {t("common.complete")}
             </span>
           )}
         </div>
@@ -87,7 +89,9 @@ export const ChildrenSection: React.FC<
         <div className="px-6 py-6 space-y-6 bg-white dark:bg-gray-800/50">
           <AccessibleCheckbox
             id="have-children"
-            label="Are there any children who need protection?"
+            label={t(
+              "intake.children.have_children.label",
+            )}
             checked={
               formData.have_children || false
             }
@@ -97,7 +101,9 @@ export const ChildrenSection: React.FC<
                 checked,
               )
             }
-            helpText="Include all minor children (under 18) who need to be protected"
+            helpText={t(
+              "intake.children.have_children.helpText",
+            )}
           />
 
           {showChildrenList && (
@@ -105,21 +111,39 @@ export const ChildrenSection: React.FC<
               <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
                 <AccessiblePersonList
                   id="children-list"
-                  label="Children Needing Protection"
-                  description="Add details for each child below:"
+                  label={t(
+                    "intake.children.list.label",
+                  )}
+                  description={t(
+                    "intake.children.list.description",
+                  )}
                   entries={
                     formData.children || []
                   }
                   onEntriesChange={
                     handleChildrenChange
                   }
-                  addButtonText="Add Child"
-                  emptyStateText="No children added yet"
-                  nameLabel="Child's Full Name"
-                  dobLabel="Date of Birth"
-                  relationshipLabel="Relationship to You"
-                  namePlaceholder="Enter child's full legal name"
-                  relationshipPlaceholder="e.g., Daughter, Son, Stepchild"
+                  addButtonText={t(
+                    "intake.children.list.addButtonText",
+                  )}
+                  emptyStateText={t(
+                    "intake.children.list.emptyStateText",
+                  )}
+                  nameLabel={t(
+                    "intake.children.list.nameLabel",
+                  )}
+                  dobLabel={t(
+                    "intake.children.list.dobLabel",
+                  )}
+                  relationshipLabel={t(
+                    "intake.children.list.relationshipLabel",
+                  )}
+                  namePlaceholder={t(
+                    "intake.children.list.namePlaceholder",
+                  )}
+                  relationshipPlaceholder={t(
+                    "intake.children.list.relationshipPlaceholder",
+                  )}
                   maxEntries={10}
                   required
                 />
@@ -128,7 +152,9 @@ export const ChildrenSection: React.FC<
               {showSameAddress && (
                 <AccessibleCheckbox
                   id="children-same-address"
-                  label="The children live with me at my address"
+                  label={t(
+                    "intake.children.same_address.label",
+                  )}
                   checked={
                     formData.children_same_address ||
                     false
@@ -140,7 +166,9 @@ export const ChildrenSection: React.FC<
                     )
                   }
                   required
-                  helpText="Select yes if children share your address"
+                  helpText={t(
+                    "intake.children.same_address.helpText",
+                  )}
                 />
               )}
             </>

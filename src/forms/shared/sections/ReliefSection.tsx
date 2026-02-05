@@ -2,6 +2,7 @@ import React from "react";
 import { useFormState } from "../../../contexts/FormStateContext";
 import { AccessibleCheckbox } from "../../../components/AccessibleCheckbox";
 import { AccessibleTextarea } from "../../../components/AccessibleTextarea";
+import { useTranslation } from "../../../i18n/hooks/useTranslation";
 
 /**
  * Relief Requested Section
@@ -18,6 +19,7 @@ export const ReliefSection: React.FC<
 > = ({ isExpanded = true, onToggle }) => {
   const { formData, updateField } =
     useFormState();
+  const { t } = useTranslation();
 
   const handleReliefToggle = (
     relief: string,
@@ -46,7 +48,7 @@ export const ReliefSection: React.FC<
       >
         <div className="flex items-center gap-3">
           <span className="text-lg font-semibold text-gray-900 dark:text-gray-100">
-            Protection Requested
+            {t("intake.relief.sectionTitle")}
           </span>
           {isComplete && (
             <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
@@ -75,26 +77,23 @@ export const ReliefSection: React.FC<
         <div className="px-6 py-6 space-y-6 bg-white dark:bg-gray-800/50">
           <div className="p-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-md">
             <p className="text-sm text-blue-800 dark:text-blue-300">
-              <strong>
-                What do you want the court to
-                order?
-              </strong>{" "}
-              Check all protections you need.
-              These will be included in your
-              protection order if granted.
+              {t(
+                "intake.relief.what_to_order_notice",
+              )}
             </p>
           </div>
 
           <fieldset>
             <legend className="text-base font-semibold text-gray-900 dark:text-gray-100 mb-4">
-              I am asking the court to order:
-              (Check all that apply) *
+              {t("intake.relief.relief_legend")} *
             </legend>
 
             <div className="space-y-3">
               <AccessibleCheckbox
                 id="relief-no-abuse"
-                label="Stop abusing, harassing, stalking, or threatening me"
+                label={t(
+                  "intake.relief.no_abuse.label",
+                )}
                 checked={
                   formData.relief_requested?.includes(
                     "no_abuse",
@@ -106,12 +105,16 @@ export const ReliefSection: React.FC<
                     checked,
                   )
                 }
-                helpText="Basic protection order - stop all abuse"
+                helpText={t(
+                  "intake.relief.no_abuse.helpText",
+                )}
               />
 
               <AccessibleCheckbox
                 id="relief-no-contact"
-                label="Have no contact with me (in person, phone, text, email, social media)"
+                label={t(
+                  "intake.relief.no_contact.label",
+                )}
                 checked={
                   formData.relief_requested?.includes(
                     "no_contact",
@@ -123,12 +126,16 @@ export const ReliefSection: React.FC<
                     checked,
                   )
                 }
-                helpText="Complete contact ban"
+                helpText={t(
+                  "intake.relief.no_contact.helpText",
+                )}
               />
 
               <AccessibleCheckbox
                 id="relief-stay-away-home"
-                label="Stay away from my home"
+                label={t(
+                  "intake.relief.stay_away.label",
+                )}
                 checked={
                   formData.relief_requested?.includes(
                     "stay_away_home",
@@ -140,12 +147,16 @@ export const ReliefSection: React.FC<
                     checked,
                   )
                 }
-                helpText="Cannot come to your residence"
+                helpText={t(
+                  "intake.relief.stay_away.helpText",
+                )}
               />
 
               <AccessibleCheckbox
                 id="relief-stay-away-work"
-                label="Stay away from my workplace"
+                label={t(
+                  "intake.relief.stay_away_work.label",
+                )}
                 checked={
                   formData.relief_requested?.includes(
                     "stay_away_work",
@@ -157,12 +168,16 @@ export const ReliefSection: React.FC<
                     checked,
                   )
                 }
-                helpText="Cannot come to where you work"
+                helpText={t(
+                  "intake.relief.stay_away_work.helpText",
+                )}
               />
 
               <AccessibleCheckbox
                 id="relief-stay-away-school"
-                label="Stay away from my school"
+                label={t(
+                  "intake.relief.stay_away_school.label",
+                )}
                 checked={
                   formData.relief_requested?.includes(
                     "stay_away_school",
@@ -174,12 +189,16 @@ export const ReliefSection: React.FC<
                     checked,
                   )
                 }
-                helpText="Cannot come to your educational institution"
+                helpText={t(
+                  "intake.relief.stay_away_school.helpText",
+                )}
               />
 
               <AccessibleCheckbox
                 id="relief-children-school"
-                label="Stay away from my children's school or daycare"
+                label={t(
+                  "intake.relief.stay_away_children.label",
+                )}
                 checked={
                   formData.relief_requested?.includes(
                     "stay_away_children_school",
@@ -191,12 +210,16 @@ export const ReliefSection: React.FC<
                     checked,
                   )
                 }
-                helpText="Cannot approach where your children are educated"
+                helpText={t(
+                  "intake.relief.stay_away_children.helpText",
+                )}
               />
 
               <AccessibleCheckbox
                 id="relief-move-out"
-                label="Move out of our shared home"
+                label={t(
+                  "intake.relief.move_out.label",
+                )}
                 checked={
                   formData.relief_requested?.includes(
                     "move_out",
@@ -208,12 +231,16 @@ export const ReliefSection: React.FC<
                     checked,
                   )
                 }
-                helpText="Order them to leave if you live together"
+                helpText={t(
+                  "intake.relief.move_out.helpText",
+                )}
               />
 
               <AccessibleCheckbox
                 id="relief-exclusive-use"
-                label="Give me exclusive use and possession of our home"
+                label={t(
+                  "intake.relief.exclusive_use_home.label",
+                )}
                 checked={
                   formData.relief_requested?.includes(
                     "exclusive_use_home",
@@ -225,12 +252,16 @@ export const ReliefSection: React.FC<
                     checked,
                   )
                 }
-                helpText="You get to stay, they cannot return"
+                helpText={t(
+                  "intake.relief.exclusive_use_home.helpText",
+                )}
               />
 
               <AccessibleCheckbox
                 id="relief-surrender-guns"
-                label="Surrender all firearms and weapons"
+                label={t(
+                  "intake.relief.surrender_firearms.label",
+                )}
                 checked={
                   formData.relief_requested?.includes(
                     "surrender_firearms",
@@ -242,12 +273,16 @@ export const ReliefSection: React.FC<
                     checked,
                   )
                 }
-                helpText="Order them to turn in all guns to law enforcement"
+                helpText={t(
+                  "intake.relief.surrender_firearms.helpText",
+                )}
               />
 
               <AccessibleCheckbox
                 id="relief-temporary-custody"
-                label="Temporary custody of children"
+                label={t(
+                  "intake.relief.temporary_custody.label",
+                )}
                 checked={
                   formData.relief_requested?.includes(
                     "temporary_custody",
@@ -259,12 +294,16 @@ export const ReliefSection: React.FC<
                     checked,
                   )
                 }
-                helpText="You get temporary custody until hearing"
+                helpText={t(
+                  "intake.relief.temporary_custody.helpText",
+                )}
               />
 
               <AccessibleCheckbox
                 id="relief-child-support"
-                label="Child support"
+                label={t(
+                  "intake.relief.child_support.label",
+                )}
                 checked={
                   formData.relief_requested?.includes(
                     "child_support",
@@ -276,12 +315,16 @@ export const ReliefSection: React.FC<
                     checked,
                   )
                 }
-                helpText="Financial support for children"
+                helpText={t(
+                  "intake.relief.child_support.helpText",
+                )}
               />
 
               <AccessibleCheckbox
                 id="relief-spousal-support"
-                label="Spousal support"
+                label={t(
+                  "intake.relief.spousal_support.label",
+                )}
                 checked={
                   formData.relief_requested?.includes(
                     "spousal_support",
@@ -293,37 +336,42 @@ export const ReliefSection: React.FC<
                     checked,
                   )
                 }
-                helpText="Financial support for you"
+                helpText={t(
+                  "intake.relief.spousal_support.helpText",
+                )}
               />
             </div>
           </fieldset>
 
           {!isComplete && (
             <p className="text-sm text-red-600 dark:text-red-400">
-              * Please select at least one type of
-              protection
+              {t(
+                "intake.relief.validation_message",
+              )}
             </p>
           )}
 
           <AccessibleTextarea
             id="relief-other"
-            label="Other protections you need (optional)"
+            label={t(
+              "intake.relief.other_relief_label",
+            )}
             value={formData.relief_other || ""}
             onChange={(value) =>
               updateField("relief_other", value)
             }
-            placeholder="Describe any other protections you need that aren't listed above..."
+            placeholder={t(
+              "intake.relief.other_relief_placeholder",
+            )}
             rows={4}
-            helpText="Be specific about what you need to be safe"
+            helpText={t(
+              "intake.relief.other_relief_helpText",
+            )}
           />
 
           <div className="p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-md">
             <p className="text-sm text-green-800 dark:text-green-300">
-              <strong>Remember:</strong> The judge
-              will decide which protections to
-              grant based on your situation. Don't
-              hesitate to ask for everything you
-              need to be safe.
+              {t("intake.relief.remember_notice")}
             </p>
           </div>
         </div>

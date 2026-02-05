@@ -3,6 +3,7 @@ import { useFormState } from "../../../contexts/FormStateContext";
 import { AccessibleSelect } from "../../../components/AccessibleSelect";
 import { AccessibleCheckbox } from "../../../components/AccessibleCheckbox";
 import { RELATIONSHIP_TYPES } from "../../../constants/formOptions";
+import { useTranslation } from "../../../i18n/hooks/useTranslation";
 
 /**
  * Relationship Section
@@ -19,6 +20,7 @@ export const RelationshipSection: React.FC<
 > = ({ isExpanded = true, onToggle }) => {
   const { formData, updateField } =
     useFormState();
+  const { t } = useTranslation();
 
   const isComplete = Boolean(
     formData.relationship_type,
@@ -34,7 +36,9 @@ export const RelationshipSection: React.FC<
       >
         <div className="flex items-center gap-3">
           <span className="text-lg font-semibold text-gray-900 dark:text-gray-100">
-            Your Relationship
+            {t(
+              "intake.relationship.sectionTitle",
+            )}
           </span>
           {isComplete && (
             <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
@@ -63,18 +67,17 @@ export const RelationshipSection: React.FC<
         <div className="px-6 py-6 space-y-6 bg-white dark:bg-gray-800/50">
           <div className="p-4 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-md">
             <p className="text-sm text-blue-800 dark:text-blue-300">
-              <strong>Why this matters:</strong>{" "}
-              Louisiana law provides protection
-              orders for specific relationships.
-              Your relationship to the abuser
-              determines which legal protections
-              are available.
+              {t(
+                "intake.relationship.why_matters_notice",
+              )}
             </p>
           </div>
 
           <AccessibleSelect
             id="relationship-type"
-            label="What is your relationship to the person you're afraid of?"
+            label={t(
+              "intake.relationship.relationship_type.label",
+            )}
             value={
               formData.relationship_type || ""
             }
@@ -86,12 +89,16 @@ export const RelationshipSection: React.FC<
             }
             options={RELATIONSHIP_TYPES}
             required
-            helpText="Select the option that best describes your relationship"
+            helpText={t(
+              "intake.relationship.relationship_type.helpText",
+            )}
           />
 
           <AccessibleCheckbox
             id="have-child-together"
-            label="Do you have a child together?"
+            label={t(
+              "intake.relationship.have_child_together.label",
+            )}
             checked={
               formData.have_child_together ||
               false
@@ -102,16 +109,16 @@ export const RelationshipSection: React.FC<
                 checked,
               )
             }
-            helpText="Even if you're not in a relationship now"
+            helpText={t(
+              "intake.relationship.have_child_together.helpText",
+            )}
           />
 
           <div className="p-4 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-md">
             <p className="text-sm text-amber-800 dark:text-amber-300">
-              <strong>Current or Former:</strong>{" "}
-              Protection orders cover both current
-              relationships and former
-              relationships. You don't have to be
-              together now to qualify.
+              {t(
+                "intake.relationship.current_or_former_notice",
+              )}
             </p>
           </div>
         </div>

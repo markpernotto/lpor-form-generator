@@ -1,4 +1,574 @@
 {
+  "common": {
+    "language": "Language",
+    "complete": "Complete",
+    "required": "Required"
+  },
+  "masterIntake": {
+    "header": {
+      "title": "Protection Order Application",
+      "subtitle": "Louisiana Petition for Protection from Abuse"
+    },
+    "warnings": {
+      "noSave": "Your information is NOT saved. Complete this form in one session. Closing this page will lose all progress."
+    },
+    "beforeYouBegin": {
+      "title": "Before You Begin",
+      "intro": "This form will help you petition the court for a protection order against someone who has harmed or threatened you.",
+      "youWillNeed": "You will need:",
+      "items": {
+        "personDetails": "Details about the person you need protection from",
+        "incidentDates": "Dates and descriptions of incidents",
+        "childrenInfo": "Information about any children who need protection",
+        "address": "Your current address (or you can keep it private)"
+      },
+      "timeToComplete": "Time to complete:",
+      "duration": "20-30 minutes"
+    },
+    "submit": {
+      "button": "Generate Protection Order Forms",
+      "incompleteError": "Please complete all required fields before submitting."
+    },
+    "progress": {
+      "title": "Form Progress",
+      "description": "More sections will be added as we continue development. Currently showing 5 of 15 sections."
+    },
+    "finalConfirmation": {
+      "label": "I swear that everything in this petition is true to the best of my knowledge. I understand that lying on this form is perjury, a crime punishable by law.",
+      "clearButton": "Clear Form",
+      "clearConfirmation": "Are you sure? This will clear all information you've entered."
+    },
+    "footer": {
+      "text": "Louisiana Bar Association • Domestic Violence Protection Order Intake"
+    }
+  },
+  "intake": {
+    "initial": {
+      "sectionTitle": "Initial Questions",
+      "filing_type": {
+        "label": "Is this your first time filing for protection or are you updating a previous request?",
+        "helpText": "Choose 'First time' if this is new, 'Update' if modifying existing petition",
+        "options": {
+          "initial": "First time filing",
+          "supplemental": "Updating previous petition"
+        }
+      },
+      "filing_for": {
+        "label": "Are you filling this out for yourself or someone else?",
+        "helpText": "Choose 'For myself' if you need protection, 'For someone else' if helping another person",
+        "options": {
+          "self": "For myself",
+          "behalf": "For someone else"
+        }
+      },
+      "who_needs_protection": {
+        "label": "Who needs protection? (Check all that apply)",
+        "helpText": "Select everyone who needs to be protected from harm",
+        "validationError": "Please select at least one option",
+        "options": {
+          "self": "Myself",
+          "children": "Minor children",
+          "incompetent": "Someone who cannot protect themselves"
+        }
+      }
+    },
+    "petitioner": {
+      "sectionTitle": "Your Information",
+      "full_name": {
+        "label": "What is your full legal name?",
+        "placeholder": "Enter your full legal name",
+        "helpText": "Enter your name exactly as it appears on official documents"
+      },
+      "birth_date": {
+        "label": "What is your date of birth?",
+        "helpText": "Format: MM/DD/YYYY"
+      },
+      "louisiana_resident": {
+        "label": "I am a resident of Louisiana",
+        "helpText": "You must be a Louisiana resident to use this form"
+      }
+    },
+    "defendant": {
+      "sectionTitle": "Person You Need Protection From",
+      "name": {
+        "label": "What is the full name of the person you need protection from?",
+        "placeholder": "Enter their legal name if you know it"
+      },
+      "is_minor": {
+        "label": "This person is under 18 years old",
+        "helpText": "Check this only if the person you need protection from is a minor"
+      },
+      "parent_guardian": {
+        "label": "What is the name of their parent or guardian?",
+        "placeholder": "Parent or guardian's name",
+        "helpText": "Required if abuser is under 18"
+      },
+      "know_address": {
+        "label": "Do you know where this person lives or works?",
+        "helpText": "We need an address to serve them with court papers. If you don't know, the court may help locate them.",
+        "options": {
+          "yes": "Yes, I know where they can be found",
+          "no": "No, I don't know their address"
+        }
+      },
+      "address_info": "Provide an address where they can be found. This can be their home or work address.",
+      "parish": {
+        "label": "Which Louisiana parish does this person live in?"
+      },
+      "address": {
+        "street": {
+          "label": "Street Address",
+          "placeholder": "Number and street name"
+        },
+        "apt": {
+          "label": "Apartment/Unit Number",
+          "placeholder": "Apt, Suite, Unit (optional)"
+        },
+        "city": {
+          "label": "City",
+          "placeholder": "City"
+        },
+        "state": {
+          "label": "State",
+          "placeholder": "State"
+        },
+        "zip": {
+          "label": "ZIP Code",
+          "placeholder": "5-digit ZIP"
+        }
+      }
+    },
+    "children": {
+      "sectionTitle": "Children Information",
+      "have_children": {
+        "label": "Are there any children who need protection?",
+        "helpText": "Include all minor children (under 18) who need to be protected"
+      },
+      "list": {
+        "label": "Children Needing Protection",
+        "description": "Add details for each child below:",
+        "addButtonText": "Add Child",
+        "emptyStateText": "No children added yet",
+        "nameLabel": "Child's Full Name",
+        "dobLabel": "Date of Birth",
+        "relationshipLabel": "Relationship to You",
+        "namePlaceholder": "Enter child's full legal name",
+        "relationshipPlaceholder": "e.g., Daughter, Son, Stepchild"
+      },
+      "same_address": {
+        "label": "The children live with me at my address",
+        "helpText": "Select yes if children share your address"
+      }
+    },
+    "safety": {
+      "sectionTitle": "Safety & Address",
+      "privacy_warning": "If you don't want the abuser to know your address, check the box below. Your address will be kept confidential in court records.",
+      "privacy_warning_title": "Privacy Protection:",
+      "keep_private": {
+        "label": "Keep my address secret from the person I'm afraid of",
+        "helpText": "Select this if sharing your address could put you in danger"
+      },
+      "address_title": "Your Current Address",
+      "address_note": "This address will appear in court documents.",
+      "address": {
+        "street": {
+          "label": "Street Address",
+          "placeholder": "Number and street name"
+        },
+        "apt": {
+          "label": "Apartment/Unit Number",
+          "placeholder": "Apt, Suite, Unit (optional)"
+        },
+        "city": {
+          "label": "City",
+          "placeholder": "City"
+        },
+        "state": {
+          "label": "State",
+          "placeholder": "LA"
+        },
+        "zip": {
+          "label": "ZIP Code",
+          "placeholder": "5-digit ZIP"
+        }
+      }
+    },
+    "accommodations": {
+      "sectionTitle": "Court Accommodations",
+      "rights_notice": "Your Rights: The court must provide reasonable accommodations to ensure you can participate fully in your hearing.",
+      "need_interpreter": {
+        "label": "Do you need an interpreter for your court hearing?",
+        "helpText": "Available at no cost to you",
+        "options": {
+          "yes": "Yes, I need an interpreter",
+          "no": "No, I don't need an interpreter"
+        }
+      },
+      "interpreter_language": {
+        "label": "What language do you need?",
+        "placeholder": "e.g., Spanish, Vietnamese, American Sign Language",
+        "helpText": "The court will arrange for a qualified interpreter"
+      },
+      "witness_interpreter": {
+        "label": "Will any witnesses need an interpreter?",
+        "helpText": "Tell us if any witnesses will need language assistance",
+        "options": {
+          "yes": "Yes, witnesses need an interpreter",
+          "no": "No, witnesses don't need an interpreter"
+        }
+      },
+      "witness_language": {
+        "label": "What language do witnesses need?",
+        "placeholder": "e.g., Spanish, Vietnamese",
+        "helpText": "Specify the language witnesses speak"
+      },
+      "disability_accommodations": {
+        "label": "Do you need other accommodations due to a disability?",
+        "helpText": "Wheelchair access, hearing assistance, etc."
+      },
+      "clerk_notice": "Note: The court clerk will contact you about accommodation arrangements after you file your petition."
+    },
+    "venue": {
+      "sectionTitle": "Filing Location",
+      "where_to_file_notice": "Where to File: You must file in a parish where either you live, the abuser lives, or where the abuse happened. Choose the most convenient location.",
+      "filing_parish": {
+        "label": "Which parish will you file this petition in?",
+        "helpText": "Select the Louisiana parish courthouse where you'll file"
+      },
+      "venue_reasons": {
+        "label": "Why are you filing in this parish? (Check all that apply)",
+        "validation_error": "Please select at least one reason",
+        "helpText": {
+          "i_live_here": "Your current residence",
+          "abuser_lives_here": "Where they currently live",
+          "abuse_happened_here": "Where incidents occurred",
+          "children_live_here": "Where your children reside"
+        }
+      },
+      "jurisdiction_notice": "Important: The court must have jurisdiction over your case. If you're unsure which parish to choose, consider filing where you currently live for safety and convenience."
+    },
+    "relationship": {
+      "sectionTitle": "Your Relationship",
+      "why_matters_notice": "Why this matters: Louisiana law provides protection orders for specific relationships. Your relationship to the abuser determines which legal protections are available.",
+      "relationship_type": {
+        "label": "What is your relationship to the person you're afraid of?",
+        "helpText": "Select the option that best describes your relationship"
+      },
+      "have_child_together": {
+        "label": "Do you have a child together?",
+        "helpText": "Even if you're not in a relationship now"
+      },
+      "current_or_former_notice": "Current or Former: Protection orders cover both current relationships and former relationships. You don't have to be together now to qualify."
+    },
+    "legalStatus": {
+      "sectionTitle": "Legal Status",
+      "existing_cases_notice": "Existing Cases: Tell us about any divorce or custody cases involving you and the person you're afraid of. This helps the court coordinate your protection order with other legal proceedings.",
+      "divorce_proceedings_legend": "Divorce Proceedings",
+      "pending_divorce": {
+        "label": "Is there a pending divorce case between you and this person?",
+        "helpText": "Check this only if there is currently a divorce case pending"
+      },
+      "divorce_petitioner": {
+        "label": "Who filed for divorce?",
+        "options": {
+          "i_filed": "I filed",
+          "they_filed": "They filed",
+          "joint": "Joint filing"
+        }
+      },
+      "divorce_parish": {
+        "label": "Which parish is the divorce case in?"
+      },
+      "divorce_case_number": {
+        "label": "Divorce case number (if known)",
+        "placeholder": "e.g., 2025-12345",
+        "helpText": "Optional but helpful for court coordination"
+      },
+      "custody_proceedings_legend": "Custody Proceedings",
+      "pending_custody": {
+        "label": "Is there a pending custody case?",
+        "helpText": "Check this only if there is currently a custody case pending"
+      },
+      "custody_parish": {
+        "label": "Which parish is the custody case in?"
+      },
+      "custody_case_number": {
+        "label": "Custody case number (if known)",
+        "placeholder": "e.g., 2025-67890",
+        "helpText": "Optional but helpful for court coordination"
+      },
+      "coordination_notice": "Note: If case numbers are filed in different parishes, the court can still coordinate your protection order with those proceedings."
+    },
+    "abuse": {
+      "sectionTitle": "Types of Abuse",
+      "not_alone_notice": "You are not alone. Check all types of abuse you have experienced. This helps the court understand your situation fully.",
+      "abuse_types_legend": "What types of abuse have you experienced? (Check all that apply)",
+      "physical": {
+        "label": "Physical abuse (hitting, pushing, slapping, restraining)",
+        "helpText": "Any unwanted physical contact or violence"
+      },
+      "threats": {
+        "label": "Threats of violence (threatened to hurt you or others)",
+        "helpText": "Including threats to hurt children, pets, or family"
+      },
+      "sexual": {
+        "label": "Sexual abuse or assault",
+        "helpText": "Any unwanted sexual contact or coercion"
+      },
+      "emotional": {
+        "label": "Emotional/psychological abuse (name-calling, humiliation, control)",
+        "helpText": "Controlling behavior, isolation, manipulation"
+      },
+      "stalking": {
+        "label": "Stalking or following",
+        "helpText": "Unwanted monitoring, tracking, or following"
+      },
+      "harassment": {
+        "label": "Harassment (unwanted calls, texts, messages)",
+        "helpText": "Persistent unwanted contact"
+      },
+      "property_damage": {
+        "label": "Damage to property or pets",
+        "helpText": "Destruction of belongings, harming animals"
+      },
+      "validation_error": "Please select at least one type of abuse",
+      "detailed_description_label": "Describe the abuse in more detail (optional)",
+      "detailed_description_helpText": "You can provide more information here, but you'll also describe specific incidents in the next section",
+      "detailed_description_placeholder": "Describe what happened..."
+    },
+    "firearms": {
+      "sectionTitle": "Firearms & Weapons",
+      "safety_warning": "⚠️ Important Safety Information: Access to firearms significantly increases danger in domestic violence situations. This information helps protect you.",
+      "abuser_has_guns": {
+        "label": "Does the person you're afraid of have access to guns or other weapons?",
+        "helpText": "Check this if they have access to guns they own, have in their home, car, or can easily get"
+      },
+      "gun_threats": {
+        "label": "Have they ever threatened you with a weapon?",
+        "helpText": "Any type of weapon, including guns, knives, or other objects",
+        "options": {
+          "yes": "Yes",
+          "no": "No"
+        }
+      },
+      "concealed_carry": {
+        "label": "Do you know if they have a concealed carry permit?",
+        "helpText": "License to carry hidden weapons (optional)"
+      },
+      "number_of_guns": {
+        "label": "Approximately how many firearms do they have?",
+        "helpText": "Enter a number if you know, or leave blank",
+        "placeholder": "Your best estimate"
+      },
+      "gun_types": {
+        "label": "What types of weapons? (Check all that apply)",
+        "options": {
+          "handgun": "Handgun/Pistol",
+          "rifle": "Rifle",
+          "shotgun": "Shotgun",
+          "assault_weapon": "Assault-style weapon",
+          "knife": "Knives/Bladed weapons",
+          "other": "Other weapons"
+        }
+      },
+      "gun_location": {
+        "label": "Where do they keep the guns?",
+        "helpText": "E.g., in the home, in their car, at work"
+      },
+      "federal_law_notice": "Federal Law: Under federal law, people subject to protection orders cannot possess firearms. The court can order them to surrender any weapons."
+    },
+    "incident": {
+      "sectionTitle": "Most Recent Incident",
+      "safety_notice": "Your Safety: If you are in immediate danger right now, please call 911 or go to a safe location. This form can wait.",
+      "recent_incident_date": {
+        "label": "When did the most recent incident happen?",
+        "helpText": "This helps establish urgency for your protection"
+      },
+      "recent_incident_description": {
+        "label": "Please describe what happened in the most recent incident",
+        "placeholder": "Be specific about what they did or said. Include threats, physical violence, property damage...",
+        "helpText": "Minimum 50 characters. Be as detailed as possible."
+      },
+      "character_count_error": "Please provide more detail ({{count}}/50 characters minimum)",
+      "past_incidents": {
+        "label": "Please describe any past incidents of abuse (optional)",
+        "placeholder": "Include dates if you remember them. List the most serious incidents...",
+        "helpText": "This helps show a pattern of behavior"
+      },
+      "remember_notice": "Remember: You don't need to prove everything right now. The court will hear your full story at the hearing. Focus on the most recent and serious incidents."
+    },
+    "relief": {
+      "sectionTitle": "Protection Requested",
+      "what_to_order_notice": "What do you want the court to order? Check all protections you need. These will be included in your protection order if granted.",
+      "relief_legend": "I am asking the court to order: (Check all that apply)",
+      "no_abuse": {
+        "label": "Stop abusing, harassing, stalking, or threatening me",
+        "helpText": "Prohibit all forms of abuse and harassment"
+      },
+      "no_contact": {
+        "label": "Have no contact with me",
+        "helpText": "No in-person, phone, text, email, or social media contact"
+      },
+      "stay_away": {
+        "label": "Stay away from my home, work, and school",
+        "helpText": "Maintain a specified distance from these locations"
+      },
+      "stay_away_home": {
+        "label": "Stay away from my home",
+        "helpText": "Cannot come to your residence"
+      },
+      "stay_away_work": {
+        "label": "Stay away from my workplace",
+        "helpText": "Cannot come to where you work"
+      },
+      "stay_away_school": {
+        "label": "Stay away from my school",
+        "helpText": "Cannot come to your educational institution"
+      },
+      "stay_away_children": {
+        "label": "Stay away from my children's school/daycare",
+        "helpText": "Protect children at their care locations"
+      },
+      "move_out": {
+        "label": "Move out of our shared home",
+        "helpText": "Order them to leave if you live together"
+      },
+      "surrender_firearms": {
+        "label": "Surrender all firearms and weapons",
+        "helpText": "Order them to turn in all guns to law enforcement"
+      },
+      "child_support": {
+        "label": "Child support",
+        "helpText": "Financial support for children"
+      },
+      "spousal_support": {
+        "label": "Spousal support",
+        "helpText": "Financial support for you"
+      },
+      "other_relief_label": "Other protections you need (optional)",
+      "other_relief_placeholder": "Describe any other protections you need that aren't listed above...",
+      "other_relief_helpText": "Be specific about what you need to be safe",
+      "validation_message": "* Please select at least one type of protection",
+      "remember_notice": "Remember: The judge will decide which protections to grant based on your situation. Don't hesitate to ask for everything you need to be safe.",
+      "surrender_weapons": {
+        "label": "Surrender all firearms and weapons",
+        "helpText": "Required by federal law for domestic violence protective orders"
+      },
+      "temporary_custody": {
+        "label": "Grant me temporary custody of our children",
+        "helpText": "Until a full custody hearing can be held"
+      },
+      "no_child_contact": {
+        "label": "No contact with our children",
+        "helpText": "Completely restrict defendant's contact with children"
+      },
+      "supervised_visitation": {
+        "label": "Allow only supervised visitation with children",
+        "helpText": "Visits must occur with a third party present"
+      },
+      "exclusive_use_home": {
+        "label": "Grant me exclusive use of our shared home",
+        "helpText": "Remove defendant from the residence"
+      },
+      "pet_protection": {
+        "label": "Protect my pets from harm",
+        "helpText": "Include pets in the protection order"
+      },
+      "other_relief": {
+        "label": "Other relief (specify below)"
+      },
+      "other_details": {
+        "label": "Describe any other protection you need",
+        "placeholder": "Explain what other orders you're requesting..."
+      },
+      "validation_error": "Please select at least one form of relief"
+    },
+    "property": {
+      "sectionTitle": "Property & Pets",
+      "property_notice": "Property Protection: The court can order exclusive use of your home and protect your personal property and pets.",
+      "shared_residence_legend": "Shared Residence",
+      "shared_residence": {
+        "label": "Do you and the abuser share a residence?",
+        "helpText": "Do you currently live together or jointly own/lease a home?"
+      },
+      "request_exclusive_use": {
+        "label": "Do you want exclusive use of the residence?",
+        "helpText": "This would require them to leave"
+      },
+      "home_ownership": {
+        "label": "Who owns or leases the residence?",
+        "helpText": "Helps determine property rights"
+      },
+      "property_protection_legend": "Personal Property",
+      "request_property_return": {
+        "label": "Do you need the court to order return of your personal property?",
+        "helpText": "Items that belong to you that they're keeping"
+      },
+      "property_description": {
+        "label": "Describe the property you want returned",
+        "placeholder": "List important items: phone, keys, documents, clothing, etc."
+      },
+      "pets_legend": "Pet Safety",
+      "have_pets": {
+        "label": "Do you have pets that need protection?",
+        "helpText": "Pets can be included in protection orders"
+      },
+      "pet_description": {
+        "label": "Describe your pets",
+        "placeholder": "Type, breed, name"
+      },
+      "pet_safety_notice": "Pet Protection: Louisiana law allows courts to include pets in protection orders to prevent harm or intimidation."
+    },
+    "custody": {
+      "sectionTitle": "Temporary Custody",
+      "not_applicable_notice": "This section only applies if you have children. You indicated earlier that you don't have children, so you can skip this section.",
+      "temporary_custody_notice": "Temporary Custody: The court can grant you temporary custody of your children until a full hearing. This is separate from permanent custody arrangements.",
+      "request_temporary_custody": {
+        "label": "Do you want temporary custody of your children?",
+        "helpText": "This would give you legal custody until the hearing"
+      },
+      "current_custody": {
+        "label": "Where do the children currently live?"
+      },
+      "custody_concerns": {
+        "label": "Do you have safety concerns about the children being with the other parent?",
+        "helpText": "Explain why temporary custody is needed"
+      },
+      "safety_explanation": {
+        "label": "Explain your safety concerns",
+        "placeholder": "Describe why you believe the children are not safe..."
+      },
+      "hearing_notice": "Note: Temporary custody is effective until a full hearing. The court will schedule a hearing to determine permanent custody arrangements."
+    },
+    "witness": {
+      "sectionTitle": "Witnesses",
+      "strengthen_case_notice": "Witnesses Strengthen Your Case: People who saw or heard the abuse, or who you told about it afterwards, can testify at your hearing. You don't need witnesses to get a protection order, but they can help.",
+      "have_witnesses": {
+        "label": "Do you have witnesses who can testify about the abuse?",
+        "helpText": "People who saw, heard, or know about the incidents"
+      },
+      "witness_list_label": "List your witnesses",
+      "witness_instructions": "Provide the name and contact information for each witness. Include how they know about the abuse (saw it, heard it, you told them afterwards, etc.).",
+      "witness_name_label": "Witness Name",
+      "witness_phone_label": "Phone Number",
+      "witness_relationship_label": "Relationship to You",
+      "no_witnesses_notice": "No Witnesses Listed: It's okay if you don't have witnesses. The court will consider your testimony and any other evidence you provide."
+    },
+    "affirmation": {
+      "sectionTitle": "Affirmation & Signature",
+      "legal_warning": "⚠️ Legal Warning: Making false statements on this form is perjury, a crime punishable by law. Only provide information you know to be true.",
+      "statement_true": {
+        "label": "I swear that everything in this petition is true to the best of my knowledge",
+        "helpText": "By checking this box, you are swearing under oath"
+      },
+      "understand_perjury": {
+        "label": "I understand that making false statements is perjury",
+        "helpText": "Perjury is a crime that can result in fines or imprisonment"
+      },
+      "signature_notice": "Electronic Signature: When you submit this form, your typed name will serve as your electronic signature, which has the same legal effect as a handwritten signature.",
+      "ready_to_file": "Once you complete all sections and check these boxes, you'll be ready to download your completed petition to file with the court."
+    }
+  },
   "form": {
     "title": "Louisiana Uniform Abuse Prevention Order",
     "subtitle": "Order to Modify or Dissolve a Prior Louisiana Uniform Abuse Prevention Order"
