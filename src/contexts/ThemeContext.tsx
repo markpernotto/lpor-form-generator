@@ -66,40 +66,23 @@ export const ThemeProvider: React.FC<{
 
   useEffect(() => {
     // Apply theme class to document root
-    console.log("Applying theme:", theme);
     if (theme === "dark") {
       document.documentElement.classList.add(
         "dark",
-      );
-      console.log(
-        "Added 'dark' class to html element",
       );
     } else {
       document.documentElement.classList.remove(
         "dark",
       );
-      console.log(
-        "Removed 'dark' class from html element",
-      );
     }
   }, [theme]);
 
   const toggleTheme = () => {
-    console.log(
-      "Toggle clicked! Current theme:",
-      theme,
-    );
     setHasManuallyToggled(true);
     setTheme((prev) => {
-      const newTheme =
-        prev === "light" ? "dark" : "light";
-      console.log(
-        "Switching theme from",
-        prev,
-        "to",
-        newTheme,
-      );
-      return newTheme;
+      return prev === "light"
+        ? "dark"
+        : "light";
     });
   };
 
@@ -112,6 +95,7 @@ export const ThemeProvider: React.FC<{
   );
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useTheme = () => {
   const context = useContext(ThemeContext);
   if (context === undefined) {

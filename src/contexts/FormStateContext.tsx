@@ -32,6 +32,7 @@ interface FormStateContextType {
     updates: Partial<MasterFormData>,
   ) => void;
   resetForm: () => void;
+  prepareEmergencyExit: () => void;
   isFormComplete: boolean;
 }
 
@@ -39,6 +40,7 @@ const FormStateContext = createContext<
   FormStateContextType | undefined
 >(undefined);
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useFormState = () => {
   const context = useContext(FormStateContext);
   if (!context) {
@@ -53,28 +55,44 @@ interface FormStateProviderProps {
   children: ReactNode;
 }
 
+const DEFAULT_FORM_DATA: MasterFormData = {
+  who_needs_protection: [],
+  children: [],
+  incompetent_persons: [],
+  firearms: [],
+  witnesses: [],
+  venue_reasons: [],
+  abuse_types: [],
+  request_no_abuse: true,
+  request_no_contact: true,
+  current_address_state: "LA",
+};
+
+function buildDefaultFormData(): MasterFormData {
+  return {
+    ...DEFAULT_FORM_DATA,
+    who_needs_protection: [],
+    children: [],
+    incompetent_persons: [],
+    firearms: [],
+    witnesses: [],
+    venue_reasons: [],
+    abuse_types: [],
+  };
+}
+
 export const FormStateProvider: React.FC<
   FormStateProviderProps
 > = ({ children }) => {
   const [formData, setFormData] =
-    useState<MasterFormData>({
-      // Initialize with safe defaults
-      who_needs_protection: [],
-      children: [],
-      incompetent_persons: [],
-      firearms: [],
-      witnesses: [],
-      venue_reasons: [],
-      abuse_types: [],
-
-      // Auto-populate some defaults
-      request_no_abuse: true,
-      request_no_contact: true,
-      current_address_state: "LA",
-    });
+    useState<MasterFormData>(buildDefaultFormData);
 
   const [hasUserData, setHasUserData] =
     useState(false);
+  const [
+    suppressExitWarning,
+    setSuppressExitWarning,
+  ] = useState(false);
 
   // Warn user before leaving if they have entered data
   useEffect(() => {
@@ -85,7 +103,11 @@ export const FormStateProvider: React.FC<
       // In dev mode, Vite sets import.meta.hot
       const isDevelopment = import.meta.env.DEV;
 
-      if (hasUserData && !isDevelopment) {
+      if (
+        hasUserData &&
+        !isDevelopment &&
+        !suppressExitWarning
+      ) {
         e.preventDefault();
         e.returnValue =
           "Your information is NOT saved. Leaving will lose all progress. Are you sure?";
@@ -104,7 +126,7 @@ export const FormStateProvider: React.FC<
         handleBeforeUnload,
       );
     };
-  }, [hasUserData]);
+  }, [hasUserData, suppressExitWarning]);
 
   // Track when user starts entering data
   useEffect(() => {
@@ -147,20 +169,18 @@ export const FormStateProvider: React.FC<
   );
 
   const resetForm = useCallback(() => {
-    setFormData({
-      who_needs_protection: [],
-      children: [],
-      incompetent_persons: [],
-      firearms: [],
-      witnesses: [],
-      venue_reasons: [],
-      abuse_types: [],
-      request_no_abuse: true,
-      request_no_contact: true,
-      current_address_state: "LA",
-    });
+    setFormData(buildDefaultFormData());
     setHasUserData(false);
   }, []);
+
+  const prepareEmergencyExit = useCallback(
+    () => {
+      setSuppressExitWarning(true);
+      setFormData(buildDefaultFormData());
+      setHasUserData(false);
+    },
+    [],
+  );
 
   // Simple completeness check - can be enhanced later
   const isFormComplete = Boolean(
@@ -177,6 +197,7 @@ export const FormStateProvider: React.FC<
     updateField,
     updateMultipleFields,
     resetForm,
+    prepareEmergencyExit,
     isFormComplete,
   };
 

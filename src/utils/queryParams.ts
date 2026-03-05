@@ -11,6 +11,18 @@ export function getUrlSearchParams(): URLSearchParams {
   );
 }
 
+function replaceSearchParams(
+  params: URLSearchParams,
+): void {
+  const search = params.toString();
+  const nextUrl = `${window.location.pathname}${search ? `?${search}` : ""}${window.location.hash}`;
+  window.history.replaceState(
+    {},
+    document.title,
+    nextUrl,
+  );
+}
+
 /**
  * Get a specific query parameter value
  * @param key - The parameter key
@@ -74,4 +86,39 @@ export function isDebugMode(): boolean {
     showTestData === "true" ||
     showTestData === "1"
   );
+}
+
+/**
+ * Read selected query params, then remove them from the URL.
+ * This keeps sensitive data out of browser history/address bar.
+ */
+export function consumeQueryParams(
+  keys: string[],
+): Record<string, string> {
+  const params = getUrlSearchParams();
+  const consumed: Record<string, string> = {};
+  let changed = false;
+
+  keys.forEach((key) => {
+    const value = params.get(key);
+    if (value !== null) {
+      consumed[key] = value;
+      params.delete(key);
+      changed = true;
+    }
+  });
+
+  if (changed) {
+    replaceSearchParams(params);
+  }
+
+  return consumed;
+}
+
+/**
+ * Remove all query params from the current URL.
+ */
+export function clearAllQueryParams(): void {
+  if (!window.location.search) return;
+  replaceSearchParams(new URLSearchParams());
 }

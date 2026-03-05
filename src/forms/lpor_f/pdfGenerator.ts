@@ -1,21 +1,403 @@
 import type { LPORFFormData } from "./formTypes";
 import {
   PDFDocument,
+  PDFPage,
+  PDFFont,
   StandardFonts,
   rgb,
 } from "pdf-lib";
 
+function textOrEmpty(
+  value: string | undefined,
+): string {
+  return (value ?? "").trim();
+}
+
+function drawFieldText(
+  page: PDFPage,
+  font: PDFFont,
+  value: string | undefined,
+  x: number,
+  y: number,
+  size: number,
+): void {
+  const text = textOrEmpty(value);
+  if (!text) return;
+  page.drawText(text, {
+    x,
+    y,
+    size,
+    font,
+    color: rgb(0, 0, 0),
+  });
+}
+
+function drawCheckmark(
+  page: PDFPage,
+  font: PDFFont,
+  checked: boolean | undefined,
+  x: number,
+  y: number,
+): void {
+  if (!checked) return;
+  page.drawText("X", {
+    x,
+    y,
+    size: 10,
+    font,
+    color: rgb(0, 0, 0),
+  });
+}
+
+function drawLPORFTemplateOverlay(
+  page: PDFPage,
+  font: PDFFont,
+  formData: LPORFFormData,
+): void {
+  const petitionerName =
+    `${formData.petitioner?.firstName || ""} ${formData.petitioner?.maidenMiddleName || ""} ${formData.petitioner?.lastName || ""}`.trim();
+
+  // Court caption fields (top right)
+  drawFieldText(
+    page,
+    font,
+    formData.courtName,
+    320,
+    890,
+    10,
+  );
+  drawFieldText(
+    page,
+    font,
+    formData.parishCity,
+    400,
+    869,
+    10,
+  );
+  drawFieldText(
+    page,
+    font,
+    formData.division,
+    368,
+    828,
+    10,
+  );
+  drawFieldText(
+    page,
+    font,
+    formData.docketNumber,
+    470,
+    828,
+    10,
+  );
+  drawFieldText(
+    page,
+    font,
+    formData.filedDate,
+    352,
+    807,
+    10,
+  );
+  drawFieldText(
+    page,
+    font,
+    formData.clerk,
+    480,
+    807,
+    10,
+  );
+
+  // Party names (left caption block)
+  drawFieldText(
+    page,
+    font,
+    petitionerName,
+    68,
+    890,
+    10,
+  );
+  drawFieldText(
+    page,
+    font,
+    formData.defendant?.fullName,
+    68,
+    848,
+    10,
+  );
+  drawFieldText(
+    page,
+    font,
+    formData.defendant?.parentGuardianName,
+    68,
+    820,
+    10,
+  );
+
+  // Narrative line
+  drawFieldText(
+    page,
+    font,
+    petitionerName,
+    146,
+    690,
+    10,
+  );
+  drawFieldText(
+    page,
+    font,
+    formData.petitioner?.dateOfBirth,
+    372,
+    690,
+    10,
+  );
+  drawFieldText(
+    page,
+    font,
+    formData.petitioner?.address?.state,
+    145,
+    654,
+    10,
+  );
+
+  // Filing purpose checkboxes
+  drawCheckmark(
+    page,
+    font,
+    formData.filingPurpose?.forPetitioner,
+    96,
+    572,
+  );
+  drawCheckmark(
+    page,
+    font,
+    formData.filingPurpose?.forMinorChildren,
+    96,
+    550,
+  );
+  drawCheckmark(
+    page,
+    font,
+    formData.filingPurpose?.forAllegedIncompetent,
+    96,
+    418,
+  );
+  drawCheckmark(
+    page,
+    font,
+    formData.minorChildren.length > 0 &&
+      !formData.filingPurpose
+        ?.forMinorChildren,
+    96,
+    550,
+  );
+  drawCheckmark(
+    page,
+    font,
+    formData.allegedIncompetent.length > 0 &&
+      !formData.filingPurpose
+        ?.forAllegedIncompetent,
+    96,
+    418,
+  );
+
+  // Minor children rows
+  formData.minorChildren.forEach(
+    (child, index) => {
+      if (index >= 6) return;
+      const entryY = 533 - index * 19;
+      drawFieldText(
+        page,
+        font,
+        child.name,
+        104,
+        entryY,
+        10,
+      );
+      drawFieldText(
+        page,
+        font,
+        child.dateOfBirth,
+        299,
+        entryY,
+        10,
+      );
+      drawFieldText(
+        page,
+        font,
+        child.relationshipToPetitioner,
+        384,
+        entryY,
+        10,
+      );
+    },
+  );
+
+  // Alleged incompetent rows
+  formData.allegedIncompetent.forEach(
+    (entry, index) => {
+      if (index >= 2) return;
+      const entryY = 399 - index * 19;
+      drawFieldText(
+        page,
+        font,
+        entry.name,
+        104,
+        entryY,
+        10,
+      );
+      drawFieldText(
+        page,
+        font,
+        entry.dateOfBirth,
+        299,
+        entryY,
+        10,
+      );
+      drawFieldText(
+        page,
+        font,
+        entry.relationshipToPetitioner,
+        384,
+        entryY,
+        10,
+      );
+    },
+  );
+
+  // Address fields (paragraph 2)
+  drawFieldText(
+    page,
+    font,
+    formData.petitioner?.address?.street,
+    122,
+    302,
+    10,
+  );
+  drawFieldText(
+    page,
+    font,
+    formData.petitioner?.address?.aptNumber,
+    407,
+    302,
+    10,
+  );
+  drawFieldText(
+    page,
+    font,
+    formData.petitioner?.address?.city,
+    122,
+    266,
+    10,
+  );
+  drawFieldText(
+    page,
+    font,
+    formData.petitioner?.address?.state,
+    331,
+    266,
+    10,
+  );
+  drawFieldText(
+    page,
+    font,
+    formData.petitioner?.address?.zipCode,
+    401,
+    266,
+    10,
+  );
+
+  drawFieldText(
+    page,
+    font,
+    formData.minorChildrenAddress?.street,
+    122,
+    197,
+    10,
+  );
+  drawFieldText(
+    page,
+    font,
+    formData.minorChildrenAddress?.aptNumber,
+    281,
+    197,
+    10,
+  );
+  drawFieldText(
+    page,
+    font,
+    formData.minorChildrenAddress?.city,
+    122,
+    161,
+    10,
+  );
+  drawFieldText(
+    page,
+    font,
+    formData.minorChildrenAddress?.state,
+    331,
+    161,
+    10,
+  );
+  drawFieldText(
+    page,
+    font,
+    formData.minorChildrenAddress?.zipCode,
+    401,
+    161,
+    10,
+  );
+}
+
 export async function generateLPORFPDF(
   formData: LPORFFormData,
+  options?: {
+    templateBytes?: ArrayBuffer | Uint8Array;
+  },
 ): Promise<Uint8Array> {
-  const doc = await PDFDocument.create();
-  const page = doc.addPage([612, 792]); // Letter size
+  let doc: PDFDocument;
+  let page: PDFPage;
+  let usingTemplate = false;
+
+  try {
+    if (options?.templateBytes) {
+      doc = await PDFDocument.load(
+        options.templateBytes,
+      );
+      page = doc.getPages()[0];
+      usingTemplate = true;
+    } else {
+      const templateResponse = await fetch(
+        "/templates/Lpor_F.pdf",
+        { cache: "no-store" },
+      );
+      if (!templateResponse.ok) {
+        throw new Error(
+          `Template load failed: ${templateResponse.status}`,
+        );
+      }
+      const templateBytes =
+        await templateResponse.arrayBuffer();
+      doc = await PDFDocument.load(templateBytes);
+      page = doc.getPages()[0];
+      usingTemplate = true;
+    }
+  } catch {
+    // Fallback keeps form generation functional if template isn't available.
+    doc = await PDFDocument.create();
+    page = doc.addPage([612, 1008]); // US Legal size (8.5" x 14")
+  }
+
   const font = await doc.embedFont(
     StandardFonts.Helvetica,
   );
   const boldFont = await doc.embedFont(
     StandardFonts.HelveticaBold,
   );
+
+  if (usingTemplate) {
+    drawLPORFTemplateOverlay(page, font, formData);
+    return await doc.save();
+  }
 
   // Title
   page.drawText("CONFIDENTIAL ADDRESS FORM", {

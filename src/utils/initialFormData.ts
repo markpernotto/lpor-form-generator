@@ -1,5 +1,5 @@
 import type { LPORFFormData } from "../forms/lpor_f/formTypes";
-import { getQueryParam } from "./queryParams";
+import { consumeQueryParams } from "./queryParams";
 
 /**
  * Create initial LPOR F form data with Court Information values from URL query parameters
@@ -8,26 +8,39 @@ import { getQueryParam } from "./queryParams";
  */
 export function createInitialLPORFData(): Partial<LPORFFormData> {
   const initialData: Partial<LPORFFormData> = {};
+  const params = consumeQueryParams([
+    "court",
+    "parishCity",
+    "division",
+    "number",
+    "docket",
+    "filed",
+    "filed_date",
+    "clerk",
+    "debug",
+    "showTestData",
+    "widget",
+  ]);
 
   // Court Information fields that can be pre-populated
-  const court = getQueryParam("court");
+  const court = params.court;
   if (court) {
-    initialData.courtName = court; // Keep encoded (e.g., "Caddo%20Parish%20Court")
+    initialData.courtName = court;
   }
 
-  const parishCity = getQueryParam("parishCity");
+  const parishCity = params.parishCity;
   if (parishCity) {
     initialData.parishCity = parishCity;
   }
 
-  const division = getQueryParam("division");
+  const division = params.division;
   if (division) {
     initialData.division = division;
   }
 
   // Support both 'number' and 'docket' for backward compatibility
-  const number = getQueryParam("number");
-  const docket = getQueryParam("docket");
+  const number = params.number;
+  const docket = params.docket;
   if (number) {
     initialData.docketNumber = number;
   } else if (docket) {
@@ -35,15 +48,15 @@ export function createInitialLPORFData(): Partial<LPORFFormData> {
   }
 
   // Support both 'filed' and 'filed_date' for backward compatibility
-  const filed = getQueryParam("filed");
-  const filedDate = getQueryParam("filed_date");
+  const filed = params.filed;
+  const filedDate = params.filed_date;
   if (filed) {
     initialData.filedDate = filed; // Expected format: YYYY-MM-DD
   } else if (filedDate) {
     initialData.filedDate = filedDate;
   }
 
-  const clerk = getQueryParam("clerk");
+  const clerk = params.clerk;
   if (clerk) {
     initialData.clerk = clerk;
   }

@@ -25,8 +25,13 @@ export type FormType =
 function transformToLPORFFormData(
   formData: MasterFormData,
 ): LPORFFormData {
+  const petitionerFullName =
+    formData.petitioner_full_name ||
+    formData.full_name ||
+    "";
+
   // Split full name into first, middle, last
-  const nameParts = (formData.full_name || "")
+  const nameParts = petitionerFullName
     .trim()
     .split(/\s+/);
   const firstName = nameParts[0] || "";
@@ -41,6 +46,36 @@ function transformToLPORFFormData(
 
   const abuserFullName =
     formData.abuser_name || "";
+  const minorChildren =
+    formData.children?.map((child) => ({
+      id: child.id,
+      name: child.name,
+      dateOfBirth: child.dateOfBirth,
+      relationshipToPetitioner:
+        child.relationshipToPetitioner,
+    })) || [];
+  const allegedIncompetent =
+    formData.incompetent_persons?.map(
+      (person) => ({
+        id: person.id,
+        name: person.name,
+        dateOfBirth: person.dateOfBirth,
+        relationshipToPetitioner:
+          person.relationshipToPetitioner,
+      }),
+    ) || [];
+  const sameAddressForAll =
+    formData.children_same_address || false;
+  const sharedStreet =
+    formData.current_address_street || "";
+  const sharedApt =
+    formData.current_address_apt;
+  const sharedCity =
+    formData.current_address_city || "";
+  const sharedState =
+    formData.current_address_state || "";
+  const sharedZip =
+    formData.current_address_zip || "";
 
   return {
     courtName: undefined,
@@ -48,7 +83,9 @@ function transformToLPORFFormData(
     division: undefined,
     filedDate: undefined,
     clerk: undefined,
-    parishCity: formData.abuser_parish,
+    parishCity:
+      formData.filing_parish ||
+      formData.abuser_parish,
 
     filingPurpose: {
       forPetitioner: true, // If keep_address_private is true, it's for petitioner
@@ -62,7 +99,10 @@ function transformToLPORFFormData(
       firstName,
       maidenMiddleName,
       lastName,
-      dateOfBirth: formData.birth_date || "",
+      dateOfBirth:
+        formData.petitioner_birth_date ||
+        formData.birth_date ||
+        "",
       race: "",
       address: {
         street:
@@ -80,16 +120,25 @@ function transformToLPORFFormData(
       email: undefined,
     },
 
-    minorChildren: [],
-    allegedIncompetent: [],
-    sameAddressForAll:
-      formData.children_same_address || false,
+    minorChildren,
+    allegedIncompetent,
+    sameAddressForAll,
     minorChildrenAddress: {
-      street: "",
-      aptNumber: undefined,
-      city: "",
-      state: "",
-      zipCode: "",
+      street: sameAddressForAll
+        ? sharedStreet
+        : "",
+      aptNumber: sameAddressForAll
+        ? sharedApt
+        : undefined,
+      city: sameAddressForAll
+        ? sharedCity
+        : "",
+      state: sameAddressForAll
+        ? sharedState
+        : "",
+      zipCode: sameAddressForAll
+        ? sharedZip
+        : "",
     },
 
     defendant: {

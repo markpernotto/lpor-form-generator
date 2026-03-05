@@ -1,5 +1,6 @@
 import React from "react";
 import { VoiceInput } from "./VoiceInput";
+import { STRICT_PRIVACY_MODE } from "../constants/privacy";
 
 interface AccessibleTextInputProps {
   id: string;
@@ -100,7 +101,9 @@ export const AccessibleTextInput: React.FC<
           }
           required={required}
           placeholder={placeholder}
-          autoComplete={autoComplete}
+          autoComplete={autoComplete ?? "off"}
+          spellCheck={false}
+          autoCapitalize="off"
           aria-describedby={
             describedBy || undefined
           }
@@ -113,7 +116,8 @@ export const AccessibleTextInput: React.FC<
           minLength={minLength}
         />
 
-        {enableVoiceInput && (
+        {enableVoiceInput &&
+          !STRICT_PRIVACY_MODE && (
           <div className="absolute right-2 top-1/2 transform -translate-y-1/2">
             <VoiceInput
               onResult={handleVoiceResult}

@@ -1,9 +1,14 @@
-import React, { useState } from "react";
+import React, {
+  useEffect,
+  useState,
+} from "react";
 import { ThemeProvider } from "../contexts/ThemeContext";
 import { ThemeToggle } from "../components/ThemeToggle";
 import { PDFDownloadModal } from "../components/PDFDownloadModal";
 import { useFormState } from "../contexts/FormStateContext";
 import { useTranslation } from "../i18n/hooks/useTranslation";
+import { EMERGENCY_EXIT_URL } from "../constants/privacy";
+import { clearAllQueryParams } from "../utils/queryParams";
 
 // Section imports
 import {
@@ -35,8 +40,11 @@ import {
 
 export const MasterIntakePage: React.FC = () => {
   const { t } = useTranslation();
-  const { resetForm, isFormComplete } =
-    useFormState();
+  const {
+    resetForm,
+    prepareEmergencyExit,
+    isFormComplete,
+  } = useFormState();
 
   // Track which sections are expanded
   const [expandedSections, setExpandedSections] =
@@ -64,6 +72,10 @@ export const MasterIntakePage: React.FC = () => {
   const [isPDFModalOpen, setIsPDFModalOpen] =
     useState(false);
 
+  useEffect(() => {
+    clearAllQueryParams();
+  }, []);
+
   const toggleSection = (section: string) => {
     setExpandedSections((prev) => ({
       ...prev,
@@ -85,6 +97,13 @@ export const MasterIntakePage: React.FC = () => {
     setIsPDFModalOpen(true);
   };
 
+  const handlePanicClear = () => {
+    prepareEmergencyExit();
+    resetForm();
+    clearAllQueryParams();
+    window.location.replace(EMERGENCY_EXIT_URL);
+  };
+
   return (
     <ThemeProvider>
       <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors">
@@ -103,6 +122,13 @@ export const MasterIntakePage: React.FC = () => {
                 </p>
               </div>
               <div className="flex items-center gap-3">
+                <button
+                  type="button"
+                  onClick={handlePanicClear}
+                  className="px-3 py-2 text-sm font-semibold text-white bg-red-700 hover:bg-red-800 rounded-md transition-colors"
+                >
+                  Panic Clear
+                </button>
                 <ThemeToggle />
               </div>
             </div>
@@ -123,6 +149,8 @@ export const MasterIntakePage: React.FC = () => {
         <div className="max-w-4xl mx-auto px-6 py-8">
           <form
             onSubmit={handleSubmit}
+            autoComplete="off"
+            spellCheck={false}
             className="space-y-6"
           >
             {/* Introduction */}

@@ -100,6 +100,8 @@ export const AccessibleDateInput: React.FC<
         value={value}
         onChange={(e) => onChange(e.target.value)}
         required={required}
+        autoComplete="off"
+        spellCheck={false}
         aria-describedby={
           describedBy || undefined
         }

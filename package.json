@@ -7,7 +7,10 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "gen:test:lporf": "esbuild scripts/generate-test-lpor-f.ts --bundle --platform=node --format=esm --outfile=/tmp/generate-test-lpor-f.mjs && node /tmp/generate-test-lpor-f.mjs",
+    "gen:test:lporc": "esbuild scripts/generate-test-lpor-c.ts --bundle --platform=node --format=esm --outfile=/tmp/generate-test-lpor-c.mjs && node /tmp/generate-test-lpor-c.mjs",
+    "gen:test:lporg": "esbuild scripts/generate-test-lpor-g.ts --bundle --platform=node --format=esm --outfile=/tmp/generate-test-lpor-g.mjs && node /tmp/generate-test-lpor-g.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",

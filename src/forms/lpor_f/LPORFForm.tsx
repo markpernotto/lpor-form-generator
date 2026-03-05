@@ -354,6 +354,8 @@ export const LPORFForm: React.FC<
 
           <form
             onSubmit={handleSubmit}
+            autoComplete="off"
+            spellCheck={false}
             className="space-y-8"
           >
             {/* Court Information Section - Hidden from UI but data preserved for PDF */}

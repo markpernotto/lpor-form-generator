@@ -2,6 +2,7 @@ import React, {
   useState,
   useCallback,
 } from "react";
+import { STRICT_PRIVACY_MODE } from "../constants/privacy";
 
 // Type definitions for Web Speech API
 interface SpeechRecognitionInterface {
@@ -114,7 +115,7 @@ export const VoiceInput: React.FC<
     recognition.start();
   }, [onResult, language]);
 
-  if (!isSupported) {
+  if (STRICT_PRIVACY_MODE || !isSupported) {
     return null;
   }
 

@@ -23,10 +23,10 @@ export const COLORS = {
 // Common sizes
 export const SIZES = {
   letterWidth: 612,
-  letterHeight: 792,
+  letterHeight: 1008, // US Legal height (14")
   marginLeft: 50,
   marginRight: 562,
-  marginTop: 742,
+  marginTop: 958,
   marginBottom: 50,
 } as const;
 

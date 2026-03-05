@@ -8,6 +8,8 @@ import { downloadLPORFPDF } from "../forms/lpor_f/pdfGenerator";
 import type { LPORFFormData } from "../forms/lpor_f/formTypes";
 import { useTranslation } from "../i18n/hooks/useTranslation";
 import { createInitialLPORFData } from "../utils/initialFormData";
+import { EMERGENCY_EXIT_URL } from "../constants/privacy";
+import { clearAllQueryParams } from "../utils/queryParams";
 
 export const LPORFPage: React.FC = () => {
   const { lang } = useParams<{ lang: string }>();
@@ -36,8 +38,6 @@ export const LPORFPage: React.FC = () => {
   const handleFormSubmit = (
     data: LPORFFormData,
   ) => {
-    console.log("LPOR-F Form submitted:", data);
-
     // Generate and download PDF
     try {
       downloadLPORFPDF(data);
@@ -52,12 +52,24 @@ export const LPORFPage: React.FC = () => {
     }
   };
 
+  const handlePanicClear = () => {
+    clearAllQueryParams();
+    window.location.replace(EMERGENCY_EXIT_URL);
+  };
+
   return (
     <ThemeProvider>
       <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
         {/* Language Selector and Theme Toggle */}
         <div className="bg-white dark:bg-gray-800 shadow-sm border-b dark:border-gray-700">
           <div className="max-w-4xl mx-auto px-6 py-4 flex justify-end gap-3">
+            <button
+              type="button"
+              onClick={handlePanicClear}
+              className="px-3 py-2 text-sm font-semibold text-white bg-red-700 hover:bg-red-800 rounded-md transition-colors"
+            >
+              Panic Clear
+            </button>
             <ThemeToggle />
             <LanguageSelector />
           </div>

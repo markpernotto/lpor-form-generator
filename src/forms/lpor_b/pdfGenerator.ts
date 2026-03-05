@@ -512,6 +512,8 @@ export async function generateLPORBPDF(
     x: SIZES.marginLeft,
     y,
     checked:
+      formData.request_temporary_custody ===
+        true ||
       formData.request_temp_custody === true,
     label:
       "Grant me temporary custody of minor children",
